@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>测试Promise</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			let k = require('1.js')
+			console.log('123')
+			consnole.log(k.count)
+			// 基本用法
+			
+			// let k = 1
+			// let promise = new Promise(function(resolve, reject) {
+
+			// 	setTimeout(resolve, 3000)
+			// 	setTimeout(reject, 2000)
+			// })
+			// promise.then((val) => {
+			// 	console.log('resolve')
+			// }, (err) => {
+			// 	console.log('reject')
+			// })
+
+
+			// Promise resolve函数参数是另一个promise的情况
+			// const p1 = new Promise((resolve, reject) => {
+			// 	setTimeout(() => {reject(new Error('fail'))}, 5000)
+			// 	// setTimeout(() => {resolve(new Error('fail'))}, 5000)
+			// })
+			// const p2 = new Promise((resolve, reject) => {
+			// 	setTimeout(()=> {resolve(p1)}, 1000)
+			// })
+			// p2.then((result) => {
+			// 	console.log('resolve')
+			// 	console.log(result)
+			// },(err)=> {
+			// 	console.log('reject')
+			// 	console.log(err)
+			// }).catch((err) => {
+			// 	console.log(err)
+			// })
+
+
+
+			// // 链式 then
+			// let getJson = new Promise((resolve, reject)=> {
+			// 	setTimeout(()=> {
+			// 		reject('eeeee') // 会直接
+			// 	}, 2000)
+			// })
+			// getJson.then((result)=> {
+			// 	console.log('第一个resolve')
+			// 	console.log(result)
+			// 	return result
+			// }, (err) => {
+			// 	console.log('第一个reject')
+			// 	console.log(err)
+			// 	return err // 不return，第二个resolve会接收对应的参数
+			// }).then((result2)=> {
+			// 	console.log('第二个resolve')
+			// 	console.log(result2)
+			// }, (err) => {
+			// 	console.log('第二个reject')
+			// 	console.log(err)
+			// })
+
+
+			// // 链式 then  resolve
+			// let getJson = new Promise((resolve, reject)=> {
+			// 	setTimeout(()=> {
+			// 		resolve({
+			// 			name: 'Tom',
+			// 			age: 10
+			// 		})
+			// 	}, 2000)
+			// })
+			// getJson.then((result)=> {
+			// 	console.log('第一个resolve')
+			// 	console.log(result)
+			// 	return result
+			// }, (err) => {
+			// 	console.log('第一个reject')
+			// 	console.log(err)
+			// 	return err // 不return，第二个resolve会接收对应的参数
+			// }).then((result2)=> {
+			// 	console.log('第二个resolve')
+			// 	console.log(result2)
+			// }, (err) => {
+			// 	console.log('第二个reject')
+			// 	console.log(err)
+			// })
+
+
+			// // 链式 then
+			// let getJson = new Promise((resolve, reject)=> {
+			// 	setTimeout(()=> {
+			// 		reject('eeeee') // 会直接
+			// 	}, 2000)
+			// })
+			// getJson.then((result)=> {
+			// 	console.log('第一个resolve')
+			// 	console.log(result)
+			// 	return result
+			// }).then((result2)=> {
+			// 	console.log('第二个resolve')
+			// 	console.log(result2)
+			// }, (err) => {
+			// 	console.log('第二个reject')
+			// 	console.log(err)
+			// })
+		</script>>
+	</body>
+</html>

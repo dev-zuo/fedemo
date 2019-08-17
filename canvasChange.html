@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>canvas 变换</title>
+  </head>
+  <body>
+    <canvas id="drawing" width="200" height="200" style='border:1px solid #ccc;'>A draw of something.</canvas>
+
+    <script>
+      var drawing = document.getElementById('drawing');
+      var ctx = drawing.getContext('2d');
+
+      ctx.beginPath();
+      ctx.arc(100, 100, 99, 0, 2*Math.PI, false);
+      ctx.moveTo(192, 100);
+      ctx.arc(100, 100, 92, 0, 2*Math.PI, false);
+      ctx.moveTo(60,100);
+      ctx.lineTo(100,100);
+      ctx.lineTo(100, 40);
+
+      // ctx.rotate(1)
+      // ctx.moveTo(60,100);
+      // ctx.lineTo(100,100);
+      // ctx.lineTo(100, 40);
+      ctx.stroke();
+
+      let x = 200, y = 200;
+      var timer = setInterval(function() {
+        if (y === 0) {
+          clearInterval(timer)
+        }
+        ctx.beginPath();
+        ctx.moveTo(100, 100);
+        ctx.lineTo(x, y)
+        ctx.stroke();
+        y = y - 10
+      }, 1000)
+    </script>
+  </body>
+</html>

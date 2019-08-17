@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>form serialize</title>
+    </head>
+    <body>
+        <form>
+            姓名：
+            <input type="text" name="name" maxlength="15"><br><br>
+            年龄：
+            <input type="number" name="age" min="0" max="150"><br><br>
+            出生日期：
+            <input type="date" name="birthday"><br><br>
+            背景色：
+            <input type="color" name="bgcolor"><br><br>
+
+            地区：
+            <select name="location">
+                <option value="shenzhen">深圳</option>
+                <option value="wuhan">武汉</option>
+                <option value="beijing">北京</option>
+                <option value="dalian">大连</option>
+                <option value="hangzhou">杭州</option>
+                <option value="xizang">西藏</option>
+                <option value="chengdu">成都</option>
+            </select>
+            <br><br>
+
+            喜欢颜色：
+            <select name="lovecolor" multiple>
+                <option value="white">白色</option>
+                <option value="black">黑色</option>
+                <option value="purple">紫色</option>
+                <option value="pink">粉色</option>
+                <option value="green">绿色</option>
+                <option value="yellow">黄色</option>
+                <option value="orange">橙色</option>
+            </select>
+            <br><br>
+            手机
+            <input type="tel" name="tel" maxlength="15"><br><br>
+            密码：
+            <input type="password" name="pw" maxlength="15"><br><br>
+            email：
+            <input type="email" name="email" maxlength="30"><br><br>
+
+            <input type="submit" value="提交"><br><br>
+            <input type="reset" value="重置"><br><br>
+        </form>
+        <script>
+            // serialize form
+            var formObj = document.forms[0];
+            formObj.addEventListener('submit', function(event) {
+                // console.log(serializeForm(formObj));
+                // console.log('----------------------------')
+                // var data = new FormData(formObj)
+                // data.append("a", "111111")
+                // console.log(data)
+
+
+                // var xhr = new XMLHttpRequest();
+                // xhr.onreadystatechange = function() {
+                // if (xhr.readyState === 4) {
+                //     if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+                //     alert(xhr.responseText);
+                //     } else {
+                //     alert('请求异常' + xhr.status + ',' + xhr.statusText);
+                //     }
+                // }
+                // };
+                // var url = "http://127.0.0.1:8088/getList";
+                // xhr.open('post', url, true);
+                // xhr.send(data); // xhr对象能识别传入的数据类型是FormData的实例，并配置适当的头部信息
+                // // 默认配置的是 Content-Type: multipart/form-data;
+
+                var xhr = new XMLHttpRequest();
+                // xhr.onreadystatechange = function() {
+                //     if (xhr.readyState === 4) {
+                //         if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+                //             alert(xhr.responseText);
+                //         } else {
+                //             alert('请求异常' + xhr.status + ',' + xhr.statusText);
+                //         }
+                //     }
+                // };
+                xhr.onload = function() {
+                    if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+                            alert(xhr.responseText);
+                        } else {
+                            alert('请求异常' + xhr.status + ',' + xhr.statusText);
+                        }
+                }
+                var url = "http://127.0.0.1:8088/getList";
+                xhr.open('get', url, true);
+                // xhr.timeout = 2000;
+                // xhr.ontimeout = function(event) {
+                //     alert('请求超时')
+                // }
+                // xhr.overrideMimeType('text/xml')
+                xhr.send(null);
+
+                event.preventDefault();
+            })
+
+            function serializeForm(formObj) {
+                var fields = formObj.elements;
+                var contentArr = [];
+
+                for (var i = 0; i < fields.length; i++) {
+                    var field = fields[i];
+                    // 如果没有name属性, 跳过
+                    if (!field.name.length) {
+                        continue;
+                    } 
+                    switch(field.type) {
+                        case undefined: // 字符集
+                        case 'file': // 文件输入
+                        case 'submit': // 提交按钮
+                        case 'reset': // 重置按钮
+                        case 'button': // 自定义按钮
+                            // 非输入内容，break
+                            break;
+                        case 'select-multiple': // 多选，需要特殊处理
+                            var options = field.options;
+                            var selectArr = [];
+                            for (let j = 0; j < options.length; j++) {
+                                if (options[j].selected) {
+                                    selectArr.push(options[j].value)
+                                }
+                            }
+                            contentArr.push(encodeURIComponent(field.name) + '=' + encodeURIComponent(selectArr.join(';')));
+                            break;
+                        default:
+                            contentArr.push(encodeURIComponent(field.name) + '=' + encodeURIComponent(field.value))
+                    }
+                }
+                console.log(contentArr)
+                return contentArr.join("&")
+            }
+        </script>
+    </body>
+</html>

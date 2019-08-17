@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>video</title>
+  </head>
+  <body>
+    <!-- 嵌入视频, 如果浏览器不支持会显示Video element not support -->
+
+    <video src="最后一公里.mp4" controls>Video element not support</video>
+    <video src="最后一公里.mp4">Video element not support</video>
+
+    <video id="video" src="最后一公里.mp4" controls poster="posterimg.png">Video element not support</video>
+
+    <video src="最后一公里.mp4" controls poster="posterimg.png" width="300">Video element not support</video>
+
+    <!--- 如果单独设置了autoplay，无法播放，需要再加一个muted属性才能自动播放，muted是让视频静音-->
+    <video src="最后一公里.mp4" controls poster="posterimg.png" width="300" autoplay muted>Video element not support</video>
+
+    <div>
+        <input type="button" onclick="play()" value="播放">
+        <input type="button" onclick="pause()" value="暂停">
+        <span id="curPlayTime"></span>/<span id="totalPlayTime"></span>  音量：<span id="volume"></span>
+    </div>
+    <script>
+      var video = document.getElementById('video')
+      // 无效
+      // setTimeout(function() {
+      //   console.log(video)
+      //   video.play()
+      // }, 5000)
+      // 需要点击事件才能触发，如果一进来直接调用函数会无效，除非播放时加如muted属性无声音。放在oncanplay里也无效
+      function play() {
+        console.log('video.play')
+        video.play()
+      }
+      function pause() {
+        console.log('video.pause')
+        video.pause()
+      }
+      var curPlayTimeEle = document.getElementById('curPlayTime');
+      var totalPlayTimeEle = document.getElementById('totalPlayTime');
+      var volumeEle = document.getElementById('volume');
+      // 只有在视频可以播放时才能获取到视频总时长
+      video.oncanplay = function() {
+        // video.play()
+        var duration = Math.ceil(video.duration)
+        totalPlayTimeEle.innerHTML = Math.floor(duration / 60) + '分' + duration % 60 + '秒';
+        console.log(video.duration);
+      }
+      // 更新当前播放时长及音量
+      setInterval(() => {
+        curPlayTimeEle.innerHTML = video.currentTime;
+        volumeEle.innerHTML = video.volume;
+      }, 250);
+    </script>
+  </body>
+</html>

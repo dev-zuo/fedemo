@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>drag demo</title>
+    <style>
+      .div {
+        position:absolute;
+        width:100px;height:100px;border:1px dashed #333;
+        text-align: center;
+        user-select: none;  /* 让元素不可选中 */
+      }
+      .div1 { left:10px; top:10px; background: rgba(0, 255, 0, .2) }
+      .div2 { left:200px; top:10px; background: #ddd }
+      .div3 { left:400px; top:10px; background: rgba(0, 255, 0, .2) }
+    </style>
+  </head>
+  <body>
+    <div class="div div1 dragable">可drag1</div>
+    <div class="div div2">不可drag</div>
+    <div class="div div3 dragable">可drag2</div>
+    
+    <script>
+
+      var DragDrop = function() {
+        var draging = null
+        var offsetx = 0
+        var offsety = 0
+
+        function handleEvent(event) {
+          switch(event.type) {
+            case 'mousedown':
+              // 如果元素包含drageable class则可移动
+              if (event.target.className.includes('dragable')) {
+                draging = event.target
+                offsetx = event.clientX - draging.offsetLeft
+                offsety = event.clientY - draging.offsetTop
+              }
+              break;
+            case 'mousemove':
+              if (draging !== null) {
+                draging.style.left = event.clientX - offsetx + 'px'
+                draging.style.top = event.clientY - offsety + 'px'
+              }
+              break;
+            case 'mouseup':
+              draging = null
+              break;
+          }
+        }
+
+        return {
+          enable: function() {
+            document.onmousedown = handleEvent
+            document.onmousemove = handleEvent
+            document.onmouseup = handleEvent
+          },
+          disable: function() {
+            document.onmousedown = null
+            document.onmousemove = null
+            document.onmouseup = null
+          }
+        }
+      }
+      
+      // 开启
+      new DragDrop().enable()
+    </script>
+  </body>
+</html>

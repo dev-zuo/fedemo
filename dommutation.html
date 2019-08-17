@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>dom mutation</title>
+    <script type="text/javascript" src="EventUtil.js"></script>
+  </head>
+  <body>
+    <ul id="myList">
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+    </ul>
+    <script type="text/javascript">
+      // EventUtil.addHandler(window, 'load', function(event) {
+      //   var list = document.getElementById('myList');
+      //   EventUtil.addHandler(document, 'DOMSubtreeModified', function(event) {
+      //     alert(event.type);
+      //     alert(event.target);
+      //   });
+      //   EventUtil.addHandler(document, 'DOMNodeRemoved', function(event) {
+      //     alert(event.type);
+      //     alert(event.target);
+      //   })
+      //   EventUtil.addHandler(list.firstChild, 'DOMNodeRemovedFromDocument', function(event) {
+      //     alert(event.type);
+      //     alert(event.target);
+      //   })
+      //   list.parentNode.removeChild(list);
+      // })
+      // 移除ul后打印顺序：ul元素先触发DOMNodeRemoved; ul的子元素触发DOMNodeRemovedFromDocument; body再触发DOMSubtreeModified
+      // DOMNodeRemoved, [object HTMLUListElement], DOMNodeRemovedFromDocument, [object Text], DOMSubtreeModified, [object HTMLBodyElement]
+
+      EventUtil.addHandler(window, 'load', function(event) {
+        var list = document.getElementById('myList');
+        var item = document.createElement('li');
+        item.appendChild(document.createTextNode('Item 4'));
+        EventUtil.addHandler(document, 'DOMSubtreeModified', function(event) {
+          alert(event.type);
+          alert(event.target);
+        });
+        EventUtil.addHandler(document, 'DOMNodeInserted', function(event) {
+          alert(event.type);
+          alert(event.target);
+        });
+        EventUtil.addHandler(item, 'DOMNodeInsertedIntoDocument', function(event) {
+          alert(event.type);
+          alert(event.target);
+        });
+        list.appendChild(item)
+      });
+      // 创建一个li并append到ul里，li先触发DOMNodeInserted, li 再触发DOMNodeInsertedIntoDocument，ul再触发DOMSubtreeModified
+      // DOMNodeInserted, [object HTMLLIElement], DOMNodeInsertedIntoDocument, [object HTMLLIElement], DOMSubtreeModified, [object HTMLUListElement]
+    </script>
+  </body>
+</html>

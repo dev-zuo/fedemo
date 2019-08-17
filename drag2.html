@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.container {
+				width: 300px;
+				height: 300px;
+				background-color: #269ABC;
+				margin-right: 40px;
+				display: inline-block;
+			}
+			.block{
+				width: 50px;
+				height: 50px;
+				background-color: #0062CC;
+				display: inline-block;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="block"></div>
+		<div class="container"></div>
+		<div class="container"></div>
+	</body>
+	<script>
+		var block = document.getElementsByClassName("block")[0];
+		block.ondragstart = null;
+                block.setAttribute("draggable", true);
+                block.ondragstart = function(e) {
+        	    e.dataTransfer.effectAllowed = 'copy';
+                    e.dataTransfer.dropEffect = 'copy';
+                    var data = 'text';
+                    e.dataTransfer.setData("text", data);    //在ie下第一个参数必须为 ‘text’, 谷歌和火狐则随意
+                }
+		var doms = document.getElementsByTagName("div");
+		for(var i=0;i<doms.length;i++){
+			doms[i].ondragover = function(e) {
+				e.target.style.cursor = "pointer";
+            	                e.preventDefault();  // 这段不写会触发不了ondrop事件
+			} 
+			doms[i].ondragenter = function(e) {
+				e.preventDefault();
+			}
+			doms[i].ondragleave = function(e) {
+                                e.target.style.cursor = "";
+				e.preventDefault();
+			}
+			doms[i].ondrop = function(e) {
+				var data = e.dataTransfer.getData("text");
+				var block = document.createElement("div");
+				block.className="block"
+				e.target.appendChild(block);
+				e.preventDefault();
+			}
+		}
+	</script>
+</html>

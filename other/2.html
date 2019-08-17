@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="button" value="打开 '我的窗口'" onclick="openWin()">
+    <text id='t' name="n">textkkkk</text>
+    <img src="1.png" height="500" width="300">
+    <img src="2.png" name="myImg" height="500" width="300">
+    <a href="https://zuo11.com" name='test'>ddd</a>
+    <a href="https://zuo11.com" >kkkk</a>
+    <div id='d'>
+        divkkk
+        </div>
+    <script>
+        /***
+         *  window.screenLeft 窗口相对于屏幕左边的距离 、window.screenX
+         *  window.screenTop  窗口相对于屏幕顶部的距离 、window.screenY
+         */
+        var myWindow;
+        function openWin(){
+            myWindow = window.open("", "testWindow","height=400,width=400,top=200,left=400,location=no");
+            myWindow.document.write('test');
+
+            // openWin()
+            setTimeout(function() {
+                /**
+                 * moveTo 移动窗口位置 如果 window.open('http://baidu.com') 这个moveTo会报如下错误
+                 * SecurityError: Permission denied to access property "moveTo" on cross-origin object
+                 */
+                myWindow.moveTo(100,100); // window.moveTo(x,y) 相对于屏幕左边距，相对于屏幕上边距
+                myWindow.resizeTo(600,300); // resizeTo(width,height) 调整窗口大小 单位为像素
+
+                console.log(myWindow.opener === window); // 如果窗口是打开的，这个为 true
+
+                // 关闭弹窗
+                setTimeout(function() {
+                    myWindow.close();
+                },2000);
+            },3000);
+
+        }
+    </script>
+</body>
+</html>

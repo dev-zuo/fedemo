@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>测试HTML事件</title>
+  </head>
+  <body>
+  	<!-- Example1: 按钮名称为Click Me，输出Clicked -->
+    <input type="button" value="Click Me" onclick="alert('Clicked')">
+    
+    <!-- Example2: 绑定事件函数，输出Hello world! -->
+    <input type="button" value="Click Me2" onclick="showMessage()">
+
+    <!-- Example3: 可以访问event对象，输出click -->
+    <input type="button" value="Click Me3" onclick="alert(event.type)">
+
+    <!-- Example4: this对象，输出Click Me4 -->
+    <input type="button" value="Click Me4" onclick="alert(this.value)">
+
+    <button id="myBtn">myBtn</button>
+    <a id="myLink" href="http://zuo11.com">测试url</a>
+    <script type="text/javascript">
+    	// function showMessage() {
+    	// 	alert('Hello world!')
+    	// }
+
+  //   	let btn = document.getElementById('myBtn');
+		// btn.onclick = function() { // 绑定事件处理程序
+		//   alert('Clicked');
+		//   alert(this.id); // "myBtn"
+		// };
+
+		// let btn = document.getElementById('myBtn');
+		// btn.addEventListener('click', function() {
+		//   alert(this.id)
+		// }, false);
+		// btn.addEventListener('click', function() {
+		//   alert('Hello world!')
+		// }, false);
+
+		// 移除事件绑定，需要传入与addEventListener里传入的事件相同的函数
+		// let btn = document.getElementById('myBtn');
+		// let handler = function() {
+		//   alert(this.id);
+		// };
+		// btn.addEventListener('click', handler, false);
+
+		// setTimeout(()=> {
+		//   btn.removeEventListener('click', handler, false)
+		// }, 8000)
+
+		// let btn = document.getElementById('myBtn');
+		// btn.attachEvent('onclick', function() {
+		//   alert('Clicked');s
+		// });
+
+		// var btn = document.getElementById('myBtn');
+		// var handler = function () {
+		//   alert('Clicked');
+		// };
+		// btn.attachEvent('onclick', handler);
+		// setTimeout(function() {
+		//   btn.detachEvent('onclick', handler);
+		// }, 8000)
+
+		var EventUtil = {
+		  addHandler: function(element, type, handler) {
+		    if (element.addEventListener) { // 如果支持DOM2级
+		      element.addEventListener(type, handler, false);
+		    } else if (element.attachEvent) { // IE10及以下版本
+		      element.attachEvent("on" + type, handler);
+		    } else {
+		      element["on" + type] = handler;
+		    }
+		  },
+		  removeHandler: function(element, type, handler) {
+		    if (element.removeEventListener) { // 如果支持DOM2级
+		     element.removeEventListener(type, handler, false);
+		    } else if (element.detachEvent) { // IE10及以下版本
+		     element.detachEvent("on" + type, handler);
+		    } else {
+		     element["on" + type] = null;
+		    }
+		  }
+		};
+
+		// var btn = document.getElementById('myBtn');
+		// var handler = function () {
+		//   alert('Clicked');
+		// };
+
+		// EventUtil.addHandler(btn, "click", handler);
+
+		// setTimeout(function() {
+		//   EventUtil.removeHandler(btn, 'click', handler);
+		// }, 8000)
+
+		// var btn = document.getElementById('myBtn');
+		// var handler = function(event) {
+		//   switch (event.type) {
+		//     case 'click':
+		//       alert('Clicked!');
+		//       break;
+		//     case 'mouseover':
+		//       event.target.style.backgroundColor = "red";
+		//       break;
+		//     case 'mouseout':
+		//       event.target.style.backgroundColor = "";
+		//       break;
+		//   }
+		// };
+		// btn.onclick = handler;
+		// btn.onmouseover = handler;
+		// btn.onmouseout = handler;
+
+
+		// var link = document.getElementById('myLink');
+		// link.onclick = function(event) {
+		// 	console.log('点击了a标签')
+		//   	event.preventDefault();
+		// }
+
+		// 5.event.stopPropagation() 阻止事件冒泡
+		// var btn = document.getElementById('myBtn');
+		// btn.onclick = function(event) {
+		//   alert("Clicked!。。。。。。。");
+		//   // event.stopPropagation()
+		// };
+		// document.body.onclick = function(event) {
+		//   alert('Body clicked');
+		// }
+
+
+		var btn = document.getElementById('myBtn');
+		btn.onclick = function(event) {
+		  alert(event.eventPhase); // 2  处理阶段
+		};
+		document.body.addEventListener('click', function(event) {
+		  alert(event.eventPhase); // 1 捕获阶段
+		}, true);
+		document.body.onclick = function(event) {
+		  alert(event.eventPhase) // 3 冒泡阶段
+		};
+    </script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>xdm-document</title>
+  </head>
+  <body>
+    <div id="msg"></div>
+    <p>跨文档消息传送(XDM)：</p>
+    <iframe src="iframe.html" width="300" height="300"></iframe>
+    <script>
+      window.onload = function() {
+        console.log('开始postmessage')
+        setTimeout(function () {
+          try {
+            document.getElementsByTagName('iframe')[0].contentWindow.postMessage('1111', 'http://127.0.0.1/xdm/xdm.html')
+          } catch(e) {
+            console.log(e)
+          }
+        }, 2000)
+        window.onmessage = function(event) {
+          var msg = document.getElementById('msg');
+          msg.innerHTML = event.data
+          console.log(event)
+          console.log('接收到消息：', event.data)
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>error</title>
+    </head>
+    <body>
+        <script type='text/javascript'>
+          window.onerror = function(message, url, line) {
+            console.log('message: ' + message) // message: Uncaught TypeError: 类型错误
+            console.log('url: ' + url) // url: http://127.0.0.1/error.html
+            console.log('line:' + line) // line:25
+          }
+          try {
+            throw new Error('custom message', 't.js', 10)
+          } catch(e) {
+            console.log('error message: ', e.message); // error message:  custom message
+            console.log('error name: ', e.name); // error name:  Error
+            console.log('error fileName: ', e.fileName); // error fileName:  undefined
+            console.log('error lineNumber: ', e.lineNumber); // error lineNumber:  undefined
+            console.log('error columnNumber: ', e.columnNumber); // error columnNumber:  undefined
+            console.log('error stack: ', e.stack); // error stack:  Error: custom message at http://127.0.0.1/error.html:11:19
+          }
+
+          // throw new TypeError('类型错误') // 这里触发的错误，onerror会触发
+          // cosnole.log('info') // 这里不会执行
+
+
+          function logError(sev, msg) {
+            // sev 严重程度
+            // msg 错误信息
+            var img = new Image();
+            img.src = "log.php?sev=" + encodeURIComponent(sev) + "&msg=" + encodeURIComponent(msg)
+            // 这里使用了Image对象来发送请求，有以下几个好处：1.所有浏览器都支持Image对象 2.可以避免跨域限制 3.记录错误的过程中出问题的概率笔记低
+          }
+          // 开始使用
+          try {
+            // 可能发生错误的情况
+            var t = k;
+          } catch(e) {
+            logError('nonfatal', 'Moudle init failed: ' + e.message) // nonfatal 非致命
+          }
+        </script>
+    </body>
+</html>

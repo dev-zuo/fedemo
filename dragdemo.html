@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>drag demo</title>
+  </head>
+  <body>
+    <div id="dragdiv" style="position:absolute;left:10px; top:10px;width:100px;height:100px;border:1px dashed #333;"></div>
+    <script>
+      // 简单的div拖放，鼠标移动上去就可以拖动
+      // var dragdiv = document.getElementById('dragdiv')
+      // dragdiv.onmousemove = function(event) {
+      //   dragdiv.style.left = event.clientX - 20 + 'px'
+      //   dragdiv.style.top = event.clientY - 20 + 'px'
+      // }
+
+      // 鼠标左键点击后拖动，移开后停止移动
+      // 监听mousedown，就开始拖动监听，mousemove才开始生效，移动，放手后mouseup后，停止监听
+      let draging = null
+      let diffx = 0
+      let diffy = 0
+      let dragdiv = document.getElementById('dragdiv')
+
+      dragdiv.onmousedown = function(event) {
+        draging = "can drag"
+        console.log('mousedown: ', draging)
+        diffx = event.clientX - dragdiv.offsetLeft
+        diffy = event.clientY - dragdiv.offsetTop
+      } 
+      dragdiv.onmousemove = function(event) {
+        if (draging !== null) {
+          dragdiv.style.left = event.clientX - diffx  + 'px'
+          dragdiv.style.top = event.clientY - diffy + 'px'
+        }
+        console.log('mousemove: ', draging)
+      } 
+      dragdiv.onmouseup = function(event) {
+        draging = null
+        console.log('mouseup: ', draging)
+      } 
+      document.documentElement.onmouseup = function(event) {
+        draging = null
+        console.log('body mouseup: ', draging)
+      } 
+    </script>
+  </body>
+</html>

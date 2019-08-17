@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>html5 api</title>
+    </head>
+    <body>
+        <form novalidate>
+            username：
+            <input type="text" name="username" required pattern="\d+"><br><br>
+
+            email Type:
+            <input type="email" name="email"><br><br>
+
+            url type
+            <input type="url" name="url"><br><br>
+
+            color type
+            <input type="color" name="color"><br><br>
+
+            date type
+            <input type="date" name="date"><br><br>
+
+            time type
+            <input type="time" name="date"><br><br>
+
+            search type
+            <input type="search" name="search"><br><br>
+
+            tel type
+            <input type="tel" name="tel"><br><br>
+
+            range type
+            <input type="range" name="range"><br><br>
+
+            week type
+            <input type="week" name="week"><br><br>
+
+            数值范围
+            <input type="number" name="number" min="0" max="100" step="5"><br><br>
+
+
+            <input type="submit" value="提交"><br><br>
+            <input type="button" value="检测username input值是否有效" onclick="uncheckValidity()"><br><br>
+        </form>
+        <script>
+            // 获取 username 是否为必须输入
+            var isUsernameRequired = document.forms[0].elements['username'].required;
+            console.log(`isUsernameRequired: ${isUsernameRequired}`)
+
+            // 检测是否有效
+            function uncheckValidity() {
+                console.log('check')
+                alert(document.forms[0].elements['username'].checkValidity())
+            }
+        </script>
+    </body>
+</html>

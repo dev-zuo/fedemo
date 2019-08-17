@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>drag demo</title>
+    <style>
+      .sec-content { width:600px;height: 400px;border:1px solid #ccc; }
+      .dragdiv {width:50px; height:50px;border:1px solid blue; margin-right:10px;}
+      .flexdiv { display: flex;}
+      #square1 { display: flex; flex-wrap: wrap}
+    </style>
+  </head>
+  <body>
+    <div>
+      <p class="sec-title">可拖动模块</p>
+      <div id="flexdiv" class="flexdiv">
+        <div id="dragdiv1" class="dragdiv" draggable="true">1</div>
+        <div id="dragdiv2" class="dragdiv" draggable="true">2</div>
+        <div id="dragdiv3"class="dragdiv" draggable="true">3</div>
+        <div id="dragdiv4" class="dragdiv" draggable="true">4</div>
+      </div>
+    </div>
+
+    <div>
+      <p class="sec-title">放置区域1</p>
+      <div id="square1" class="sec-content">
+      </div>
+    </div>
+
+    <script>
+      var flexdiv = document.getElementById('flexdiv');
+      flexdiv.addEventListener('dragstart', dragdivHandle, false);
+      flexdiv.addEventListener('drag', dragdivHandle, false);
+      flexdiv.addEventListener('dragend', dragdivHandle, false);
+
+      var square1 = document.getElementById('square1');
+      square1.addEventListener('dragenter', squareEventHandle, false);
+      square1.addEventListener('dragover', squareEventHandle, false);
+      square1.addEventListener('dragleave', squareEventHandle, false);
+      square1.addEventListener('drop', squareEventHandle, false);
+
+      function dragdivHandle(event) {
+        console.log(event.type)
+        switch(event.type) {
+          case 'dragstart':
+            // 针对拖动元素，设置event.effectAllowed
+            // event.dataTransfer.effectAllowed = 'copy'; // 这个设置与不设置貌似没什么作用
+            event.dataTransfer.setData('Text', event.target.id)
+            break;
+        }
+      }
+
+      function squareEventHandle(event) {
+        console.log(event.type)
+        switch(event.type) {
+          // case 'dragenter': // JS高程3里面p482内容: 如果想要让元素成为可放置区域，需要这里也阻止默认行为，但实际不用
+          //   event.preventDefault();
+          //   break;
+          case 'dragover':
+            event.preventDefault(); // 取消默认操作，可以让元素成为可放置区域
+            // 针对放置目标，设置event.dropEffect
+            // event.dataTransfer.dropEffect = 'copy'; // 这个设置与不设置貌似没什么作用
+            break;
+          case 'drop':
+            // 防止火狐下，每次拖拽都会打开新的标签页
+            event.stopPropagation(); //阻止冒泡
+            event.preventDefault(); // 阻止默认事件
+
+            var id = event.dataTransfer.getData('Text');
+            console.log(id)
+            // 如果克隆了节点，不会删除源节点，如果通过getElementById获取对应的节点，会删除原来拖动的节点
+            console.log(event.dataTransfer.files); // 得到files数组，文件对象
+            square1.appendChild(document.getElementById(id).cloneNode(true))
+            break;
+        }
+      }
+
+    </script>
+  </body>
+</html>

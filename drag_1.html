@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>darg</title>
+  </head>
+  <body>
+    <p>What fruits do you like?</p>
+    <ol ondragstart="dragStartHandler(event)">
+    <li draggable="true" data-value="fruit-apple">Apples</li>
+    <li draggable="true" data-value="fruit-orange">Oranges</li>
+    <li draggable="true" data-value="fruit-pear">Pears</li>
+    </ol>
+
+
+    <p>Drop your favorite fruits below:</p>
+    <div ondragenter="dragEnterHandler(event)" ondragover="dragOverHandler(event)"
+        ondrop="dropHandler(event)" style="width:600px; height:300px; border:1px solid #ccc;">
+  </div>
+    <script>
+      var internalDNDType = 'Text'; 
+      // var internalDNDType = 'text/x-example'; // set this to something specific to your site
+      function dragEnterHandler(event) {
+        event.preventDefault();
+        // var items = event.dataTransfer.items;
+        // for (var i = 0; i < items.length; ++i) {
+        //   var item = items[i];
+        //   if (item.kind == 'string' && item.type == internalDNDType) {
+        //     event.preventDefault();
+        //     return;
+        //   }
+        // }
+      }
+      function dragOverHandler(event) {
+        event.dataTransfer.dropEffect = 'move';
+        event.preventDefault();
+      }
+      function dropHandler(event) {
+        var li = document.createElement('li');
+        var data = event.dataTransfer.getData(internalDNDType);
+        if (data == 'fruit-apple') {
+          li.textContent = 'Apples';
+        } else if (data == 'fruit-orange') {
+          li.textContent = 'Oranges';
+        } else if (data == 'fruit-pear') {
+          li.textContent = 'Pears';
+        } else {
+          li.textContent = 'Unknown Fruit';
+        }
+        event.target.appendChild(li);
+      }
+
+      // var internalDNDType = 'Text'; // set this to something specific to your site
+      // var internalDNDType = 'text/x-example'; // set this to something specific to your site
+      function dragStartHandler(event) {
+        if (event.target instanceof HTMLLIElement) {
+          console.log('xxx')
+          // use the element's data-value="" attribute as the value to be moving:
+          event.dataTransfer.setData(internalDNDType, event.target.dataset.value);
+          console.log(event.target.dataset.value)
+          event.dataTransfer.effectAllowed = 'move'; // only allow moves
+        } else {
+          event.preventDefault(); // don't allow selection to be dragged
+        }
+      }
+    </script>
+  </body>
+</html>

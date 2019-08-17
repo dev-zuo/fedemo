@@ -1,0 +1,50 @@
+<script>
+  console.log('12')
+
+  let historyData = [{
+    time: "08:00",
+    foodAndCount: "",
+    symptomAndRemark: "起床 48.37kg"
+  },
+  {
+    time: "07:30",
+    foodAndCount: "",
+    symptomAndRemark: "大便正常"
+  },
+  {
+    time: "08:45",
+    foodAndCount: "汤米粉(瘦肉)；鸡蛋一个",
+    symptomAndRemark: "饭后 48.96kg，肚子有点疼，便血"
+  },
+  {
+    time: "09:30",
+    foodAndCount: "纯牛奶一盒",
+    symptomAndRemark: "称重 49.39kg"
+  },
+  {
+    time: "23:45",
+    foodAndCount: "",
+    symptomAndRemark: "大便偏软，黄黑相间"
+  },
+  {
+    time: "15:00",
+    foodAndCount: "玉米汁(常温); 米饭1晚; 丝瓜; 山药(微辣); 铁锅鱼(微辣)",
+    symptomAndRemark: "暂无"
+  }]
+
+  console.log(historyData)
+  historyData.sort((val1, val2) => {
+    let time1 = parseInt(val1.time.split(':').join(''))
+    let time2 = parseInt(val2.time.split(':').join(''))
+    return time1 < time2 ? -1 : (time1 > time2 ? 1 : 0)
+    // if (time1 < time2) {
+    //   return -1
+    // } else if (time1 > time2) {
+    //   return 1
+    // } else {
+    //   return 0
+    // }
+
+  })
+  console.log(historyData)
+</script>

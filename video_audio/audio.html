@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>video</title>
+  </head>
+  <body>
+    <!-- 嵌入audio, 如果浏览器不支持会显示Video element not support -->
+    <p>播放mp4声音: 最后一公里.mp4</p>
+    <audio src="最后一公里.mp4" controls>audio element not support</audio>
+
+    <p>播放mp3声音: 王菲 - 匆匆那年.mp3</p>
+    <audio id="audio" src="王菲 - 匆匆那年.mp3" controls>audio element not support</audio>
+    <div>
+        <input type="button" onclick="play()" value="播放">
+        <input type="button" onclick="pause()" value="暂停">
+    </div>
+    <script>
+      var audio = document.getElementById('audio')
+      audio.oncanplaythrough = function() {
+        console.log('可以播放了')
+        // 这样也无效，还是要用按钮click触发
+        // chrome 和 firefox无效，IE11有效
+        // audio.play()
+      }
+      function play() {
+        console.log('audio.play')
+        audio.play()
+      }
+      function pause() {
+        console.log('audio.pause')
+        audio.pause()
+      }
+    </script>
+  </body>
+</html>

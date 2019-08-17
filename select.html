@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>select</title>
+    </head>
+    <body>
+        <select name="location" id="selLocation" multiple>
+            <option value="cn">China</option>
+            <option value="usa" selected>American</option>
+            <option value="jp" selected>Japan</option>
+            <option value="rus">Russia</option>
+        </select>
+        <script>
+            var sel = document.getElementById('selLocation');
+
+            // select的属性
+            console.log('multiple: ' + sel.multiple); // 是否为多选, true为多选，否则为false
+            console.log('selectedIndex: ' + sel.selectedIndex); // 如果没选中，返回-1，有选择或多个选择，返回第一个选择的index，select单选时默认为0
+            console.log('size: ' + sel.size); // 0
+            console.log('value: ' + sel.value); // 选中的值，为option value的值。单选或多选，只是第一个index的值。没选中，值为""
+            console.log('type: ' + sel.type); // 单选type为select-one, 多选值为select-multiple
+            console.log('options: ', sel.options) // 获取select的optinos HTMLCollection
+
+            // 每一个option选项，都是HTMLOptionElement对象
+            var option = sel.options[0] // 第一个option
+            console.log('option.index: ' + option.index); // 0
+            console.log('option.label: ' + option.label); // China
+            console.log('option.selected: ' + option.selected); // false
+            console.log('option.text: ' + option.text); // China
+            console.log('option.value: ' + option.value); // cn
+
+            // 获取select选择项的值
+            function getSelectedValue(selectObj) {
+                // 如果是单选，直接返回值
+                if (selectObj.type === 'select-one') {
+                    return selectObj.value
+                }
+
+                var options = selectObj.options;
+                var selectArr = [];
+                for (let i = 0; i < options.length; i++) {
+                    if (options[i].selected) {
+                        selectArr.push(options[i].value)
+                    }
+                }
+                return selectArr.join(';')
+            }
+            console.log(getSelectedValue(sel));
+
+            // 添加选项1, 通用DOM操作
+            // var newOption = document.createElement('option');
+            // newOption.appendChild(document.createTextNode('Option text'));
+            // newOption.setAttribute('value', 'Option value');
+            // sel.appendChild(newOption);
+
+            // 添加选项2，最佳方法
+            var newOption = new Option('Option text', 'Option value');
+            sel.add(newOption, null)
+
+            // 移除选项
+            sel.remove(1);
+        </script>
+    </body>
+</html>

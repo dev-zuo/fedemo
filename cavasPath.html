@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>canvas base</title>
+        <style>
+            .div { 
+                text-align: center; padding:5px; margin:10px; width: 200px;
+            }
+            .label { font-size: 13px; margin-bottom: 10px;} 
+            .highlight { color: red }
+            pre {
+                white-space: pre-line;margin-left:15px;
+                border-left: 5px solid #ccc;
+                padding-left: 10px;
+            }
+            .flex {
+                display: flex;
+            }
+            canvas {
+                border: 1px solid #ccc;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h2>ctx.arc(x, y, radius, startAngle, endAngle, counterclockwise)</h2>
+            <blockquote>
+                以(x,y)为圆心绘制一条弧线，半径为radius, 起始角度和结束角度分别为startAngle、endAngle，counterclockwise：是否是逆时针方向？
+            </blockquote>
+            <div>
+                <pre>
+                    var drawing = document.getElementById('drawing');
+                    var ctx = drawing.getContext('2d');
+                    ctx.beginPath();
+                    ctx.arc(100, 100, 99, <span class="highlight">开始位置, 结束位置</span>, false) // 以(100,100)为中心，99半径，从开始位置到结束位置，顺时针绘制
+                    ctx.stroke()
+                </pre>
+            </div>
+            <div class="flex">
+                <div class="div">
+                    <div class="label">drawing: ctx.arc(100, 100, 99, <span class="highlight">0, 2*Math.PI</span>, false)</div>
+                    <canvas id="drawing" width="200" height="200" >A draw of something.</canvas>
+                </div>
+                <div class="div">
+                    <div class="label">drawing2: ctx.arc(100, 100, 99, <span class="highlight">0, 0.5*Math.PI</span>, false)</div>
+                    <canvas id="drawing2" width="200" height="200" >A draw of something.</canvas>
+                </div>
+                <div class="div">
+                    <div class="label">drawing3: ctx.arc(100, 100, 99, <span class="highlight">0.5*Math.PI, Math.PI</span>, false)</div>
+                    <canvas id="drawing3" width="200" height="200" >A draw of something.</canvas>
+                </div>
+                <div class="div">
+                    <div class="label">drawing4: ctx.arc(100, 100, 99, <span class="highlight">Math.PI, 1.5*Math.PI</span>, false)</div>
+                    <canvas id="drawing4" width="200" height="200" >A draw of something.</canvas>
+                </div>
+                <div class="div">
+                    <div class="label">drawing5: ctx.arc(100, 100, 99, <span class="highlight">1.5*Math.PI, 2*Math.PI</span>, false)</div>
+                    <canvas id="drawing5" width="200" height="200" >A draw of something.</canvas>
+                </div>
+            </div>
+
+            <div>
+                <pre>
+                    var drawing6 = document.getElementById('drawing6');
+                    var ctx6 = drawing6.getContext('2d');
+                    ctx6.beginPath();
+                    ctx6.arc(100, 100, 99, <span class="highlight">开始位置, 结束位置</span>, <span style="color:blue">true</span>) // 以(100,100)为中心，99半径，从开始位置到结束位置，逆时针绘制
+                    ctx6.stroke()        
+                </pre>
+            </div>
+            <div class="flex">
+                <div class="div">
+                    <div class="label">drawing6: ctx.arc(100, 100, 99, <span class="highlight">2*Math.PI, 0</span>, true)</div>
+                    <canvas id="drawing6" width="200" height="200" >A draw of something.</canvas>
+                </div>
+                <div class="div">
+                    <div class="label">drawing7: ctx.arc(100, 100, 99, <span class="highlight">1.5*Math.PI, 0</span>, true)</div>
+                    <canvas id="drawing7" width="200" height="200" >A draw of something.</canvas>
+                </div>
+                <div class="div">
+                    <div class="label">drawing8: ctx.arc(100, 100, 99, <span class="highlight">1*Math.PI, 0</span>, true)</div>
+                    <canvas id="drawing8" width="200" height="200" >A draw of something.</canvas>
+                </div>
+                <div class="div">
+                    <div class="label">drawing9: ctx.arc(100, 100, 99, <span class="highlight">0.5*Math.PI, 0</span>, true)</div>
+                    <canvas id="drawing9" width="200" height="200" >A draw of something.</canvas>
+                </div>
+                <div class="div">
+                    <div class="label">drawing10: ctx.arc(100, 100, 99, <span class="highlight">0.3*Math.PI, 0</span>, true)</div>
+                    <canvas id="drawing10" width="200" height="200" >A draw of something.</canvas>
+                </div>
+            </div>
+        </div>
+
+
+    
+        <div>
+            <h2>ctx.arcTo(x1, y1, x2, y2, radius)</h2>
+            <blockquote>
+                从上一点开始绘制一条弧线，到(x2,y2)为止，并以给定的半径，穿过(x1, y1)，当(x1,y1)到(x2,y2)的距离，大于半径，可能到达不了x2,y2.停在中途
+            </blockquote>
+            <div>
+            <pre>
+                var drawing11 = document.getElementById('drawing11');
+                var ctx11 = drawing11.getContext('2d');
+                ctx11.beginPath();
+                ctx11.moveTo(0, 200);
+                ctx11.lineTo(200, 100);
+                ctx11.arcTo(<span class="highlight">圆弧经过点x1, , 圆弧经过点y1, 目的点x2, 目的点y2, 圆弧半径radius</span>)
+                ctx11.stroke()
+                // 开始绘制辅助线，有利于更好的理解arcTo函数
+                ctx11.beginPath();
+                ctx11.strokeStyle = "rgba(0, 0, 255, 0.2)"
+                ctx11.moveTo(100, 0);
+                ctx11.lineTo(100, 100);
+                ctx11.lineTo(200, 100);
+                ctx11.stroke()
+            </pre>
+            <div class="flex">
+                <div class="div">
+                    <div class="label">drawing11: ctx11.arcTo(<span class="highlight">100, 100, 100, 0, 100</span>)</div>
+                    <canvas id="drawing11" width="200" height="200" >A draw of something.</canvas>
+                </div>
+                <div class="div">
+                    <div class="label">drawing12: ctx11.arcTo(<span class="highlight">100, 100, 0, 0, 200</span>)</div>
+                    <canvas id="drawing12" width="200" height="200" >A draw of something.</canvas>
+                </div>
+                <div class="div">
+                    <div class="label">drawing13: ctx11.arcTo(<span class="highlight">100, 100, 0, 0, 60</span>)</div>
+                    <canvas id="drawing13" width="200" height="200" >A draw of something.</canvas>
+                </div>
+                <div class="div">
+                    <div class="label">drawing14: ctx.arc(<span class="highlight">100, 200, 0, 100, 30/80</span>)</div>
+                    <canvas id="drawing14" width="200" height="200" >A draw of something.</canvas>
+                </div>
+                <div class="div">
+                    <div class="label">drawing15: ctx.arc(<span class="highlight">0, 200, 100, 0, 10/30/80</span>)</div>
+                    <canvas id="drawing15" width="200" height="200" >A draw of something.</canvas>
+                </div>
+            </div>
+        </div>
+        
+
+        <div>
+            <h2>rect(x, y, width, height)</h2>
+            <blockquote>
+                从点(x, y)开始绘制一个矩形，宽为widht，高为height，这个方法绘制的是矩形路径。
+            </blockquote>
+            <div>
+            <pre>
+                var drawing16 = document.getElementById('drawing16');
+                var ctx16 = drawing16.getContext('2d');
+                ctx16.beginPath();
+                ctx16.rect(50,100,100,100)
+                ctx16.stroke();
+            </pre>
+            <div class="flex">
+                <div class="div">
+                    <div class="label">drawing16: ctx16.rect(50,100,100,100)</div>
+                    <canvas id="drawing16" width="200" height="200" >A draw of something.</canvas>
+                </div>
+            </div>
+        </div>
+        <script>
+            var drawing = document.getElementById('drawing');
+            var ctx = drawing.getContext('2d');
+            ctx.beginPath();
+            ctx.arc(100, 100, 99, 0, 2*Math.PI, false)
+            ctx.stroke()
+
+            var drawing2 = document.getElementById('drawing2');
+            var ctx2 = drawing2.getContext('2d');
+            ctx2.beginPath();
+            ctx2.arc(100, 100, 99, 0, 0.5*Math.PI, false)
+            ctx2.stroke()
+
+            var drawing3 = document.getElementById('drawing3');
+            var ctx3 = drawing3.getContext('2d');
+            ctx3.beginPath();
+            ctx3.arc(100, 100, 99, 0.5*Math.PI, 1*Math.PI, false)
+            ctx3.stroke()
+
+            var drawing4 = document.getElementById('drawing4');
+            var ctx4 = drawing4.getContext('2d');
+            ctx4.beginPath();
+            ctx4.arc(100, 100, 99, Math.PI, 1.5*Math.PI, false)
+            ctx4.stroke()
+
+            var drawing5 = document.getElementById('drawing5');
+            var ctx5 = drawing5.getContext('2d');
+            ctx5.beginPath();
+            ctx5.arc(100, 100, 99, 1.5*Math.PI, 2*Math.PI, false)
+            ctx5.stroke()
+            
+            var drawing6 = document.getElementById('drawing6');
+            var ctx6 = drawing6.getContext('2d');
+            ctx6.beginPath();
+            ctx6.arc(100, 100, 99, 2*Math.PI, 0, true)
+            ctx6.stroke()
+                    
+            var drawing7 = document.getElementById('drawing7');
+            var ctx7 = drawing7.getContext('2d');
+            ctx7.beginPath();
+            ctx7.arc(100, 100, 99, 1.5*Math.PI, 0, true)
+            ctx7.stroke()
+
+            var drawing8 = document.getElementById('drawing8');
+            var ctx8 = drawing8.getContext('2d');
+            ctx8.beginPath();
+            ctx8.arc(100, 100, 99, 1*Math.PI, 0, true)
+            ctx8.stroke()
+
+            var drawing9 = document.getElementById('drawing9');
+            var ctx9 = drawing9.getContext('2d');
+            ctx9.beginPath();
+            ctx9.arc(100, 100, 99, 0.5*Math.PI, 0, true)
+            ctx9.stroke()
+
+            var drawing10 = document.getElementById('drawing10');
+            var ctx10 = drawing10.getContext('2d');
+            ctx10.beginPath();
+            ctx10.arc(100, 100, 99, 0.3*Math.PI, 0, true)
+            ctx10.stroke()
+            
+            var drawing11 = document.getElementById('drawing11');
+            var ctx11 = drawing11.getContext('2d');
+            ctx11.beginPath();
+            ctx11.moveTo(200, 100);
+            ctx11.lineTo(200, 100);
+            ctx11.arcTo(100, 100, 100, 0, 100)
+            ctx11.stroke()
+            // 开始绘制圆弧辅助线
+            ctx11.beginPath();
+            ctx11.strokeStyle = "rgba(0, 0, 255, 0.2)"
+            ctx11.moveTo(100, 0);
+            ctx11.lineTo(100, 100);
+            ctx11.lineTo(200, 100);
+            ctx11.stroke()
+
+            var drawing12 = document.getElementById('drawing12');
+            var ctx12 = drawing12.getContext('2d');
+            ctx12.beginPath();
+            ctx12.moveTo(200, 100);
+            ctx12.lineTo(200, 100);
+            ctx12.arcTo(100, 100, 0, 0, 200)
+            ctx12.stroke()
+            // 开始绘制圆弧辅助线
+            ctx12.beginPath();
+            ctx12.strokeStyle = "rgba(0, 0, 255, 0.2)"
+            ctx12.moveTo(0, 0);
+            ctx12.lineTo(100, 100);
+            ctx12.lineTo(200, 100);
+            ctx12.stroke()
+
+            var drawing13 = document.getElementById('drawing13');
+            var ctx13 = drawing13.getContext('2d');
+            ctx13.beginPath();
+            ctx13.moveTo(200, 100);
+            ctx13.lineTo(200, 100);
+            ctx13.arcTo(100, 100, 0, 0, 60)
+            ctx13.stroke()
+            // 开始绘制圆弧辅助线
+            ctx13.beginPath();
+            ctx13.strokeStyle = "rgba(0, 0, 255, 0.2)"
+            ctx13.moveTo(0, 0);
+            ctx13.lineTo(100, 100);
+            ctx13.lineTo(200, 100);
+            ctx13.stroke()
+
+            var drawing14 = document.getElementById('drawing14');
+            var ctx14 = drawing14.getContext('2d');
+            ctx14.beginPath();
+            ctx14.moveTo(200, 100);
+            ctx14.lineTo(200, 100);
+            ctx14.arcTo(100, 200, 0, 100, 30)
+            ctx14.moveTo(200, 100);
+            ctx14.arcTo(100, 200, 0, 100, 80)
+            ctx14.stroke()
+            // 开始绘制圆弧辅助线
+            ctx14.beginPath();
+            ctx14.strokeStyle = "rgba(0, 0, 255, 0.2)"
+            ctx14.moveTo(0, 100);
+            ctx14.lineTo(100, 200);
+            ctx14.lineTo(200, 100);
+            ctx14.stroke()
+
+
+            var drawing15 = document.getElementById('drawing15');
+            var ctx15 = drawing15.getContext('2d');
+            ctx15.beginPath();
+            ctx15.moveTo(200, 100);
+            ctx15.lineTo(200, 100);
+            ctx15.arcTo(0, 200, 100, 0, 10)
+            ctx15.moveTo(200, 100);
+            ctx15.arcTo(0, 200, 100, 0, 30)
+            ctx15.moveTo(200, 100);
+            ctx15.arcTo(0, 200, 100, 0, 80)
+            ctx15.stroke()
+            // 开始绘制圆弧辅助线
+            ctx15.beginPath();
+            ctx15.strokeStyle = "rgba(0, 0, 255, 0.2)"
+            ctx15.moveTo(100, 0);
+            ctx15.lineTo(0, 200);
+            ctx15.lineTo(200, 100);
+            ctx15.stroke()
+
+
+            var drawing16 = document.getElementById('drawing16');
+            var ctx16 = drawing16.getContext('2d');
+            ctx16.beginPath();
+            ctx16.rect(50,100,100,100)
+            ctx16.stroke();
+
+            // ctx16.moveTo(200, 100);
+        </script>
+    </body>
+</html>

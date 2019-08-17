@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>text field</title>
+    <script type="text/javascript" src="EventUtil.js"></script>
+  </head>
+  <body>
+    <form>
+      <p>据了解，为了让深圳市民能真正感知、体验到智慧新生活，深圳电信将以沉浸式体验为核心，计划展出5大版块内容：智慧城市、5G+智慧警务、智慧民生展播、VR直播、云VR游戏/云VR视频。另外，市民还有机会抢先体验福田中心区5G巴士精品路线。值得一提的是，5G时代，深圳的派出所借助5G网络已经解锁了各种破案"黑科技"，无人机、警用摩托车、AR眼镜、人脸识别……进一步提升警务效力，打造了首个5G智慧派出所。据了解，这其中离不开深圳电信运用5G+天翼云+专线+警务云应用融合创新的领先技术，这也是本次深圳5G体验周的重点内容。</p>
+      
+      <p>input 长度为25个字符，最多允许输入50个字符</p>
+      <textarea type='text' placeholder="请copy后粘贴信息" rows="20" cols="100"></textarea>
+    </form>
+    <script>
+      var text = document.forms[0].elements[0];
+      EventUtil.addHandler(text, 'change', function(event) {
+        console.log(event.target.value)
+      });
+
+      EventUtil.addHandler(text, 'paste', function(event){
+          console.log('paste', event)
+        //   event.preventDefault();
+      });
+
+      // 这个方法是重点，需要参考 https://developer.mozilla.org/en-US/docs/Web/API/Element/copy_event
+      EventUtil.addHandler(document, 'copy', function(event){
+          console.log('copy', event)
+          // 获取copy的内容
+          console.log(document.getSelection().toString())
+          // 在copy内容里加入信息
+          var msg = `\n ----------------------------\n 作者: guoqzuo \n 链接: https://developer.mozilla.org/en-US/docs/Web/API/Element/copy_event \n 标题：Element: copy event\n`
+          event.clipboardData.setData('text/plain', `${document.getSelection().toString()} ${msg}`);
+          event.preventDefault();
+      });
+
+      EventUtil.addHandler(document, 'cut', function(event){
+          console.log('cut', event)
+      });
+
+      EventUtil.addHandler(document, 'beforecut', function(event){
+          console.log('beforecut', event)
+      });
+
+      EventUtil.addHandler(document, 'beforecopy', function(event){
+          console.log('beforecopy', event)
+      });
+
+      EventUtil.addHandler(document, 'beforepaste', function(event){
+          console.log('beforepaste', event)
+      });
+    </script>
+  </body> 
+</html>

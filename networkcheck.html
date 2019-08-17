@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>离线监测、监听</title>
+  </head>
+  <body>
+    <input type="button" id="checkIsOnline" value="点击检测是否有网">
+    <script>
+        var mybtn = document.getElementById("checkIsOnline")
+        // 点击检测是否有网
+        mybtn.onclick = function(event) {
+          alert(navigator.onLine ? '有网': '没有网')
+        }
+
+        // 当网络状态发生改变时（有网 => 无网，无网 => 有网），才会触发
+        window.ononline = function(event) {
+          alert('网络已连接')
+        }
+        window.onoffline = function(event) {
+          alert('网络已断开')
+        }
+    </script>
+  </body>
+</html>

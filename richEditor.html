@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>richEditor</title>
+        <style>
+            input { margin: 5px 10px;padding:3px 5px; }
+            button { padding: 10px; margin-right:20px; }
+        </style>
+    </head>
+    <body>
+        <div id="tooldiv" style="margin:10px;border:1px solid #ccc;padding:10px;">
+            <input type="button" id="set-backcolor" value="设置背景颜色">
+            <input type="button" id="set-selectall" value="选中所有文本">
+
+            <input type="button" id="set-copy" value="copy选中">
+            <input type="button" id="set-cut" value="cut选中">
+            <input type="button" id="set-delete" value="delete选中">
+            <!-- <input type="button" id="set-paste" value="将粘贴板中的文本粘贴到选择的文本"> -->
+            <input type="button" id="set-bold" value="将选中设置为粗体">
+            <input type="button" id="set-italic" value="将选中设置为斜体">
+            <input type="button" id="set-underline" value="将选中的文本添加下划线">
+
+            <input type="button" id="set-createlink" value="选中文本转链接，指定URL">
+            <input type="button" id="set-unlink" value="移除选中的文本链接，撤销createlink操作">
+            <input type="button" id="set-fontname" value="选中文本，指定字体">
+            <input type="button" id="set-fontsize" value="选中文本，指定大小1-7">
+            <input type="button" id="set-forecolor" value="选中文本指定字体颜色">
+            <input type="button" id="set-formatblock" value="使用指定的HTML标签来格式化选中文本，如h1等">
+            <!-- <input type="button" id="set-removeformat" value="移除光标所在的文本块的块级格式，撤销formatblock操作"> -->
+
+            <input type="button" id="set-indent" value="缩进选中文本">
+            <input type="button" id="set-outdent" value="凸排(减少缩进)选中文本">
+
+            <input type="button" id="set-inserthorizontalrule" value="在输入处，插入一个hr元素">
+            <input type="button" id="set-insertimage" value="在输入处，插入一个图片,图片的url">
+            <input type="button" id="set-insertorderedlist" value="在输入处，插入一个ol元素">
+            <input type="button" id="set-insertunorderedlist" value="在输入处，插入一个ul元素">
+            <input type="button" id="set-insertparagraph" value="在输入处，插入一个p元素">
+
+            <input type="button" id="set-justifycenter" value="将插入光标所在的文本块居中对齐">
+            <input type="button" id="set-justifyleft" value="将插入光标所在的文本块左对齐">
+        </div>
+
+        <div id="tabtool" style="margin:20px 10px;">
+            <button id="iframe">iframe可编辑区域</button>
+            <button id="contenteditable">div contenteditable可编辑区域</button>
+        </div>
+
+        <!-- <p>1. iframe可编辑区域：</p> -->
+        <iframe name="richedit" src="null.html" style="width:800px;height:400px;"></iframe>
+        <!-- <p>2. div contenteditable可编辑区域</p> -->
+        <div id="editdiv" style="width:800px;height:400px;border:1px solid #ccc;overflow: scroll; display: none" contenteditable>
+        </div>
+
+        <div>
+            <button id="getrichcontent">获取当前富文本的内容</button>
+        </div>
+
+        <script>
+            window.onload = function() {
+                frames['richedit'].document.designMode = 'on'
+            }
+
+            // tabtool
+            var tabtool = document.getElementById('tabtool');
+            tabtool.onclick = function(event) {
+                var iframeObj =  document.getElementsByTagName('iframe')[0]
+                var divObj = document.getElementById('editdiv')
+                if (event.target.id === 'iframe') {
+                    iframeObj.style.display = 'block'
+                    divObj.style.display = 'none'
+                } else {
+                    iframeObj.style.display = 'none'
+                    divObj.style.display = 'block'
+                }
+            }
+
+            // 工具栏按钮点击执行操作
+            var tooldiv = document.getElementById('tooldiv');
+            tooldiv.onclick = function(event) {
+                var id= event.target.id;
+                // var optDocument = frames['richedit'].document;
+                // var optDocument = document;
+                var optDocument = document.getElementById('editdiv').style.display === 'none' ? frames['richedit'].document : document;
+                switch(id) {
+                    case 'set-backcolor': // 设置背景颜色
+                        var setColor = Math.round(Math.random()) ? 'red': 'yellow'; // 随机颜色
+                        optDocument.execCommand('backcolor', false, setColor)
+                        break;
+                    case 'set-createlink': // 选中文本转链接，指定URL
+                        optDocument.execCommand('createlink', false, 'http://zuo11.com')
+                        break;
+                    case 'set-fontname': // 选中文本，指定字体, "serif"、"sans-serif"、"cursive"、"fantasy"、"monospace"
+                        var fontArr = ["serif","sans-serif","cursive","fantasy","monospace"]
+                        var fontRandom = fontArr[Math.round(Math.random() * 5)]
+                        optDocument.execCommand('fontname', false, fontRandom)
+                        break;
+                    case 'set-fontsize': // 选中文本，指定大小1-7
+                        var randomSize = Math.round(Math.random() * 7)
+                        optDocument.execCommand('fontsize', false, randomSize)
+                        break;
+                    case 'set-forecolor': // 选中文本指定字体颜色
+                        var setColor = Math.round(Math.random()) ? 'red': 'yellow'; // 随机颜色
+                        optDocument.execCommand('forecolor', false, setColor)
+                        break;
+                    case 'set-formatblock': // 使用指定的HTML标签来格式化选中文本，如h1等
+                        var formatArr = ['<h1>','<h2>','<h3>','<h4>','<h5>']
+                        var randomFormat = formatArr[Math.round(Math.random() * 5)]
+                        optDocument.execCommand('formatblock', false, randomFormat)
+                        break;
+                    case 'set-insertimage': // 使用指定的HTML标签来格式化选中文本，如h1等
+                        optDocument.execCommand('insertimage', false, 'index.png')
+                        break;
+
+                    // 为了熟悉功能，把case都写了上去，也可以直接删掉下面的case，直接用default:
+                    case 'set-selectall': // 选中所有文本
+                    case 'set-copy': // copy选中
+                    case 'set-cut': // cut选中
+                    case 'set-delete': // delete选中
+                    case 'set-bold': // 将选中设置为粗体，再次执行会取消
+                    case 'set-italic': // 将选中设置为斜体，，再次执行会取消
+                    case 'set-underline': // 将选中的文本添加下划线，，再次执行会取消
+                    case 'set-unlink': // 移除选中的文本链接，撤销createlink操作
+                    case 'set-removeformat': // 移除光标所在的文本块的块级格式，撤销formatblock操作
+                    case 'set-indent': // 缩进选中文本, 类似与tab效果
+                    case 'set-outdent': // 凸排(减少缩进)选中文本，去掉tab效果
+                    case 'set-inserthorizontalrule': // 在输入处，插入一个hr元素
+                    case 'set-insertorderedlist': // 在输入处，插入一个ol元素
+                    case 'set-insertunorderedlist': // 在输入处，插入一个ul元素
+                    case 'set-insertparagraph': // 在输入处，插入一个p元素
+                    case 'set-justifycenter': // 将插入光标所在的文本块居中对齐
+                    case 'set-justifyleft': // 将插入光标所在的文本块左对齐
+                        var opt = id.split('-')[1];
+                        console.log('执行了通用操作')
+                        optDocument.execCommand(opt, false, null);
+                        break;
+                }
+            }
+
+            document.getElementById('getrichcontent').onclick = function() {
+                var editdiv = document.getElementById('editdiv')
+                var opt = editdiv.style.display === 'none' ? frames['richedit'].document.body : editdiv;
+                alert(opt.innerHTML)
+            }
+        </script>
+    </body>
+</html>

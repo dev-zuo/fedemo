@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>canvas base</title>
+    </head>
+    <body>
+        <canvas id="drawing" width="200" height="200" style='border:1px solid #ccc;'>A draw of something.</canvas>
+
+        <script>
+            var drawing = document.getElementById('drawing');
+            var context = drawing.getContext('2d');
+            context.strokeStyle = 'red';
+            context.fillStyle = '#0000ff';
+            // context.fillStyle = "rgba(0,0,255,0.1)";
+            context.fillRect(10, 10, 50, 50);
+
+
+            context.fillStyle = "rgba(0,0,255,0.5)";
+            context.fillRect(30, 30, 50, 50)
+
+            context.strokeRect(100, 100, 50, 50)
+            context.strokeStyle = 'black';
+            context.strokeRect(120, 120, 50, 50)
+
+
+            context.clearRect(40, 40, 10, 10)
+        </script>
+    </body>
+</html>

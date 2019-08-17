@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum=1.0,minimum=1.0,user-scalable=0" />
+    <title>touchevent</title>
+    <script type="text/javascript" src="EventUtil.js"></script>
+    <script type="text/javascript" src="vconsole/vconsole.min.js"></script>
+  </head>
+  <body>
+    <input type="text" id="myTextbox" autofocus>
+    <script type='text/javascript'>
+      var myTextbox = document.getElementById('myTextbox');
+      EventUtil.addHandler(myTextbox, 'keydown', function(event) {
+        console.log('keydown', event)
+      })
+      EventUtil.addHandler(myTextbox, 'keyup', function(event) {
+        console.log('keyup', event)
+      })
+      EventUtil.addHandler(myTextbox, 'keypress', function(event) {
+        console.log('keypress', event)
+      })
+
+      setTimeout(function() {
+        // 模拟键盘事件情况1
+        // var event = document.createEvent('KeyboardEvent');
+        // event.initKeyboardEvent('keydown', true, true, document.defaultView, 'a', 0, "shift", 0);
+        // myTextbox.dispatchEvent(event);
+
+        // var event2 = document.createEvent('KeyboardEvent');
+        // event2.initKeyboardEvent('keypress', true, true, document.defaultView, 'a', 0, "shift", 0);
+        // myTextbox.dispatchEvent(event2);
+
+        // var event3 = document.createEvent('KeyboardEvent');
+        // event3.initKeyboardEvent('keyup', true, true, document.defaultView, 'a', 0, "shift", 0);
+        // myTextbox.dispatchEvent(event3);
+
+        // 模拟键盘输入情况2  p409
+        var event = document.createEvent("Events");
+        event.initEvent('keydown', true, true);
+        event.view = document.defaultView;
+        event.altKey = false;
+        event.ctrlKey = false;
+        event.shiftKey = false;
+        event.metaKey = false;
+        event.keyCode = 65;
+        event.charCode = 65;
+        myTextbox.dispatchEvent(event)
+
+        // 模拟键盘输入情况3 https://developer.mozilla.org/zh-CN/docs/Web/API/KeyboardEvent/KeyboardEvent
+        // var event = new KeyboardEvent('keydown', {
+        //     key: "a"
+
+        // });
+        // var event2 = new KeyboardEvent('keypress', {
+        //     key: "a"
+        // });
+        // var event3 = new KeyboardEvent('keyup', {
+        //     key: "a"
+        // });
+        // myTextbox.dispatchEvent(event);
+        // myTextbox.dispatchEvent(event2);
+        // myTextbox.dispatchEvent(event3);
+      }, 3000)
+    </script>
+  </body>
+</html>

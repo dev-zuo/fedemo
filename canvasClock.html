@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>canvas clock</title>
+  </head>
+  <body>
+    <p>208*200, 20*20小网格</p>
+    <canvas id="drawing" width="200" height="200" style="border:1px solid #ccc;"></canvas>
+    <script>
+      var darwing = document.getElementById('drawing');
+      var ctx = darwing.getContext('2d');
+      // 开始路径
+      ctx.beginPath();
+
+      ctx.arc(100, 100, 99, 0, 2*Math.PI, false); // 外圆
+      // 由于画完圆后，坐标停留在(200, 100)的位置，需要移动下起点。
+      ctx.moveTo(192, 100);
+      ctx.arc(100, 100, 92, 0, 2*Math.PI, false); // 内圆
+
+      // 将绘图游标移动到中心点，画指针
+      ctx.moveTo(100, 100);
+      ctx.lineTo(100, 20);
+      ctx.moveTo(100, 100);
+      ctx.lineTo(50, 100);
+      ctx.stroke();
+
+      // 绘制参考线 20*20 的网格
+      ctx.beginPath();
+      ctx.strokeStyle = "rgba(0,0,0,.1)"
+      for (var i = 20; i < 200; i+=20) {
+        ctx.moveTo(0, i);
+        ctx.lineTo(200,i);
+        ctx.moveTo(i, 0);
+        ctx.lineTo(i, 200);
+      }
+      ctx.stroke();
+
+      // 绘制参考中心点
+      fillPoint(100, 40);
+      fillPoint(100, 80);
+      fillPoint(100, 120);
+      fillPoint(140, 60);
+      fillPoint(140, 100);
+      fillPoint(140, 140);
+      function fillPoint(x, y, color) {
+        var radius = 3;
+        ctx.fillStyle = "rgba(0,0,255)"
+        ctx.beginPath();
+        ctx.moveTo(x+radius, y)
+        ctx.arc(x, y, radius, 0, 2*Math.PI, false)
+        ctx.fill();
+      }
+
+      // 绘制文本
+      ctx.font = "bold 14px Arial"
+      ctx.fillStyle = "red"
+      // 默认textAlign为start
+      ctx.fillText('12', 100, 40, 20)
+
+      ctx.textAlign = "center"
+      ctx.fillText('12', 100, 80, 20)
+
+      ctx.textAlign = "end"
+      ctx.fillText('12', 100, 120, 20)
+
+      ctx.textBaseline = "bottom" // 默认textBaseline为bottom
+      ctx.fillText('12', 140, 60, 20)
+
+      ctx.textBaseline = "top"
+      ctx.fillText('12', 140, 100, 20)
+
+      ctx.textBaseline = "middle"
+      ctx.fillText('12', 140, 140, 20)
+
+      // 绘制measureText的测试矩形区域
+      ctx.beginPath();
+      ctx.strokeStyle = "rgb(0,0,255,.5)"
+      ctx.rect(40, 140, 40, 20)
+      ctx.stroke();
+
+      // 需要在40px宽度的位置绘制Hello，用measureText(str), 确定字体后再绘制
+      var fontsize = 100;
+      ctx.font = fontsize + "px Arial"
+      while (ctx.measureText('Hello').width > 40) {
+        fontsize--;
+        ctx.font = fontsize + "px Arial"
+      }
+      console.log(fontsize)
+      console.log(ctx.measureText('Hello').width)
+      ctx.textBaseline = "top";
+      ctx.textAlign = "start";
+      ctx.fillText('Hello', 40, 140)
+    </script>
+  </body>
+</html>

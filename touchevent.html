@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum=1.0,minimum=1.0,user-scalable=0" />
+        <title>touchevent</title>
+        <script type="text/javascript" src="EventUtil.js"></script>
+        <script type="text/javascript" src="vconsole/vconsole.min.js"></script>
+    </head>
+    <body>
+        touchstart: <div id="touchstart-output"></div>
+        touchend: <div id="touchend-output"></div>
+        touchmove: <div id="touchmove-output"></div>
+
+        <!-- 只有iOS支持 -->
+        gesturestart: <div id="gesturestart-output"></div>
+        gesturechange: <div id="gesturechange-output"></div>
+        gestureend: <div id="gestureend-output"></div>
+
+        <script type="text/javascript">
+            var vconsole = new VConsole()
+            function handleTouchEvent(event) {
+                switch(event.type) {
+                    case 'touchstart':
+                        var output = document.getElementById('touchstart-output')
+                        output.innerHTML = `(${event.touches[0].clientX},${event.touches[0].clientY}})`
+                        console.log(`Touch start: `, event)
+                        break;
+                    case 'touchmove':
+                        var output = document.getElementById('touchmove-output')
+                        // event.preventDefault()
+                        output.innerHTML = `(${event.changedTouches[0].clientX},${event.changedTouches[0].clientY}})`
+                        console.log(`Touch move: `, event)
+                        break;
+                    case 'touchend':
+                        var output = document.getElementById('touchend-output')
+                        console.log(`Touch end: `, event)
+                        output.innerHTML = `(${event.changedTouches[0].clientX},${event.changedTouches[0].clientY}})`
+                        break;
+                }
+            }
+            EventUtil.addHandler(document, 'touchstart', handleTouchEvent)
+            EventUtil.addHandler(document, 'touchmove', handleTouchEvent)
+            EventUtil.addHandler(document, 'touchend', handleTouchEvent)
+
+
+            // 只有iOS 支持
+            function handleGestureEvent(event) {
+                switch(event.type) {
+                    case 'gesturestart':
+                        var output = document.getElementById('gesturestart-output')
+                        output.innerHTML = `rotation: ${event.rotation}, scale: ${event.scale}`
+                        // 0, 1
+                        break;
+                    case 'gesturechange':
+                        var output = document.getElementById('gesturechange-output')
+                        output.innerHTML = `rotation: ${event.rotation}, scale: ${event.scale}`
+                        break;
+                        // 两只手指，放大，缩小
+                    case 'gestureend':
+                        var output = document.getElementById('gestureend-output')
+                        output.innerHTML = `rotation: ${event.rotation}, scale: ${event.scale}`
+                        break;
+                }
+            }
+            document.addEventListener('gesturestart', handleGestureEvent, false);
+            document.addEventListener('gesturechange', handleGestureEvent, false);
+            document.addEventListener('gestureend', handleGestureEvent, false);
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>测试节流</title>
+  </head>
+  <body>
+    <div id="myDiv" style="width:100px;height:100px;border:1px solid #ccc;">
+    </div>
+    <script>
+      var startTime = 0;
+      var processTime = 0;
+      function resizeDiv() {
+        console.log('onresize')
+        // 计算当前时间并存入到第一次执行时间
+        var curTime = +(new Date())
+        processTime = curTime;
+        if (processTime - startTime < 1000) {
+          return;
+        } else {
+          startTime = curTime;
+        }
+        var div = document.getElementById('myDiv');
+        div.style.height = div.offsetHeight + 'px'
+      }
+      // window.onresize = function() {
+      //   resizeDiv()
+      // }
+
+      function throttle(method, context) {
+        clearTimeout(method.tId)
+        method.tId = setTimeout(function() {
+          method.call(context)
+        }, 100)
+      }
+
+      function resizeDiv() {
+        var div = document.getElementById('myDiv');
+        div.style.height = div.offsetHeight + 'px'
+      }
+      window.onresize = function() {
+        throttle(resizeDiv)
+      }
+    </script>
+  </body>
+</html>

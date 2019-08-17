@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>form field event</title>
+        <script type="text/javascript" src="EventUtil.js"></script>
+    </head>
+    <body>
+        <form>
+            <input type='text' placeholder="请输入值">
+        </form>
+        <script>
+            var textbox = document.forms[0].elements[0];
+            console.log(textbox);
+
+            function fieldEventHandler(event) {
+                event = EventUtil.getEvent(event);
+                var target = EventUtil.getTarget(event);
+                switch(event.type) {
+                    case 'focus':
+                        // focus时，背景色改为黄色
+                        target.style.backgroundColor = 'yellow'
+                        break;
+                    case 'blur':
+                        target.style.backgroundColor = ''
+                        break;
+                    case 'change':
+                        console.log(target.value)
+                        break;
+                }
+            }
+            EventUtil.addHandler(textbox, 'focus', fieldEventHandler);
+            EventUtil.addHandler(textbox, 'blur', fieldEventHandler);
+            EventUtil.addHandler(textbox, 'change', fieldEventHandler);
+        </script>
+    </body> 
+</html>
