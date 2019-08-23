@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>文件操作</title>
+</head>
+<body>
+  <input id="file" type="file" style="border:1px solid #ccc;">
+  <input id="files" type="file" multiple="multiple">
+  <script>
+    var file = document.getElementById('file')
+    var files = document.getElementById('files')
+
+    // 文件内容改变时，显示文件信息
+    file.addEventListener('change', fileChangeHandle, false)
+    files.addEventListener('change', fileChangeHandle, false)
+
+    function fileChangeHandle(e) {
+      for (var i = this.files.length - 1; i >= 0; i--) {
+        var fileInfo = this.files[i] // File对象
+        console.log('name: ', fileInfo.name)
+        console.log('lastModified: ', new Date(fileInfo.lastModified).toISOString()) // timestamp
+        console.log('type: ', fileInfo.type)
+        console.log('size: ', fileInfo.size)  // B 字节  /1000 kb
+
+        let reader = new FileReader(); // for循环中的var变量要特别注意，如果是var，选择多个图片时，只能显示一个
+
+        if (fileInfo.type.includes('image')) {
+          reader.readAsDataURL(fileInfo)
+        } else {
+          reader.readAsText(fileInfo)
+        }
+
+        // 由于读取是异步的，读取文件时，reader会触发三个事件，如果读取错误触发error事件，读取中触发progress事件，读完了整个文件会触发load事件
+        reader.onerror = function() {
+          var errMsg = [null, '未找到文件', '安全性错误', '读取中断', '文件不可读', '编码错误']
+          let errCode = reader.error.code
+          console.log('读取文件错误, code: ' + errCode + '，错误提示: ' + errMsg[errCode])
+        }
+        reader.onprogress = function(e) {
+          // 文件读取中，大概 50ms 刷新一次
+          console.log(`加载进度 ${e.loaded} / ${e.total}`)
+        }
+        reader.onload = function(e) {
+          // 文件读取完成会存到 reader.result里面
+          // console.log(reader.result)
+          var fragment = document.createDocumentFragment();
+          if (fileInfo.type.includes('image')) {
+            var img = document.createElement('img')
+            img.src = reader.result
+            fragment.appendChild(img)
+          } else {
+            var div = document.createElement('div')
+            div.appendChild(document.createTextNode(reader.result.substr(0, 100)))
+            fragment.appendChild(div)
+          }
+          document.body.appendChild(fragment)
+        }
+      }
+    }
+  </script>
+</body>
+</html>

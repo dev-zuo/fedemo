@@ -3,11 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <title>cookie</title>
+  <script type="text/javascript" src="CookieUtil.js"></script>
 </head>
 <body>
   cookie
   <script>
-    console.log('111')
+    console.log('cookie: ' + document.cookie)
+
+    CookieUtil.set('fedemo_token', 'xxxssdfsfsdfsf', {maxAge: 3600});
+    CookieUtil.set('fedemo_path', '/user', {maxAge:5})
+    CookieUtil.set('a', '1', {maxAge:3600})
+    CookieUtil.set('b', '2', {maxAge:3600})
+    CookieUtil.set('c', '3', {maxAge:3600})
+
+    console.log('cookie: ' + document.cookie)
+
   </script>
 </body>
 </html>

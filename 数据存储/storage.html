@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  Storage
+  <script>
+    // 单个页面里面storage事件不会触发，需要由其他tab页面触发, 触发的条件：
+    // - 同一浏览器打开了两个同源页面
+    // - 其中一个页面修改了localStorage
+    // - 另一个网页注册了这个事件
+    //
+    window.addEventListener('storage', function (event) {
+      console.log('storage chage');
+      console.log(event);
+    }, false);
+
+    // sessionStorage.setItem('a', 1);
+    // sessionStorage.setItem('b', 2);
+
+    // localStorage.setItem('c', 1);
+    // localStorage.setItem('d', 2);
+  </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>blob slice</title>
+</head>
+<body>
+  <input type="file" id="file">
+  <script>
+    var file = document.getElementById('file')
+    file.onchange = function (e) {
+      var myfile = this.files[0]
+      var blob = myfile.slice(0, 32) // 只读取32B的内容
+      if (blob) {
+        var reader = new FileReader()
+        reader.readAsDataURL(blob)
+        reader.onerror = function() {
+          console.log('读取文件错误, ' + reader.error.code)
+        }
+        reader.onload = function() {
+          console.log('读取文件成功，' + reader.result)
+          var div = document.createElement('div')
+          div.appendChild(document.createTextNode(reader.result))
+          document.body.appendChild(div);
+        }
+        reader.onprogress = function(e) {
+          console.log('读取中.....' + e.loaded + '/' + e.total)
+        }
+      } else {
+        alert('您的浏览器不支持blob.slice()')
+      }
+    }
+  </script>
+</body>
+</html>

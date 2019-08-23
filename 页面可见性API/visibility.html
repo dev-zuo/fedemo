@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <script>
+    var title = document.title;
+    document.addEventListener('visibilitychange', function (event) {
+      console.log('--------------------')
+      console.log(event)
+      console.log(document.hidden)
+      console.log(document.visibilityState)
+      console.log('--------------------')
+
+      document.title =  document.hidden ? '~ 你快回来 ~ ' : title
+      if (document.hidden) {
+        // 做一些暂停操作
+      } else {
+        // 开始操作
+      }
+    }, false)
+  </script>
+</body>
+</html>

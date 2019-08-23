@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <div id="SomeElementYouWantToAnimate" style="height:100px;width:100px;border:1px solid #ccc;">111</div>
+  <script>
+    var start = null;
+    var element = document.getElementById('SomeElementYouWantToAnimate');
+    element.style.position = 'absolute';
+
+    function step(timestamp) {
+      if (!start) start = timestamp;
+      var progress = timestamp - start;
+      element.style.left = Math.min(progress / 10, 200) + 'px';
+      if (progress < 2000) {
+        window.requestAnimationFrame(step);
+      }
+    }
+
+    window.requestAnimationFrame(step);
+  </script>
+</body>
+</html>

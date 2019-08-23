@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <input type="file" id="file">
+  <img src="" id="img">
+  <script>
+    var file = document.getElementById('file')
+    file.onchange = function (e) {
+      var myfile = this.files[0]
+      var img = document.getElementById('img')
+      var dataUrl = window.URL.createObjectURL(myfile)
+      console.log('dataURL: ' + dataUrl)
+      img.src = dataUrl
+      // 如果不用了，需要手工释放，节约内存，调用后，dataUrl还是会有值
+      setTimeout(function() {
+        window.URL.revokeObjectURL(myfile);
+      }, 3000)
+    }
+  </script>
+</body>
+</html>

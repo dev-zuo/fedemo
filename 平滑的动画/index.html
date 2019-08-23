@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <div id="SomeElementYouWantToAnimate" style="position:absolute;height:100px;width:100px;border:1px solid #ccc;">111</div>
+  <script>
+    var progress = 0;
+    var element = document.getElementById('SomeElementYouWantToAnimate');
+
+    //回调函数
+    function render() {
+      progress += 10; //修改图像的位置， 加快动画时间  progress += 100
+      element.style.left = progress + 'px'
+
+      if (progress < 200) {
+        //在动画没有结束前，递归渲染
+        window.requestAnimationFrame(render);
+      }
+    }
+
+    //第一帧渲染
+    window.requestAnimationFrame(render);
+  </script>
+</body>
+</html>
