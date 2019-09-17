@@ -1,0 +1,8 @@
+a {
+  background: grey;
+  color: white;
+}
+span {
+  border: thin black solid;
+  padding: 10px;
+}

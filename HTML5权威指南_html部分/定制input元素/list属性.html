@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>list属性</title>
+  </head>
+  <body>
+    <form>
+      <p>
+        <label for="ex1">
+          Ex1: <input id="ex1" name="ex1" list="fruitlist"/>
+        </label>
+      </p>
+      <button type="submit">提交</button>
+    </form>
+    <datalist id="fruitlist">
+      <option value="Apple_value" label="苹果_label"></option>
+      <option value="Oranges_value">橘子_option中间值</option>
+      <option value="草莓_仅value" />
+    </datalist>
+  </body>
+</html>

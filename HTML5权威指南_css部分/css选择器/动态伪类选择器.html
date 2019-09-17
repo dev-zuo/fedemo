@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>css选择器</title>
+    <style type="text/css">
+      a:link { /* a标签的默认样式*/
+        color: red;
+        text-decoration: none;  /*去掉下划线 */
+      }
+      a:visited { /* 访问过的a标签 */
+        color: orange;
+      }
+
+      span:hover { /* 鼠标悬停在p标签上，p的样式如下 */
+        border: thin black solid;
+      }
+
+      button:active { 
+        outline: thin dashed red;
+      }
+      :focus {
+        background: green;
+      }
+
+    </style>
+  </head>
+  <body>
+    <a class="class1 class2" href="http://zuo11.com">访问博客</a>
+    <p>I like <span class="class2">apples</span> and oranges.</p>
+    <a href="http://baidu.com">访问百度</a>
+    <p>
+      <p>姓名：<input name="name" autocomplete="off"> </p>
+      <button>点击不放，会触发:active样式</button>
+    </p>
+  </body>
+</html>

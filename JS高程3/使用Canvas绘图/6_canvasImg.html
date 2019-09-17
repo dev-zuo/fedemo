@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>canvas 绘制图片</title>
+    <style>
+      canvas { border: 1px solid #ccc;}
+      .sec { margin-right:20px;}
+    </style>
+  </head>
+  <body>
+    <div>
+      <p>图片原大小: 1078*681，下面展示的大小 100*300</p>
+      <img src="images/cavasimg.png" width="1000" height="250">
+    </div>
+    <div style="display: flex;">
+      <div class="sec"> 
+        <p>ctx.drawImage(image, 10, 10)</p>
+        <canvas id="drawing" width="200" height="200">A draw of something.</canvas>
+      </div>
+      <div class="sec">
+        <p> ctx2.drawImage(image, 10, 10, 100, 50)</p>
+        <canvas id="drawing2" width="200" height="200">A draw of something.</canvas>
+      </div>
+      <div class="sec">
+        <p>ctx3.drawImage(image, 100, 0, 150, 150, 10, 10, 150, 150)</p>
+        <canvas id="drawing3" width="200" height="200">A draw of something.</canvas>
+      </div>
+    </div>
+
+    <script>
+      var image = document.images[0]
+      console.log(image);
+
+      image.onload = function(e) {
+        var drawing = document.getElementById('drawing');
+        var ctx = drawing.getContext('2d');
+        ctx.drawImage(image, 10, 10) // 从(10,10) 开始绘制image，不改变原图大小
+
+        var drawing2 = document.getElementById('drawing2');
+        var ctx2 = drawing2.getContext('2d');
+        ctx2.drawImage(image, 10, 10, 100, 50) // 从(10,10) 开始绘制image，设置绘制的图片大小为100*50
+
+        var drawing3 = document.getElementById('drawing3');
+        var ctx3 = drawing3.getContext('2d');
+        ctx3.drawImage(image, 100, 0, 150, 150, 10, 10, 150, 150) 
+        // 从原图像的(100, 0)坐标开始，截图宽150高150的图片，然后在画布(10,10)的位置开始绘制图形，宽为1500,高为150
+      }
+    </script>
+  </body>
+</html>

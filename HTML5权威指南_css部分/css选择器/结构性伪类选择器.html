@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>css选择器</title>
+    <style type="text/css">
+     /* :root {} 等价于 html {} */
+     :root { 
+        border: thin black solid;
+        padding: 4px;
+      }
+      /* 
+       * 注意，这里不是p元素的第一个子元素 
+       * 而是 匹配某个元素的第一个子元素，且为p，一般用来缩小范围。
+       */
+      p:first-child {
+        color: red;
+      }
+
+      /* p元素的最后一个子元素, 且为span。*/
+      p > span:last-child {
+        color: blue;
+      }
+
+      p:only-child { /* p元素，且该父元素只有该元素一个子元素 */
+        border: 1px dashed #000;
+      }
+
+      
+      /* 某个父元素只有一个子元素section，本例子中匹配不到，除非删除一个section */
+      section:only-of-type { 
+        border:1px solid red;
+        padding:10px;
+      }
+
+      /* 某个父元素只有一个子元素div */
+      div:only-of-type {
+        color:purple;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="class1 class2" href="http://zuo11.com">访问博客</a>
+    <p>I like <span class="class2">apples</span> and <span>oranges</span>.</p>
+    <a href="http://baidu.com">访问百度</a>
+    <section>
+      <p>section的第一个子元素，且为p, p:first-child</p>
+    </section>
+    <section>
+      第二个section
+    </section>
+    <div>
+      div:only-of-type，该div的父元素的子元素，只有一个div，就是当前div
+    </div>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>css选择器</title>
+    <style type="text/css">
+      p span {
+        color: red;
+      }
+
+      table td {  /* 后代元素 */
+        color: blue;
+      }
+      table > th { /* table没有th子元素，只有th的后代元素，样式不生效*/
+        color: red;
+      }
+      table + a { /* table后面没有紧跟的a元素，所以样式无效*/
+        border: 1px solid #000;
+      }
+      table + p { /* 匹配table元素后面紧跟的兄弟元素p */
+        border: 1px solid #000;
+      }
+       
+      table ~ a { /* table后面兄弟元素a，不用紧跟，但需要在table之后 */
+        border: 1px dashed #000;
+      }
+
+    </style>
+  </head>
+  <body>
+    <a class="class1 class2" href="http://zuo11.com">访问博客</a>
+    <p>I like <span>apples</span> and <span>oranges.</span></p>
+    
+    <p><a href="http://baidu.com">访问百度</a></p>
+
+    <table border="1">
+      <tr>
+        <th>姓名</th>
+        <th>年龄</th>
+      </tr>
+      <tr>
+        <td>张三</td>
+        <td>23</td>
+      </tr>
+      <tr>
+        <td>李四</td>
+        <td>56</td>
+      </tr>
+    </table>
+    <p>table后面的一个兄弟元素p</p>
+    <a>table后面的一个兄弟元素a</a>
+  </body>
+</html>

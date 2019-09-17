@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>object</title>
+  </head>
+  <body>
+    <object data="avatar.png" type="image/png"></object>
+
+    <map name="mymap">
+      <area href="http://baidu.com" shape="rect" coords="0,0,150,500" />
+      <area href="http://map.baidu.com" shape="rect" coords="150,0,300,500" />
+      <area href="http://zuo11.com" shape="default" />
+    </map>
+    <object data="avatar.png" type="image/png" usemap="#mymap"></object>
+
+    <p>
+      <progress></progress>
+      <progress value="0.1"></progress> 
+      <progress value="0.4"></progress>
+      <progress value="0.9"></progress>   
+      <progress value="12" max="100"></progress>    
+    </p>
+
+    <p>
+      <meter id="mymeter" value="90" min="10" max="100" low="40" high="80" optimum="60"></meter>
+    </p>
+
+    <p>
+      <button type="button" value="30">30</button>
+      <button type="button" value="30">60</button>
+      <button type="button" value="30">90</button>
+    </p>
+
+    <script>
+
+      var mymeter = document.getElementById('mymeter'),
+          btns = document.getElementsByTagName('button'),
+          i,
+          len;
+      
+      console.log(btns)
+
+      for ( i = 0, len = btns.length; i < len; i++ ) {
+        btns[i].onclick = function (e) {
+          console.log(e);
+          mymeter.setAttribute('value', e.target.innerHTML);
+        }
+      }
+      
+    </script>
+  </body> 
+</html>

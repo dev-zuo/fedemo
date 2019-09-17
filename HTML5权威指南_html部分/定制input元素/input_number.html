@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>input number</title>
+  </head>
+  <body>
+    <form>
+      <p>
+        <label for="ex1">
+          Ex1(默认): <input id="ex1" name="ex1" type="number">
+        </label>
+      </p>
+      <p>
+        <label for="ex2">
+          Ex2(默认): <input id="ex1" name="range" type="range" min="20" max="50" step="5" value="40"/>
+        </label>
+      </p>
+      <p>
+          <label for="ex2">
+            Ex2(默认): <input id="ex1" name="isTure" type="checkbox" value="false"/>
+          </label>
+        </p>
+        <fieldset>
+          <legend>喜欢的水果</legend>
+          <label>
+            <input name="food" type="radio" value="苹果"/>苹果
+          </label>
+          <label>
+            <input name="food" type="radio" value="橘子"/>橘子
+          </label>
+          <label>
+            <input name="food" type="radio" value="香蕉"/>香蕉
+          </label>
+        </fieldset>
+        
+      <p>
+        <input type="email" name="email" placeholder="输入mail">
+      </p>
+      <p>
+        <input type="tel" name="tel" placeholder="输入tel">
+      </p>
+      <p>
+        <input type="url" name="url" placeholder="输入url">
+      </p>
+
+
+      <p>
+        datetime:
+        <input type="datetime" name="datetime" />
+      </p>
+      <p>
+        datetime-local:
+        <input type="datetime-local" name="datetime-local" /> <!-- "2019-09-12T01:00" -->
+      </p>
+      <p>
+        date:
+        <input type="date" name="date" /> <!-- "2019-09-12" -->
+      </p>
+      <p>
+        month:
+        <input type="month" name="month" /> <!-- "2019-09" -->
+      </p>
+      <p>
+        time:
+        <input type="time" name="time" /> <!-- "21:59" -->
+      </p>
+      <p>
+        week:
+        <input type="week" name="week" /> <!-- "2019-W44" -->
+      </p>
+
+      <p>
+        color:
+        <input type="color" name="color" /> <!-- "#0000a0" -->
+      </p>
+
+      <p>
+        search:
+        <input type="search" name="search" />
+      </p>
+
+      <p>
+        hidden:
+        <input type="hidden" name="hidden" value="hidden的值"/> 
+      </p>
+      <p>
+        <input type="image" name="submit">
+      </p>
+      <button type="submit">提交</button>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>title</title>
+  </head>
+  <body>
+    <form id="voteform" method="get" name="formtest">
+      <p><label for="fave">Fruit: <input id="fave" name="fave" /></label></p>
+      <p><label for="name">Name: <input id="name" name="name"/></label></p>
+    </form>
+    <p><label for="age">age: <input id="age" name="age" form="voteform"/></label></p>
+    <button type="submit" form="voteform">Submit</button>
+    <button type="reset" form="voteform">Reset</button>
+  </body>
+</html>

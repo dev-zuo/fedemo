@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>output</title>
+  </head>
+  <body>
+    <!-- onsubmit="return false" -->
+    <form oninput="res.value = quantity.valueAsNumber * price.valueAsNumber">
+      <fieldset>
+        <legend>价格计算器</legend>
+        <input type="number" placeholder="quantity" id="quantity" name="quantity" /> x 
+        <input type="number" placeholder="price" id="price" name="price" /> = 
+        <output for="quant name" name="res" />
+      </fieldset>
+      <keygen name="keygen" challenge="sss">
+      <input type="submit" value="提交">
+    </form>
+  </body>
+</html>

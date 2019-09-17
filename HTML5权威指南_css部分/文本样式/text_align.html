@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>文本样式</title>
+    <style>
+      #p1 {
+        width:400px;
+        border: medium double black;
+        padding: 10px;
+        background-color: rgba(0, 255, 0, 0.4);
+        background-clip: content-box;
+      }
+    </style>
+  </head>
+  <body>
+      <p id="p1">
+        P1 There are lots of different kinds of fruit - there are over 500 varieties
+        of banana alone. <span>By the time we add the countless</span> type of apples, oranges
+        and other well-known fruit, we are faced with thousands of choices.
+      </p>
+      <p>
+        <button>start</button>
+        <button>end</button>
+        <button>left</button>
+        <button>right</button>
+        <button>justify</button>
+        <button>center</button>
+      </p>
+      <script>
+        var btns = document.getElementsByTagName("button"),
+            p1 = document.getElementById("p1"),
+            len = btns.length,
+            i;
+        
+        for (i = 0; i < len; i++) {
+          btns[i].onclick = function(e) {
+            p1.style.textAlign = e.target.innerHTML;
+          }
+        }
+      </script>
+  </body>
+</html>

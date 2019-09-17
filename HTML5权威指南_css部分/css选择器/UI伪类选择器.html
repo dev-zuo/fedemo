@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>css选择器</title>
+    <style type="text/css">
+      /* 包括未disabled的input、button */
+      :enabled {
+        color: blue;
+      }
+      :disabled {
+        color: red;
+      }
+
+      /* 元素选中后，该元素之后相邻的元素设置为红色 */
+      :checked + span {
+        color: red;
+      }
+
+      /* 从一组类似的元素中选择默认元素，提交按钮，总是表单的默认按钮*/
+      :default {
+        outline: medium solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea>enabled textarea</textarea>
+    <textarea disabled>disabled textarea</textarea>
+
+    <p>
+      <input type="checkbox" name="apples"> <span>This will go red when checked.</span>
+    </p>
+
+    <form>
+      <p>Name: <input name="name" ></p>
+      <button type="submit">提交</button>
+      <button type="reset">重置</button>
+    </form>
+  </body>
+</html>

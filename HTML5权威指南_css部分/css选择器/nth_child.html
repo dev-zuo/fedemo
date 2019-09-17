@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>css选择器</title>
+    <style type="text/css">
+
+      /* 某个父元素的第一个子元素，且为p */
+      p:nth-child(1) {
+        color: red;
+      }
+
+      /* 某个父元素的第二个子元素，且为span*/
+      span:nth-child(2) {
+        color: blue;
+      }
+
+      /* 某个元素的倒数第二个子元素，且为span */
+      span:nth-last-child(2) {
+        border: 1px solid #000;
+      }
+
+      /* 父元素的第2个该类型(section)的子元素 */
+      section:nth-of-type(2) {
+        border: thin dashed #000;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="class1 class2" href="http://zuo11.com">访问博客</a>
+    <p>I like <span class="class2">apples</span> and <span>oranges</span>.</p>
+    <a href="http://baidu.com">访问百度</a>
+    <section>
+      <p>section的第一个子元素，且为p, p:first-child</p>
+    </section>
+    <section>
+      第二个section
+    </section>
+    <div>
+      div:only-of-type，该div的父元素的子元素，只有一个div，就是当前div
+    </div>
+  </body>
+</html>

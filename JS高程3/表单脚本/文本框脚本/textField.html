@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>text field</title>
+        <script type="text/javascript" src="../../事件/EventUtil.js"></script>
+    </head>
+    <body>
+        <form>
+            <p>input 长度为25个字符，最多允许输入50个字符</p>
+            <input type='text' placeholder="请输入值" size="25" maxlength="50">
+
+            <p>input 长度为50个字符，最多允许输入5个字符</p>
+            <input type='text' placeholder="请输入值" size="50" maxlength="5">
+
+            <p>input 默认长度为size=20</p>
+            <input type='text' placeholder="请输入值">
+
+            <p>多行文本textarea 25行，5列</p>
+            <textarea rows="25" cols="5">initial value</textarea>
+        </form>
+        <script>
+            // 1.可以通过value属性，获得文本的值
+            var text = document.forms[0].elements[0];
+            EventUtil.addHandler(text, 'change', function(event) {
+                console.log(event.target.value)
+            });
+
+            // 2.focus后，选择所有文本或部分文本
+            EventUtil.addHandler(text, 'focus', function(event) {
+                // event.target.select()  选择所有
+                // text.setSelectionRange(3,4) 选择部分字段
+            });
+
+            // 3.select后，打印对应的值 IE9+
+            EventUtil.addHandler(text, 'select', function(event) {
+                 console.log('text selected：' + text.value)
+            });
+
+            // 4.过滤输入，阻止keypress默认事件，input输入会无效
+            EventUtil.addHandler(text, 'keypress', function(event){
+                console.log('keypress')
+                // 输入的值 event.key === String.fromCharCode(event.charCode)
+                console.log(event.key)
+                console.log(String.fromCharCode(event.charCode))
+
+                // 当某个条件时，执行下面的代码，会过滤输入
+                // event.preventDefault();
+
+                if (/[^\d]/.test(event.key)) { // 如果输入的非数字，无法输入
+                    event.preventDefault();
+                }
+            })
+            // 禁止粘贴
+            EventUtil.addHandler(text, 'paste', function(event){
+                console.log('paste', event)
+                event.preventDefault();
+            })
+        </script>
+    </body> 
+</html>

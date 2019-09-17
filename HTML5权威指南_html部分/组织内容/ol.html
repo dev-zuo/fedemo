@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ol</title>
+    <style>
+      button {padding:5px 20px;}
+      section { margin: 1em 0;}
+    </style>
+  </head>
+  <body>
+    <ol id="ol">
+      <li>list 1</li>
+      <li value="4">list 2</li>
+      <li>list 3</li>
+      <li>list 4</li>
+      <li value="10">list 5</li>
+      <li>list 6</li>
+    </ol>
+
+    <section id="typeBtn">
+      <nav>type切换</nav>
+      <button>1</button>
+      <button>a</button>
+      <button>A</button>
+      <button>i</button>
+      <button>I</button>
+    </section>
+
+    <section id="reversedBtn">
+      <nav>reverse 切换</nav>
+      <button>toggle reversed</button>
+    </section>
+
+    <section id="startBtn">
+      <nav>start 切换</nav>
+      <button>1</button>
+      <button>2</button>
+      <button>3</button>
+      <button>4</button>
+      <button>5</button>
+    </section>
+
+    <script>
+      var typeBtn = document.getElementById('typeBtn');
+      var ol = document.getElementById("ol");
+      var reversedBtn = document.getElementById('reversedBtn');
+      var startBtn = document.getElementById('startBtn')
+
+      typeBtn.onclick = function(e) {
+        ol.setAttribute('type', e.target.innerHTML)
+      }
+
+      startBtn.onclick = function(e) {
+        ol.setAttribute('start', e.target.innerHTML)
+      }
+
+      reversedBtn.onclick = function(e) {
+        if (ol.hasAttribute('reversed')) {
+          ol.removeAttribute('reversed');
+        } else {
+          ol.setAttribute('reversed', '');
+        }
+      }
+
+    </script>
+  </body>
+</html>

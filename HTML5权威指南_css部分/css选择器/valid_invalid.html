@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>css选择器</title>
+    <style type="text/css">
+      /* 如果前面不加form，form这个元素也会被加上样式 */
+      form :valid { 
+        outline: medium solid green;
+      }
+      form :invalid {
+        outline: medium solid red;
+      }
+
+      :in-range {
+        color: blue;
+      }
+      :out-of-range {
+        color:red;
+      }
+
+      :required {
+        width: 300px;
+      }
+      :optional {
+        width:100px;
+      }
+    </style>
+  </head>
+  <body>
+    <form method="post" action="http://zuo11.com">
+      <p>Name: <input name="name" required></p>
+      <p>age: <input name="age"></p>
+      <p>
+        已婚 <input type="checkbox" name="married" required>
+      </p>
+      <p>在正常范围内：<input type="number" name="n1" min="10" value="20"></p>
+      <p>非正常范围内：<input type="number" name="n2" min="10" value="5"></p>
+      <button type="submit">提交</button>
+      <button type="reset">重置</button>
+    </form>
+  </body>
+</html>

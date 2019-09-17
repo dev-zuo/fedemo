@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>过渡</title>
+    <style>
+      span {
+        border: thin solid black;
+      }
+      span:hover,section {
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-name: MyAnimation, Animation2;
+        animation-direction: alternate;
+      }
+      @keyframes MyAnimation {
+        from {
+          font-size: samller;
+           background: red;
+        }
+        50% {
+          background-color: purple;
+        }
+        75% {
+           background: orange;
+        }
+        to {
+          font-size: x-large;
+          background-color:green;
+        }
+      }
+      @keyframes Animation2 {
+        to {
+          color: white;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+      P1 There are lots of different kinds of fruit - there are over 500 varieties
+      of banana alone. <span>By the time we add the countless</span> type of apples, oranges
+      and other well-known fruit, we are faced with thousands of choices.
+    </p>
+    <section>
+      重用关键帧
+    </section>
+  </body>
+</html>

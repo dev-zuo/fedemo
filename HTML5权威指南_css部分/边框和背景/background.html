@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>边框和背景</title>
+    <style>
+      p {
+        border: medium solid black;
+        background-color: lightgray;
+        background-image: url(bg.png);
+
+        /* 1. */
+        background-size: 40px 40px;
+        background-repeat: repeat-x;
+
+        /* 2. */
+        /* background-size: contain;
+        background-repeat: no-repeat; */
+
+        /* 3. */
+        /* background-size: cover;
+        background-repeat: no-repeat; */
+
+        /* background-position: 100px 30px; */
+
+        /* background-attachment: fixed; */
+        /* background-attachment: local; */
+        /* background-attachment: scroll; */
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+      There are lots of different kinds of fruit - there are over 500 varieties
+      of banana alone. By the time we add the countless type of apples, oranges
+      and other well-known fruit, we are faced with thousands of choices.
+    </p>
+  </body>
+</html>

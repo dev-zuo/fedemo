@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>window 窗口大小、窗口位置</title>
+  </head>
+  <body>
+    <input id="window-site-btn" type="button" value="获取窗口位置信息">
+    <input id="window-size-btn" type="button" value="获取窗口大小">
+    <div id="info"></div>
+    <div style="width: 120%;height:3000px;;border:1px solid #ccc;"></div>
+
+    <script>
+      var windowSiteBtn = document.getElementById('window-site-btn');
+      var windowSizeBtn = document.getElementById('window-size-btn');
+      var info = document.getElementById('info');
+
+      // 打印窗口位置信息
+      windowSiteBtn.onclick = function(e) {
+        info.innerHTML = `
+        <p>screenLeft: ${window.screenLeft}, screenTop: ${window.screenTop};</p>
+        <p>screenX：${window.screenX}, screenY: ${window.screenY};</p>
+        `
+      }
+      // 打印窗口大小信息
+      windowSizeBtn.onclick = function(e) {
+        info.innerHTML = `
+        <p>body元素的宽*高：（如果网页内容过少，body元素的实际宽高比可视区域要小, 如果内容过多，body的高度以实际内容为准）</p>
+        <p>document.body.clientWidth: ${document.body.clientWidth}, document.body.clientHeight: ${ document.body.clientHeight};</p>
+        <p>可视区域的宽*高 - 滚动条宽高</p>
+        <p>document.documentElement.clientWidth: ${ document.documentElement.clientWidth}, document.documentElement.clientHeight: ${ document.documentElement.clientHeight};</p>
+        <p>可视区域的宽*高：（包含滚动条宽高, 不包含console调试区域, 不包含浏览器顶部组件高度）</p>
+        <p>innerWidth: ${window.innerWidth}, innerHeight: ${window.innerHeight};</p>
+        <p>浏览器窗口宽*高：(包含console调试区域)</p>
+        <p>outerWidth: ${window.outerWidth}, outerHeight: ${window.outerHeight};</p>
+        `
+      }
+    </script>
+  </body>
+</html>

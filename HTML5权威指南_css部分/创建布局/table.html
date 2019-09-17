@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>边框和背景</title>
+    <style>
+      img {
+        width: 100px;
+      }
+      .table {
+        display: table;
+        border-collapse: collapse;
+      }
+      .table > .row {
+        display: table-row;
+      }
+      .row > p{
+        display: table-cell;
+        border: thin solid black;
+        padding: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="table">
+      <section class="row">
+        <p id="p1">
+          P1 There are lots of different kinds of fruit - there are over 500 varieties
+          of banana alone. <span>By the time we add the countless</span> type of apples, oranges
+          and other well-known fruit, we are faced with thousands of choices.
+        </p>
+        <p>
+          p2 There are lots of different kinds of fruit - there are over 500 varieties
+          of banana alone. <span>By the time we add the countless</span> type of apples, oranges
+          and other well-known fruit, we are faced with thousands of choices.
+        </p>
+        <p>
+          P3 There are lots of different kinds of fruit - there are over 500 varieties
+          of banana alone. <span>By the time we add the countless</span> type of apples, oranges
+          and other well-known fruit, we are faced with thousands of choices.
+        </p>
+      </section>
+      <section class="row">
+        <p>
+          This is img 1. <img src="green.png" />
+        </p>
+        <p>
+          This is img 2. <img id="img" src="../边框和背景/bg.png" />
+        </p>
+        <p>
+          No picture here.
+        </p>
+      </section>
+    </section>
+  </body>
+</html>

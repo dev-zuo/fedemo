@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>边框和背景</title>
+    <style>
+      body {
+        display: flex;
+      }
+      div {
+        width:100px; height: 100px;
+        border: 1px solid #ccc;
+        margin: 30px;
+      }
+      #div1 {
+        box-shadow: 5px 4px 10px 2px gray;
+      }
+      #div2 {
+        box-shadow: 0 0 10px 2px #ccc;
+      }
+      #div3 {
+        box-shadow: 0 0 10px 2px #ccc, 0 0 10px 2px gray inset;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="div1"></div>
+    <div id="div2"></div>
+    <div id="div3"></div>
+  </body>
+</html>

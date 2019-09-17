@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <input type="button" value="打开 '我的窗口'" onclick="openWin()">
+  <script>
+    var myWindow;
+    function openWin(){
+        // myWindow = window.open("", "testWindow","height=400,width=400,top=200,left=400,location=no");
+
+        // 打开一个新的窗口，一般浏览器可能会阻止，第一次运行需要允许, url为空，不打开其他链接
+        // myWindow = window.open("", "testWindow","height=400,width=400,top=200,left=400,location=no");
+        // myWindow = window.open("", "testWindow"); // 打开新的tab窗口，如果二参是frame名，会在该frame打开该窗口
+        myWindow = window.open("window.html", "", "width=300,height=400,resizable=no"); 
+        
+        if (myWindow === null) {
+          alert('浏览器不允许弹窗')
+        } else {
+          myWindow.document.write('test'); // 向窗口写入内容
+        }
+
+        // 打开console调试，如下命令
+
+        // 2.移动窗口位置
+        // myWindow.moveTo(100,100);  // 移动窗口位置到 (100, 100)
+        // myWindow.moveBy(-50, 50); // 相对当前位置（x,y）, 将窗口移动到 (x-50, y+50) 位置
+
+        // 3.改变窗口大小
+        // myWindow.resizeTo(600,300); // 改变窗口大小为 600*300
+        // myWindow.resizeBy(100,200); // 改变窗口大小为 (x-100)*(y+200)
+
+        // 4.关闭窗口
+        // myWindow.close(); // 关闭弹窗
+
+    }
+  </script>
+</body>
+</html>

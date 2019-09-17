@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>important</title>
+    <style>
+        div {
+          width: 100%;
+          height: 100px;
+          margin-top: 20px;
+          border: thin solid #ccc;
+          transform: rotate(7deg); 
+        }
+        .cc {
+          color: red;
+          width: calc(100% - 100px); /* 注意没空格会无效 calc(100%-100px); */
+        }
+      </style>
+  </head>
+  <body>
+    <div class="cc">c1</div>
+    <div>c2</div>
+  </body>
+</html>

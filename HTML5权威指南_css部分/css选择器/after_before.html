@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>css选择器</title>
+    <style type="text/css">
+
+      /* 为a标签前后加入内容 */
+      a:before {
+        content: "点击 ";
+        color: #000;
+        border: 1px solid #000;
+      }
+      a:after {
+        content: " !";
+        color:red;
+      }
+
+      /* 为p增加前置的计数 */
+      body {
+        counter-reset: paracount;
+      }
+      p:before {
+        content: counter(paracount) ". ";
+        counter-increment: paracount;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="class1 class2" href="http://zuo11.com">访问博客</a>
+    <p>I like <span class="class2">apples</span> and oranges.</p>
+    <p>Today is monday.</p>
+    <a href="http://baidu.com">访问百度</a>
+  </body>
+</html>

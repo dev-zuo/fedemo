@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>select</title>
+  </head>
+  <body>
+    <form>
+      <p>
+        <label for="fave">
+          Favorite Fruit:
+          <select id="fave" name="fave">
+            <option value="apples" label="Apples_label">Apples</option>
+            <option value="oranges" label="Oranges_label">Oranges</option>
+            <option value="pears" selected>Pears</option>
+            <option value="cherries" label="Cherries_label"></option>
+          </select>
+        </label>
+      </p>
+      <p>
+        <label for="fave">
+          Favorite Fruit:
+          <select id="fave" name="fave" multiple>
+            <option value="apples" label="Apples_label">Apples</option>
+            <option value="oranges" label="Oranges_label">Oranges</option>
+            <option value="pears" selected>Pears</option>
+            <option value="cherries" label="Cherries_label"></option>
+          </select>
+        </label>
+      </p>
+      <p>
+        <label for="fave">
+          Favorite Fruit:
+          <select id="fave" name="fave">
+            <optgroup label="分组1">
+              <option value="apples" label="Apples_label">Apples</option>
+              <option value="oranges" label="Oranges_label">Oranges</option>
+            </optgroup>
+            <optgroup label="分组2">
+              <option value="pears" selected>Pears</option>
+              <option value="cherries" label="Cherries_label"></option>
+            </optgroup>
+          </select>
+        </label>
+      </p>
+
+      <p>
+        story1:
+        <textarea name="story1"></textarea>
+      </p>
+      <p>
+        story2:
+        <textarea name="story2" cols="20" rows="2"></textarea>
+      </p>
+      <p>
+        story3:
+        <textarea name="story3" cols="40" rows="5"></textarea>
+      </p>
+      <p>
+        story4:
+        <!-- textarea内容换行会加上%0d%0a story4=你的影子哒哒哒哒哒哒呵%0D%0A呵订单 -->
+        <textarea name="story4" wrap="hard"></textarea>
+      </p>
+      <p>
+        story5:
+        <!-- 默认，中间不会加换行符 story5=你的影子哒哒哒哒哒哒呵呵订单 -->
+        <textarea name="story5" wrap="soft"></textarea>
+      </p>
+      <input type="submit" value="submit" />
+    </form> 
+  </body>
+</html>

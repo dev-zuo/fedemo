@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>style media</title>
+    <style media="screen">
+      /* 显示样式 */
+      a {
+        color: red;
+      }
+    </style>
+    <style media="print">
+      /* 打印时的样式 */
+      a {
+        color: blue;
+      }
+    </style>
+    <style media="screen AND (min-width:500px)">
+        /* 屏幕宽度小于500时，应用该样式 */
+        a {
+          background: rgba(0,0,0,.1)
+        }
+    </style>
+    <style media="screen AND (max-width:500px)">
+        /* 屏幕宽度大于500时，应用该样式 */
+        a {
+          background: yellow;
+        }
+    </style>
+  </head>
+  <body>
+      <a href="1.html">访问1.html</a>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>过渡</title>
+    <style>
+      span {
+        border: thin solid black;
+        /* 反向过渡，防止太早回复到原来的状态 */
+        transition-delay: 1s;
+        transition-duration: 1000ms;
+      }
+      span:hover {
+        font-size: x-large;
+        background-color:green;
+
+        transition-property: font-size, background-color;
+        transition-duration: 1000ms;
+        transition-delay: 1s; /* hover 1s后开始执行动画 */
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+      P1 There are lots of different kinds of fruit - there are over 500 varieties
+      of banana alone. <span>By the time we add the countless</span> type of apples, oranges
+      and other well-known fruit, we are faced with thousands of choices.
+    </p>
+  </body>
+</html>

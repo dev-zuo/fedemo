@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>其他css属性和特性</title>
+    <style>
+      span {
+        color: red;
+      }
+      span:last-child {
+        opacity: 0.6;
+      }
+      p:last-child {
+        color: rgba(255, 0, 0, 0.6);
+        /* 等价于 color: red; opacity: 0.6; */
+      }
+    </style>
+  </head>
+  <body>
+      <p>
+        This is a text. I like <span>apples</span> and <span>oranges</span>.
+      </p>
+      <p>oranges</p>
+  </body>
+</html>

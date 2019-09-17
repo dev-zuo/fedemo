@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>css选择器</title>
+    <style type="text/css">
+      :not([class*="class2"]) { /* class不包含class2的元素 */
+        color: red;
+      }
+      :empty { /* 匹配没有任何内容的元素 */
+        margin-top: 1em;
+        outline: medium dashed red;
+      }
+      :lang(en) {
+        color: purple;
+      }
+      :target {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <a id="target1" class="class1 class2" href="http://zuo11.com">访问博客</a>
+    <p>I like <span class="class2">apples</span> and oranges.</p>
+    <a id="target2" href="#target2">访问target2 hash</a>
+
+    <div style="width:100px;height:100px;border:1px solid #000;"></div>
+  
+    <p lang="en-uk">Today is monday. </p>
+  </body>
+</html>

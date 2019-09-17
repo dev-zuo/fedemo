@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum=1.0,minimum=1.0,user-scalable=0" />
+        <title>touchevent</title>
+        <script type="text/javascript" src="../EventUtil.js"></script>
+        <script type="text/javascript" src="../vconsole/vconsole.min.js"></script>
+    </head>
+    <body>
+        <input type="button" id="myBtn" value="模拟点击">
+        <script type='text/javascript'>
+            var myBtn = document.getElementById('myBtn');
+            EventUtil.addHandler(myBtn, 'click', function(event) {
+                console.log('click', event)
+                alert('点击了按钮')
+            })
+
+            setTimeout(function() {
+                // 模拟鼠标事件
+                var event = document.createEvent('MouseEvents');
+                event.initMouseEvent('click', true, true, document.defaultView, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+                myBtn.dispatchEvent(event);
+            }, 5000)
+        </script>
+    </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>css选择器</title>
+    <style type="text/css">
+      [href] { /* 匹配有href属性的元素 */
+        border: thin black solid;
+        padding: 4px;
+      }
+
+      [href="http://baidu.com"] { /* 匹配href属性值为http://baidu.com的元素 */
+        color: red;
+      }
+
+      [id^="p"] {  /* 匹配id属性值以p开头的元素 */
+        color: #ff00ff;
+      }
+
+      [id$="2"] {  /* 匹配id属性值以2结尾的元素 */
+        border:1px solid #000;
+      }
+
+      [class~="class3"] { /* 如果class属性的值其中一个值等于class3的元素  */
+        color: blue;
+      }
+
+      [lang|="en"] { /* 匹配lang="en-us"，lang="en-gb" 的元素 */
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="class1 class2" href="http://zuo11.com">访问博客</a>
+    <p>I like <span class="class2 class3">apples</span> and oranges.</p>
+    <p class="class3">I like apples and oranges 2.</p>
+    <a href="http://baidu.com">访问百度</a>
+
+    <p>Today is monday 1.</p>
+
+    <p id="p1">Today is monday 2.</p>
+    <p id="p2">Today is monday 3.</p>
+    <p id="p3">Today is monday 4.</p>
+  </body>
+</html>

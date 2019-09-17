@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>汉字拼音</title>
+  </head>
+  <body>
+    <p style="font-size:50px;">
+      <ruby>魑<rp>(</rp><rt>chī</rt><rp>)</rp></ruby>
+      <ruby>魅<rp>(</rp><rt>mèi</rt><rp>)</rp></ruby>
+      <ruby>魍<rp>(</rp><rt>wǎng</rt><rp>)</rp></ruby>
+      <ruby>魉<rp>(</rp><rt>liǎng</rt><rp>)</rp></ruby>
+    </p>
+
+    <p><bdo dir="ltr">I like oranges</bdo></p>
+    <!-- 按字母完全逆序 -->
+    <p><bdo dir="rtl">I like oranges</bdo></p>
+
+    <!-- 显示顺序会有问题 -->
+    <p>اللغة العربي
+      2 apples</p>
+
+    <!-- bdi按原意意修正显示顺序 -->
+    <p><bdi>اللغة العربي</bdi>
+      2 apples</p>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>a元素</title>
+    <style>
+      section { border: 1px solid #ccc; height:1200px}
+      #sec1 { background: gray}
+      #sec2 { background: green}
+      section[name='sec3'] {background: greenyellow}
+      .del {
+        text-decoration: line-through;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="http://zuo11.com">指向外部的元素，注意要以协议开头，如http://zuo11.com</a>
+    <p/>
+    <a href="1.html">指向相对路径，跳转到1.html</a>
+    <p/>
+    <a href="#sec2">滚动到id为sec2的区域，<span class="del">如果没有该id，滚动到name属性为sec2的位置</span></a>
+    <p/>
+    <a href="#sec3">滚动到id为sec3的区域，浏览器貌似都不支持查找name属性。</a>
+    <p/>
+    <a href="2.html" target="_blank">打开一个新的窗口显示, target=_blank</a>
+    <p/>
+
+    <section id="sec1">
+        <p>section1</p>
+    </section>
+    <section id="sec2">
+        <p>section2</p>
+    </section>
+    <section name="sec3">
+        <p>section3</p>
+    </section>
+  </body>
+</html>

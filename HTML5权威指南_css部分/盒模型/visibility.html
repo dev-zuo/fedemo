@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>边框和背景</title>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>姓名</th>
+        <th>年龄</th>
+      </tr>
+      <tr id="p2">
+        <td>张三</td> <td>24</td>
+      </tr>
+      <tr>
+        <td>李四</td> <td>46</td>
+      </tr>
+    </table>
+    <div>
+      <button>collapse</button>
+      <button>visible</button>
+      <button>hidden</button>
+    </div>
+    <script>
+      var btns = document.getElementsByTagName('button'),
+          p2 = document.getElementById('p2'),
+          len = btns.length,
+          i;
+
+      for (i = 0; i < len; i++) {
+        btns[i].onclick = function(e) {
+          p2.style.visibility = e.target.innerHTML;
+        }
+      }
+    </script>
+  </body>
+</html>

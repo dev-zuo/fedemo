@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>hidden property</title>
+    <script>
+      function toggleHidden() {
+        var p2 = document.getElementById('p2');
+        if (p2.hasAttribute('hidden')) {
+          p2.removeAttribute('hidden');
+        } else {
+          p2.setAttribute("hidden", "hidden");
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <button onclick="toggleHidden()">Toggle</button>
+    <p/>
+    <p id="p1">第1段落</p>
+    <p id="p2" hidden>第2段落</p>
+    <p id="p3">第3段落</p>
+
+    <p lang="en">Hello - how are you?</p>
+    <p lang="ch">你好 - 最近怎么样?</p>
+
+    <textarea spellcheck="true">This is mispelled text.</textarea>
+
+    <p style="color:red;border:1px dashed #333;padding:10px;">style text</p>
+
+    <a href="http://zuo11.com" title="zuo11.com">这是一个链接</a>
+  </body>
+</html>

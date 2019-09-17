@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum=1.0,minimum=1.0,user-scalable=0" />
+		<title>devicemethod</title>
+		<script type="text/javascript" src="../EventUtil.js"></script>
+		<script type="text/javascript" src="../vconsole/vconsole.min.js"></script>
+	</head>
+	<body>
+		<div>window.orientation: <p id="orientationValue"></p></div>
+		<div>deviceorientation: <p id="deviceorientation"></p></div>
+		<div>devicemotion: <p id="devicemotion"></p></div>
+		<script type="text/javascript">
+			var vConsole = new VConsole(); 
+			EventUtil.addHandler(window, 'load', function (event) {
+				console.log('load')
+				var orientationValue = document.getElementById('orientationValue')
+				orientationValue.innerText = window.orientation
+				// iPhone8 和红米6均可正常触发
+				EventUtil.addHandler(window, 'orientationchange', function (event) {
+					console.log('orientationchange', event, window.orientation)
+					var orientationValue = document.getElementById('orientationValue')
+					orientationValue.innerText = `orientation changed: ${window.orientation}`
+				})
+
+				// 经测试，iPhone8不能触发，红米6触发正常，http本地测试，可能需要https，待后续测试
+				EventUtil.addHandler(window, 'deviceorientation', function (event) {
+					console.log('deviceorientation', event)
+					var orientationValue = document.getElementById('deviceorientation')
+					orientationValue.innerText = `Alpha: ${event.alpha}, Beta：${event.beta}, Gamma: ${event.gamma}`
+				})
+
+				// 经测试、iPhone8、红米6 手机均不能正常触发，http本地测试，可能需要https，待后续测试
+				EventUtil.addHandler(window, 'devicemotion', function (event) {
+					console.log('devicemotion', event, event.acceleration, event.interval, event.accelerationIncludingGravity)
+					if (event.rotatioinRate !== null) {
+						var orientationValue = document.getElementById('devicemotion')
+						orientationValue.innerText = `Alpha: ${event.rotationRate.alpha}, Beta：${event.rotationRate.beta}, Gamma: ${event.rotationRate.gamma}`
+					} 
+				})
+			})
+		</script>
+	</body>
+</html>

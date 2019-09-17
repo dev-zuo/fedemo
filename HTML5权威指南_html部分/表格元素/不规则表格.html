@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>title</title>
+    <style>
+      table {
+        border-collapse: collapse;
+      }
+      table th { background: red; }
+      #front3col { background: tan}
+      #behind2col { background:green}
+    </style>
+  </head>
+  <body>
+    <table border="1">
+      <caption>Results of the 2019 Fruit</caption>
+      <colgroup id="front3col" span="3"/>
+      <colgroup id="behind2col" span="2"/>
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Name</th>
+          <th>Color</th>
+          <th colspan="2">Size & Votes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Favorite:</th>
+          <td>Apples</td>
+          <td>Green</td>
+          <td>Medium</td>
+          <td>500</td>
+        </tr>
+        <tr>
+          <th>2nd Favorite:</th>
+          <td>Oranges</td>
+          <td>Orange</td>
+          <td>Large</td>
+          <td>450</td>
+        </tr>
+        <tr>
+          <th>3nd Favorite:</th>
+          <td>Pomegranate</td>
+          <td colspan="2" rowspan="2">Pomegranates and cherries can both come in a range of colors and sizes</td>
+          <td>203</td>
+        </tr>
+        <tr>
+          <th rowspan="2">Joint 4th</th>
+          <td>Cherries</td>
+          <td rowspan="2">75</td>
+        </tr>
+        <tr>
+          <td>Pineapple</td>
+          <td>Brown</td>
+          <td>Very Large</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="5">&copy;2019 guoqzuo</td>
+        </tr>
+      </tfoot>
+    </table>
+  </body>
+</html>

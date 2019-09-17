@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>keypress</title>
+		<script type="text/javascript" src="../EventUtil.js"></script>
+	</head>
+	<body>
+		<input type="text" placeholder="测试">
+		<script>
+			EventUtil.addHandler(document.documentElement, 'keydown', function(e) {
+	          console.log('keydown', e);
+	      	}); 
+	      	EventUtil.addHandler(document.documentElement, 'keyup', function(e) {
+	          console.log('keyup', e);
+	      	}); 
+	      	EventUtil.addHandler(document.documentElement, 'keypress', function(e) {
+	          console.log('keypress', e);
+	      	}); 
+	      	EventUtil.addHandler(document.documentElement, 'textInput', function(e) {
+	          console.log('textInput', e);
+	          if (e.data !== 'a') {
+	          	 e.preventDefault();
+	          }
+	          alert(e.data)
+	      	}); 
+		</script>
+	</body>
+</html>

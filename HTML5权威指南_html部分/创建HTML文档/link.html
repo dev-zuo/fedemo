@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>link相关</title>
+    <!-- 载入样式表, 根据media属性，载入不同的样式 -->
+    <link rel="stylesheet" href="test.css" media="screen AND (min-width:800px)">
+    <link rel="stylesheet" href="test_mini.css" media="screen AND (max-width:800px)">
+
+    <!-- 预先载入资源，在network里面可以看到 -->
+    <link rel="prefetch" href="http://zuo11.com">
+
+    <!-- 设置tab栏的图标  type="image/x-icon" -->
+    <link rel="shortcut icon" href="favicon.ico">
+  </head>
+  <body>
+    <p>测试link</p>
+    <a href="http://zuo11.com">打开: zuo11.com</a>
+  </body>
+</html>

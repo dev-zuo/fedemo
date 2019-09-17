@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>mouseEvent</title>
+		<script type="text/javascript" src="../EventUtil.js"></script>
+	</head>
+	<body>
+		<div id="myDiv" style="width:100px;height:100px;border:5px solid #ccc;"></div>
+		<script type="text/javascript">
+			var myDiv = document.getElementById('myDiv');
+
+			EventUtil.addHandler(myDiv, 'mousedown', function(e) {
+			  console.log('mousedown', e);
+			});
+
+			EventUtil.addHandler(myDiv, 'mouseup', function(e) {
+			  console.log('mouseup', e);
+			    if (e.button === 2) {
+			  	e.preventDefault()
+			  	alert('阻止了默认事件处理')
+			  }
+			});		
+
+			EventUtil.addHandler(myDiv, 'click', function(e) {
+				console.log('click',  e)
+				e = EventUtil.getEvent(e);
+				var keys = [];
+
+				if (e.shiftKey) {
+					keys.push('shift');
+				}
+				if (e.ctrlKey) {
+					keys.push('ctrl');
+				}
+				if (e.altKey) {
+					keys.push('alt')
+				}
+				if (e.metaKey) {
+					keys.push('meta')
+				}
+				alert(keys.join(','))
+			});	
+
+			EventUtil.addHandler(myDiv, 'dblclick', function(e) {
+			  console.log('dblclick', e);
+			});	
+
+			EventUtil.addHandler(myDiv, 'mouseover', function(e) {
+			  console.log('mouseover', e);
+			});	
+
+			EventUtil.addHandler(myDiv, 'mouseout', function(e) {
+			  console.log('mouseout', e);
+			});	
+
+			EventUtil.addHandler(myDiv, 'mouseenter', function(e) {
+			  console.log('mouseenter', e);
+			});	
+
+			EventUtil.addHandler(myDiv, 'mouseleave', function(e) {
+			  console.log('mouseleave', e);
+			});	
+
+			EventUtil.addHandler(myDiv, 'mousewheel', function(e) {
+			  console.log('mousewheel', e);
+			});	
+
+			// EventUtil.addHandler(myDiv, 'mousemove', function(e) {
+		     //    console.log('mousemove');
+		     //    console.log(e)
+		     // });	
+		</script>
+	</body>
+</html>
+
+<!-- EventUtil.addHandler(myDiv, 'click', function(e) {
+	e = EventUtil.getEvent(e);
+	var keys = [];
+
+	if (e.shiftKey) {
+		keys.push('shift');
+	}
+	if (e.ctrlKey) {
+		keys.push('ctrl');
+	}
+	if (e.altKey) {
+		keys.push('alt')
+	}
+	if (e.metaKey) {
+		keys.push('meta')
+	}
+	alert(keys.join(','))
+});	 -->

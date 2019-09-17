@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>file input</title>
+  </head>
+  <body>
+    <form enctype="multipart/form-data">
+
+      <input type="file" name="file"/>
+
+      <input type="file" name="files" multiple/>
+
+      <!-- 限制只允许选择png图片 -->
+      <input type="file" name="file_img" accept="image/png" />
+
+      <input type="submit" value="submit">
+    </form>
+  </body>
+</html>

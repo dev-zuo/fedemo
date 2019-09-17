@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>过渡</title>
+    <style>
+      section {
+        width: 200px;
+        margin: 10px 20px;
+        padding: 5px;
+        text-align: right;
+        border-radius: 5px;
+      }
+      [id*=sec] {
+        background-color:indianred;
+        color: white;
+      }
+      #mark:hover ~ [id*=sec] {
+        width: 400px;
+      }
+      #sec1 { transition: width 2s ease; }
+      #sec2 { transition: width 2s ease-in; }
+      #sec3 { transition: width 2s ease-out; }
+      #sec4 { transition: width 2s ease-in-out; }
+      #sec5 { transition: width 2s linear; }
+    </style>
+  </head>
+  <body>
+    <section id="mark">鼠标放到此处，查看动画</section>
+    <section id="sec1">ease</section>
+    <section id="sec2">ease-in</section>
+    <section id="sec3">ease-out</section>
+    <section id="sec4">ease-in-out</section>
+    <section id="sec5">linear</section>
+  </body>
+</html>

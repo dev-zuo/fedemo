@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>其他css属性和特性</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        table-layout: fixed;
+        width: 100%;
+      }
+      th, td {
+        padding: 5px 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <table border="1">
+      <caption>表格标题</caption>
+      <thead>
+        <tr>
+            <th>排名</th>
+            <th>名称</th>
+            <th>颜色</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>最喜欢的</th>
+          <td>苹果</td>
+          <td>绿色</td>
+        </tr>
+        <tr>
+          <th>第二喜欢的</th>
+          <td>橙子</td>
+          <td></td>
+          <!-- <td>橙色</td> -->
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th colspan="3">@2019 水果</th>
+        </tr>
+      </tfoot>
+    </table>
+  </body>
+</html>

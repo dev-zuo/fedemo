@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>css选择器</title>
+    <style type="text/css">
+      * {
+        border: thin black solid;
+        padding: 4px;
+      }
+
+      * { background-color: rgba(255,0,0,.2); }
+      * * { background-color: rgba(0,255,0,.2); }
+      * * * { background-color: rgba(0,0,255,.2); }
+      * * * * { background-color: rgba(255,0,255,.2); }
+      * * * * * { background-color: rgba(0,255,255,.2); }
+      * * * * * * { background-color: rgba(255,255,0,.2); }
+      * * * * * * * { background-color: rgba(255,0,0,.2); }
+      * * * * * * * * { background-color: rgba(0,255,0,.2); }
+      * * * * * * * * * { background-color: rgba(0,0,255,.2); }
+    </style>
+  </head>
+  <body>
+    <a href="http://zuo11.com">访问博客</a>
+    <p>I like <span>apples</span> and oranges.</p>
+    <a href="http://baidu.com">访问百度</a>
+  </body>
+</html>

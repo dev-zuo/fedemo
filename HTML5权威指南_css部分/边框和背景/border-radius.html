@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>边框和背景</title>
+    <style>
+      section { margin-right: 100px; }
+      div {
+        width: 200px; height: 200px;
+        border: 1px solid #000;
+      }
+      #div1 {
+        border-top-left-radius: 100px 50px;
+      }
+      #div2 {
+        border-radius: 100px / 50px;
+      }
+      #div3 {
+        border-radius: 50% 50px 25% 100px / 25% 25px 40px 55%;
+      }
+    </style>
+  </head>
+  <body>
+    <section style="display: flex;">
+      <section>
+        <p>border-top-left-radius: 100px 50px;</p>
+        <div id="div1"></div>
+      </section>
+      <section>
+        <p>border-radius: 100px / 50px;</p>
+        <div id="div2"></div>
+      </section>
+    </section>
+    <p>左上、右上、右下、左下 border-radius: 50% 50px 25% 100px / 25% 25px 40px 55%;</p>
+    <div id="div3"></div>
+  </body>
+</html>
