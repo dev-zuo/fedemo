@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{ a }}</p>
+    </div>
+    <script>
+      var data = { a: 1 };
+      var vm = new Vue({
+        el: '#app',
+        data: data,
+        // watch: {
+        //   a: function(newVal, oldVal) {
+        //     // vm.a改变，该回调函数会被调用
+        //     console.log(`watch a 改变：newVal: ${newVal}, oldVal: ${oldVal}`);
+        //   }
+        // }
+      })
+
+      alert(vm.$el === document.getElementById('app')); // true
+      alert(vm.$data === data); // true
+
+      // 实例方法，等价于上面注释的代码 
+      vm.$watch('a', function(newVal, oldVal) {
+        // vm.a改变，该回调函数会被调用
+        console.log(`watch a 改变：newVal: ${newVal}, oldVal: ${oldVal}`);
+      })
+    </script>
+  </body>
+</html>

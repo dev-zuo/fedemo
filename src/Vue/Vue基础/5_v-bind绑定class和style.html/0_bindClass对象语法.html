@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+
+      <!-- <div class="red active"></div> -->
+      <div v-bind:class="myclass"></div>
+
+      <!-- 对象语法 -->
+      <div v-bind:class="{active: isActive}"></div>
+      <div class="red" 
+           v-bind:class="{active: isActive, 'text-danger': hasError}">
+      </div>
+      <div v-bind:class="classObject"></div>
+      <div v-bind:class="classObjectComputed"></div>
+
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          myclass: "red active",
+          isActive: true,
+          hasError: false,
+          classObject: {
+            active: true,
+            'text-danger': false
+          }
+        },
+        computed: {
+          classObjectComputed: function() {
+            return {
+              active: this.isActive && !this.error,
+              'text-danger': this.error && this.error.type === 'fatal'
+            }
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

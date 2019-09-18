@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- <p class="foo bar baz boo"></p> -->
+      <my-component class="baz boo"></my-component>
+
+      <!-- <p class="foo bar active"></p> -->
+      <my-component v-bind:class="{ active: isActive }"></my-component>
+    </div>
+    <script>
+      Vue.component('my-component', {
+        template: '<p class="foo bar"></p>'
+      })
+
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          isActive: true
+        }
+      })
+    </script>
+  </body>
+</html>

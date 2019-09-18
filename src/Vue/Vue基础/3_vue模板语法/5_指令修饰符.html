@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <form v-on:submit.prevent="onSubmit">
+        <input v-model="name">
+        <button type="submit">提交</button>
+      </form>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          name: ''
+        },
+        methods: {
+          onSubmit: function() {
+            alert('prevent submit');
+            return false;
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="item in items">
+          {{ item.msg }}
+        </li>
+
+        <li v-for="(item, index) in items">
+          {{ parentMsg }} - {{ index }} - {{ item.msg }}
+        </li>
+      </ul>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          parentMsg: "Parent",
+          items: [
+            { msg: 'list 1' },
+            { msg: 'list 2' }
+          ]
+        }
+      })
+    </script>
+  </body>
+</html>

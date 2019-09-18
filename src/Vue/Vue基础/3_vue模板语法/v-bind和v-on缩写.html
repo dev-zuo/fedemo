@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <a :[attrname]="url">测试链接</a>
+
+      <button @[eventname]="doSomething">打开一个弹窗</button>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          attrname: 'href',
+          eventname: 'click',
+          url: 'http://zuo11.com'
+        },
+        methods: {
+          doSomething: function() {
+            alert('Hello world!');
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

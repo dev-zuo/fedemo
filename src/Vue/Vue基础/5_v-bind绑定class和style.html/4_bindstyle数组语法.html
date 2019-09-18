@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- <div style="color: red; font-size: 14px;"></div> -->
+      <div v-bind:style="[baseStyles, overridingStyles]"></div>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          baseStyles: {
+            color: 'red',
+            fontSize: '30px'
+          },
+          overridingStyles: {
+            fontSize: '14px',
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

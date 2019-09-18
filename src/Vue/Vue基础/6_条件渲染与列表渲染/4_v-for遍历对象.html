@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="value in myobject">
+          {{ value }}
+        </li>
+
+        <li v-for="(value, name) in myobject">
+          {{ parentMsg }} - {{ name }} : {{ value }}
+        </li>
+      </ul>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          parentMsg: "Parent",
+          myobject: {
+            title: 'This is a title',
+            author: 'Guoqing Zuo',
+            time: '2019-09-18'
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app-3">
+      <p v-if="seen">现在你看到我了</p>
+    </div>
+
+    <div id="app-4">
+      <ol>
+        <li v-for="todo in todos">
+          {{ todo.text }}
+        </li>
+      </ol>
+    </div>
+
+    <script>
+      var app3 = new Vue({
+        el: '#app-3',
+        data: {
+          seen: true
+        }
+      })
+
+      var app4 = new Vue({
+        el: "#app-4",
+        data: {
+          todos: [
+            { text: '学习js' },
+            { text: '学习Vue' },
+            { text: '整个项目' }
+          ]
+        }
+      })
+    </script>
+  </body>
+</html>

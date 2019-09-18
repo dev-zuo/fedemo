@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <template v-if="loginType === 'username'">
+        <label>Username</label>
+        <input placeholder="Enter your username">
+      </template>
+      <template v-else>
+        <label>Email</label>
+        <input placeholder="Enter your email address">
+      </template>
+
+      <template v-if="loginType === 'username'">
+        <label>Username</label>
+        <input placeholder="Enter your username" key="un-input">
+      </template>
+      <template v-else>
+        <label>Email</label>
+        <input placeholder="Enter your email address" key="email-input"> 
+      </template>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          loginType: ''
+        }
+      })
+    </script>
+  </body>
+</html>

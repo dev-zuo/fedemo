@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+
+      <!-- 数组语法 -->
+      <!-- <div class="active text-danger"></div> -->
+      <div v-bind:class="[activeClass, errorClass]"></div>
+
+      <!-- 内部可以使用三元表达式-->
+      <div v-bind:class="[isActive ? activeClass : '', errorClass]"></div>
+
+      <!--多个条件会比较繁琐，在数组中也可以使用对象语法 -->
+      <div v-bind:class="[{ active: isActive }, errorClass]"></div>
+
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          activeClass: 'active',
+          errorClass: 'text-danger',
+          isActive: false
+        }
+      })
+    </script>
+  </body>
+</html>

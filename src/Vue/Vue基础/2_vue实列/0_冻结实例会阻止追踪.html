@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{ foo }}</p>
+      <button v-on:click="foo = '修改的值'">修改</button>
+    </div>
+    <script>
+      var obj = {
+        foo: 'bar'
+      }
+
+      // 加入这句后，点击修改按钮，视图的值不会改变。
+      Object.freeze(obj)
+
+      var app = new Vue({
+        el: '#app',
+        data: obj
+      })
+    </script>
+  </body>
+</html>

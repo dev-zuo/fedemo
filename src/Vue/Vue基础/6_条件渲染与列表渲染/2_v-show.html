@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- <p style="display: none;">显示文本</p> -->
+      <p v-show="ok">显示文本</p>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          ok: ''
+        }
+      })
+    </script>
+  </body>
+</html>

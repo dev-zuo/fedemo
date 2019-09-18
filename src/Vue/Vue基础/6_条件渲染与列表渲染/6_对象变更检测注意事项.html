@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>a: {{ a }}</p>
+      <p>b: {{ b }}</p>
+      <ul>
+        <li v-for="(value, name) in userObj">
+          {{ name }} : {{ value }}
+        </li>
+      </ul>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          a: 1,
+          userObj: {
+            name: 'zuo'
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

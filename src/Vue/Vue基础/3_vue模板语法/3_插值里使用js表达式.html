@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{ num + 1}}</p>
+      <p>{{ ok ? 'YES' : 'NO' }}</p>
+      <p>{{ msg.split('').reverse().join('') }}</p>
+      <div v-bind:id="'list-' + id">id为list-la</div>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          num: 20,
+          ok: false,
+          msg: 'ABCDEFG',
+          id: 'la'
+        }
+      })
+    </script>
+  </body>
+</html>

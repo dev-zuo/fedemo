@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>Message: {{ msg }}</p>
+      <p v-once>这个值将不会改变: {{ msg2 }}</p>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          msg: "这是一条消息",
+          msg2: "msg2"
+        }
+      })
+    </script>
+  </body>
+</html>

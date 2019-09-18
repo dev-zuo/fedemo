@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app-8">
+      <ol >
+        <todo-item v-bind:todo="item1"></todo-item>
+        <todo-item v-bind:todo="item2"></todo-item>
+      </ol>
+    </div>
+    <script>
+
+      // 定义一个todo-item的组件
+      Vue.component('todo-item', {
+        props: ['todo'],
+        template: '<li>{{ todo.text }}</li>'
+      })
+
+      var app8 = new Vue({
+        el: '#app-8',
+        data: {
+          item1: { text: "苹果" },
+          item2: { text: "橘子" },
+        }
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- 因为 AJAX 库和通用工具的生态已经相当丰富，Vue 核心代码没有重复 -->
+    <!-- 提供这些功能以保持精简。这也可以让你自由选择自己更熟悉的工具。 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>
+        输入查询内容: <input v-model="query">
+      </p>
+      <p>Result: {{ result }}</p>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          query: '',
+          result: '无'
+        },
+        created: function() {
+          this.debouncedGetResult = _.debounce(this.getResult, 500);
+        },
+        watch: {
+          query: function(newVal, oldVal) {
+            this.result = "等待您停止输入...";
+            this.debouncedGetResult();
+          }
+        },
+        methods: {
+          getResult: function() {
+            this.result = "查询中...";
+
+            axios.get('http://yesno.wtf/api')
+              .then((res)=> {
+                this.result = response.data.answer;
+              })
+              .catch((err)=> {
+                this.result = 'Error: ' + err;
+              })
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

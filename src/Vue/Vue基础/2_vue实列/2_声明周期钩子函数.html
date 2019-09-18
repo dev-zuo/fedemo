@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{ a }}</p>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          a: 1
+        },
+        beforeCreate: function () {
+          console.log('beforeCreate');
+        },
+        created: function () {
+
+          // this指向vm实例
+          console.log('created, a is :' + this.a);
+        },
+        beforeMount: function () {
+          console.log('beforeMount');
+        },
+        mounted: function () {
+          console.log('mounted');
+        },
+        beforeDestroy: function () {
+          console.log('beforeDestroy');
+        },
+        destroyed: function () {
+          console.log('destroyed');
+        },
+        beforeUpdate: function () {
+          console.log('beforeUpdate');
+        },        
+        updated: function () {
+          console.log('updated');
+        },
+      })
+    </script>
+  </body>
+</html>

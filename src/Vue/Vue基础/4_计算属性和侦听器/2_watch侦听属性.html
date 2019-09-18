@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{ fullName }}</p>
+      <p>{{ fullNameComputed }}</p>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          firstName: "Guoqing",
+          lastName: "Zuo",
+          fullName: "Guoqing Zuo"
+        },
+        watch: {
+          firstName: function(newVal, oldVal) {
+            this.fullName = newVal + ' '  + this.lastName;
+          },
+          lastName: function(newVal, oldVal) {
+            this.fullName = this.firstName + ' ' + newVal;
+          }
+        },
+        
+        // 计算属性实现上面的功能更优雅
+        computed: {
+          fullNameComputed: function() {
+            return this.firstName + ' ' + this.lastName;
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

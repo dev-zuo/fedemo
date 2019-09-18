@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>原msg: "{{ msg }}"</p>
+      <p>计算后的msg: "{{ reverseMsg }}"</p>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          msg: "ABCDEFGHIJKLMN"
+        },
+        computed: {
+          reverseMsg: function() {
+            return this.msg.split('').reverse().join('');
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

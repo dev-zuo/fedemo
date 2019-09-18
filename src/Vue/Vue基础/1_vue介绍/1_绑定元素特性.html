@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app-2">
+      <span v-bind:title="message">
+        鼠标悬停几秒查看此处动态绑定的title消息
+      </span>
+    </div>
+    <script>
+      var app2 = new Vue({
+        el: '#app-2',
+        data: {
+          message: '页面加载于' + new Date().toLocaleString()
+        }
+      })
+    </script>
+  </body>
+</html>

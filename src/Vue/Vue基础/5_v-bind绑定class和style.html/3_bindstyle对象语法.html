@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- <div style="color: red; font-size: 30px;"></div> -->
+      <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px'}"></div>
+    
+      <!-- 将对象写在JS里 -->
+      <div v-bind:style="styleObject"></div>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          activeColor: 'red',
+          fontSize: 30,
+          styleObject: {
+            color: 'red',
+            fontSize: '30px'
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
