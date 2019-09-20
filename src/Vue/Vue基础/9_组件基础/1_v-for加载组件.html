@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <blog-list 
+          v-for="item in blogs"
+          :title="item.title" 
+          :key="item.id"
+          :index="item.id"
+        ></blog-list>
+      </ul>
+    </div>
+    <script>
+      Vue.component('blog-list', {
+        props: ['title', 'index'], 
+        template: `<li :id="'t'+index">{{ title }}</li>`
+      })
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          blogs: [
+            { id: 1, title: '标题1' },
+            { id: 2, title: '标题2' },
+            { id: 3, title: '标题3' },
+          ]
+        }
+      })
+    </script>
+  </body>
+</html>

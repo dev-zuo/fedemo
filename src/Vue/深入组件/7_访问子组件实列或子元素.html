@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p ref="p">这是一个p元素</p>
+      <component-a ref="zxinput"></component-a>
+      <button @click="bar">点击</button>
+    </div>
+    <script>
+      Vue.component('component-a', {
+        data: function() {
+          return {
+            foo: 1
+          }
+        },
+        methods: {
+          doSomething: function(event) {
+            alert('doSomethind');
+          }
+        },
+        template: `
+          <button @click="doSomething">执行</button>  
+        `
+      })
+      var app = new Vue({
+        el: '#app',
+        data: {
+        },
+        methods: {
+          bar: function() {
+            alert(this.$refs.p.innerHTML);
+
+            this.$refs.zxinput.doSomething();
+            alert(this.$refs.zxinput.foo)
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

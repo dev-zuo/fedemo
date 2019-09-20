@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <page-layout>
+        <template v-slot:header>
+          <h1>Title</h1>
+        </template>
+      
+        <p> 一个段落在main content</p>
+        <p>And another one.</p>
+        
+        <template v-slot:footer>
+          <p>Here's some contact info</p>
+        </template>
+      </page-layout>
+    </div>
+    <script>
+      Vue.component('page-layout', {
+        template: `
+          <div>
+            <header>
+              <slot name="header">可以插入默认内容</slot>
+            </header>
+            <main>
+              <slot></slot>
+            </main>
+            <footer>
+              <slot name="footer"></slot>
+            </footer>
+          </div>
+        `
+      })
+      var app = new Vue({
+        el: '#app',
+        data: {
+        }
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <my-checkbox v-model="mychecked"></my-checkbox>
+      <p> mychecked: {{ mychecked }}</p>
+    </div>
+    <script>
+      Vue.component('my-checkbox', {
+        model: {
+          prop: 'checked',
+          event: 'change'
+        },
+        props: {
+          checked: Boolean
+        },
+        template: `
+          <input 
+            type="checkbox" 
+            :checked="checked" 
+            @change="$emit('change', $event.target.checked)"
+          >
+        `
+      })
+      var app = new Vue({
+        el: '#app',
+        data: {
+          mychecked: true
+        }
+      })
+    </script>
+  </body>
+</html>

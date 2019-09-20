@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <input type="checkbox" id="checkbox" v-model="checked">
+      <label for="checkbox"> {{ checked }}</label>
+
+      <div>
+        <input type="checkbox" id="apple" value="apple" v-model="checkedFruits">
+        <label for="apple">Apple</label>
+        <input type="checkbox" id="orange" value="orange" v-model="checkedFruits">
+        <label for="orange">Orange</label>
+        <input type="checkbox" id="banana" value="banana" v-model="checkedFruits">
+        <label for="banana">Banana</label>
+      </div>
+      <p>已选择 : {{ checkedFruits.join(' / ') }}</p>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          checked: false,
+          checkedFruits: []
+        }
+      })
+    </script>
+  </body>
+</html>

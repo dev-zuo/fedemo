@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <input type="checkbox" id="checkbox" v-model="checked">
+      <label for="checkbox"> {{ checked }}</label>
+
+      <div>
+        <input type="radio" id="apple" value="apple" v-model="picked">
+        <label for="apple">Apple</label>
+        <input type="radio" id="orange" value="orange" v-model="picked">
+        <label for="orange">Orange</label>
+        <input type="radio" id="banana" value="banana" v-model="picked">
+        <label for="banana">Banana</label>
+      </div>
+      <p>已选择 : {{ picked }}</p>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          picked: ''
+        }
+      })
+    </script>
+  </body>
+</html>

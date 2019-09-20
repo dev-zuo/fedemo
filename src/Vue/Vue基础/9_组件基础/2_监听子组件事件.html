@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <blog-list 
+          v-for="item in blogs"
+          :title="item.title" 
+          :key="item.id"
+          :index="item.id"
+          @sendmsg="sendMsg"
+        ></blog-list>
+        <!-- @sendmsg="count += $evnet"-->
+      </ul>
+    </div>
+    <script>
+      Vue.component('blog-list', {
+        props: ['title', 'index'], 
+        data: function() {
+          return {
+            name: '我是组件内部的变量'
+          }
+        },
+        template: `
+          <li :id="'t'+index">
+            {{ title }}
+            <button @click="greet">触发组件自己的方法</button>
+            <button @click="$emit('sendmsg', name)">触发组件外部的方法</button>
+          </li>
+        `,
+        methods: {
+          greet: function() {
+            alert('Hello')
+          }
+        }
+      })
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          blogs: [
+            { id: 1, title: '标题1' },
+            { id: 2, title: '标题2' },
+            { id: 3, title: '标题3' },
+          ],
+          count: 0
+        },
+        methods: {
+          sendMsg: function(name) {
+            alert('接收到组件的的值：'+ name);
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

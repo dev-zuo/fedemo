@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="n in evenNumbers">
+          {{ n }} : <span v-for="item in oddNumbers">{{item}}</span>
+        </li>
+      </ul>
+
+      <ol>
+        <li v-for="n in even(numbers)">{{ n }}</li>
+      </ol>
+      <div>
+        <span v-for="n in 10">{{ n }}</span>
+      </div>
+
+      <div>
+        <template v-for="item in numbers">
+          <li>{{ item }}</li>
+          <li>多余的选项</li>
+        </template>
+      </div>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          numbers: [ 1, 2, 3, 4, 5]
+        },
+        computed: {
+          evenNumbers: function() {
+            return this.numbers.filter(function(number) {
+              return number % 2 === 0;
+            })
+          },
+          oddNumbers: function() {
+            return this.numbers.filter(function(item) {
+              return item % 2 !== 0;
+            })
+          }
+        },
+        methods: {
+          even: function(numbers) {
+            return numbers.filter(function(number) {
+              return number % 2 === 0;
+            })
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

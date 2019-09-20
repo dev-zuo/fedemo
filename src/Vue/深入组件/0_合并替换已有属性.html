@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <test-com sec="test" ma-ma="dd" class="k1"></test-com>
+    </div>
+    <script>
+      Vue.component('test-com', {
+        inheritAttrs: false,
+        props: ['sec'],
+        template: `
+          <div class="k2" ma-ma="123">
+            <span>str1</span>
+            <div>
+              <span>str2</span>
+              str3
+            </div>
+            <span>{{ sec }}</span>
+          </div>
+        `
+      })
+      var app = new Vue({
+        el: '#app',
+        data: {
+        }
+      })
+    </script>
+  </body>
+</html>

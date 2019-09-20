@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <select v-model="selected" multiple>
+        <option disabled value="">请选择</option> <!--选择时按option不可选-->
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+      </select>
+      <p> 已选择: {{ selected }} </p>
+      <select v-model="youSelected">
+        <option disabled value="">请选择</option> <!--选择时按option不可选-->
+        <option v-for="item in options" :value="item.value"> {{ item.text }} </option>
+      </select>
+      <p> 已选择: {{ youSelected }} </p>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          selected: '',
+          youSelected: '',
+          options: [
+            {text: '1', value: 'a'}, 
+            {text: '2', value: 'b'}, 
+            {text: '3', value: 'c'}, 
+          ]
+        }
+      })
+    </script>
+  </body>
+</html>

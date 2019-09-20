@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <button-counter></button-counter>
+      <button-counter></button-counter>
+      <button-counter></button-counter>
+    </div>
+    <script>
+      Vue.component('button-counter', {
+        data: function() {
+          return {
+            count: 0
+          }
+        },
+        template: '<button @click="count++">点击了{{ count }}次</button>'
+      })
+      var vm = new Vue({
+        el: '#app',
+        data: {
+        }
+      })
+    </script>
+  </body>
+</html>

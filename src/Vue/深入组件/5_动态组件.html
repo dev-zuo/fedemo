@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <button @click="changeContent">Home</button>
+      <button @click="changeContent">Posts</button>
+      <button @click="changeContent">Archive</button>
+      <div style="border:1px solid #ccc;">
+        <!-- <keep-alive> -->
+          <component v-bind:is="currentComponent"></component>
+        <!-- </keep-alive> -->
+      </div>
+    </div>
+    <script>
+      Vue.component('home-component', {
+        data: function() {
+          return {
+            isShow: true
+          }
+        },
+        methods: {
+          hide: function() {
+            this.isShow = false;
+          }
+        },
+        template: `
+          <div>
+            Home component
+            <p v-if="isShow">可以隐藏的段落</p>
+            <button @click="hide">隐藏段落</button>
+          </div>
+        `
+      })
+      Vue.component('posts-component', {
+        template: `<div>Hosts component</div>`
+      })
+      Vue.component('archive-component', {
+        template: `<div>Archive component</div>`
+      })
+      var app = new Vue({
+        el: '#app',
+        data: {
+          currentComponent: 'home-component'  
+        },
+        methods: {
+          changeContent: function(event) {
+            var tempVal = event.target.innerHTML.toLowerCase();
+            this.currentComponent = tempVal + '-component';
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

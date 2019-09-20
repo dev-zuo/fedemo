@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <base-input 
+        v-on:focus.native="onFocus" 
+        :value="name" 
+        @input="name=$event"
+      ></base-input>
+    </div>
+    <script>
+      Vue.component('base-input', {
+        props: ['value'],
+        template: `
+          <label>
+            <input 
+              v-bind="$attrs"
+              v-bind:value="value"
+              v-on:input="$emit('input', $event.target.value)"
+            >
+          </label>
+        `
+      })
+      var app = new Vue({
+        el: '#app',
+        data: {
+          name: '',
+        },
+        methods: {
+          onFocus: function(event) {
+            console.log('focus')
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
