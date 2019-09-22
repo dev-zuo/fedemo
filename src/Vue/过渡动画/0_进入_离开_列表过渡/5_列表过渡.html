@@ -1,0 +1,69 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+      .list-item {
+        display: inline-block;
+        margin-right: 15px;
+      }
+      .list-enter-active, .list-leave-active {
+        transition: all 1s;
+      }
+      .list-enter, .list-leave-to {
+        transform: translateY(50px)
+      }
+      .list-move {
+        transition: transform  1s; 
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <button @click="add">Add</button>
+      <button @click="remove">Remove</button>
+      <button @click="shuffle">Shuffle</button>
+      <transition-group name="list" tag="p">
+        <span v-for="item in items" :key="item" class="list-item">
+          {{ item }}
+        </span>
+      </transition-group>
+    </div>
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          items: [1,2,3,4,5,6,7,8,9],
+          nextNum: 10
+        },
+        methods: {
+          add: function() {
+            this.items.splice(this.randomIndex(), 0, this.nextNum++)
+          },
+          remove: function() {
+            this.items.splice(this.randomIndex(), 1)
+          },
+          randomIndex: function() {
+            return Math.floor(Math.random() * this.items.length)
+          },
+          shuffle: function() {
+            // this.items = [3, 2, 4, 6, 9, 5, 1, 7, 8]
+            // 打乱顺序, n次对调
+            var tempArr = this.items.slice();
+            for (let i = 0, len=this.items.length; i < len; i++) {
+              this.swap(tempArr, this.randomIndex(), this.randomIndex())
+            }
+            this.items = tempArr
+          },
+          swap: function(arr, index1, index2) {
+            [arr[index1], arr[index2]] = [arr[index2], arr[index1]]
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

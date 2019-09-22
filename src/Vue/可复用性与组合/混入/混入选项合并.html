@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+
+    </div>
+    <script>
+      var myMixin = {
+        data: function() {
+          return {
+            foo: 1,
+            test: 'hello'
+          }
+        },
+        created: function() {
+          this.hello();
+        },
+        methods: {
+          hello: function() {
+            console.log('hello from mixin')
+          }
+        }
+      }
+      var app = new Vue({
+        mixins: [myMixin],
+        el: "#app",
+        data: {
+          foo: 2,
+          k: "greet"
+        },
+        created: function() {
+          console.log('hello from vue实例');
+          // hello from mixin
+          // hello from vue实例
+        },
+        methods: {
+          showMsg: function() {
+            console.log(this.$data) // { foo: 2, k: "greet", test: "hello"}
+            this.hello();
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

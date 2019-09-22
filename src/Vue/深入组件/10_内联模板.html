@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <hello-world inline-template>
+        <div>
+          使用内容的内容作为默认的template  foo: {{ foo }}
+        </div>
+      </hello-world>
+    </div>
+
+    <script>
+      Vue.component('hello-world', {
+        data: function() {
+          return {
+            foo: 1
+          }
+        }
+      })
+      var app = new Vue({
+        el: '#app',
+        data: {
+        }
+      })
+    </script>
+  </body>
+</html>

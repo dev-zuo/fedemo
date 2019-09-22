@@ -1,0 +1,51 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+      .bounce-enter-active {
+        animation: bounce-in .5s;
+      }
+      .bounce-leave-active {
+        animation: bounce-in .5s reverse;
+      }
+      @keyframes bounce-in {
+        to {
+          transform: scale(0)
+        }
+        50% {
+          transform: scale(1.5)
+        }
+        100% {
+          transform: scale(1.0)
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <transition name="bounce" :duration="2000">
+        <p v-if="show">
+          Hello Hello Hello Hello Hello Hello Hello
+          Hello Hello Hello Hello Hello Hello Hello
+        </p>
+      </transition>
+
+      <p v-if="show">Hello</p>
+
+      <button @click="show = !show">Toggle</button>
+    </div>
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          show: true
+        }
+      })
+    </script>
+  </body>
+</html>

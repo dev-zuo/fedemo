@@ -8,11 +8,19 @@
   </head>
   <body>
     <div id="app">
-      <!-- <div style="display: flex;"></div> --> 
-      <div v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>
+      <hello-world></hello-world>
     </div>
+
+    <!-- x-template模板 -->
+    <script type="text/x-template" id="hello-world-template">
+      <p>Hello hello hello</p>
+    </script>
+
     <script>
-      var vm = new Vue({
+      Vue.component('hello-world', {
+        template: '#hello-world-template'
+      })
+      var app = new Vue({
         el: '#app',
         data: {
         }

@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <component-a></component-a>
+    </div>
+    <script>
+      Vue.component('component-a', {
+        inject: ['getMap'],
+        methods: {
+          doSomething: function(event) {
+            alert(this.getMap);
+          }
+        },
+        template: `
+          <button @click="doSomething">执行</button>  
+        `
+      })
+      var app = new Vue({
+        el: '#app',
+        data: {
+          getMap: '这是父组件提供的值'
+        },
+        provide: function() {
+          return {
+            getMap: this.getMap
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div id="mount-point"></div>
+    </div>
+    <script>
+
+      // 创建构造器
+      var Profile = Vue.extend({
+        template: '<p>{{firstName}} {{lastName}} - {{alias}}</p>',
+        data: function() {
+          return {
+            firstName: 'Guoqing',
+            lastName: 'Zuo',
+            alias: 'guoqzuo'
+          }
+        }
+      })
+      new Profile().$mount('#mount-point');
+      
+      var app = new Vue({
+        el: '#app',
+        data: {
+          name: '',
+        }
+      })
+
+    </script>
+  </body>
+</html>

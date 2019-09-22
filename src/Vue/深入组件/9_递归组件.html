@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <menu-a v-bind:menu="menu"></menu-a>
+    </div>
+    <script>
+      Vue.component('menu-a', {
+        props: ['menu'],
+        methods: {
+          isTrue: function() {
+            return this.count-- === 0;
+          }
+        },
+        template: `
+          <ul>
+            <li v-for="item in menu"">
+              {{ item.menuName }}
+              <menu-a 
+                v-bind:menu="item.menuSubs" 
+                v-if="item.menuSubs.length !== 0"
+              ></menu-a>
+            </li>
+          </ul>
+        `
+      })
+      var app = new Vue({
+        el: '#app',
+        data: {
+          menu: [
+            { 
+              "menuName": '用户管理', 
+              "menuSubs": [
+                { 
+                  "menuName": '用户列表', 
+                  "menuSubs": [
+                    { "menuName": '用户信息', "menuSubs":[] },
+                    { "menuName": '用户统计', "menuSubs":[] },
+                  ] 
+                },
+                { "menuName": '审核列表', "menuSubs":[] },
+                { "menuName": '用户周报', "menuSubs":[] }
+              ]
+            },
+            { 
+              "menuName": '客户管理', 
+              "menuSubs": [
+                { "menuName": '客户列表', "menuSubs":[] },
+              ] 
+            }
+          ]
+        }
+      })
+    </script>
+  </body>
+</html>

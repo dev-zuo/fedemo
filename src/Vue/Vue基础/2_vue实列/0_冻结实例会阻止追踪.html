@@ -16,6 +16,8 @@
       }
 
       // 加入这句后，点击修改按钮，视图的值不会改变。
+      // app.foo = "sdf" 也会出错 
+      // Uncaught TypeError: Cannot assign to read only property 'foo' of object '#<Object>'
       Object.freeze(obj)
 
       var app = new Vue({

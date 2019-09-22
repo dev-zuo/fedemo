@@ -1,0 +1,35 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div id="app">
+      <transition
+        name="custom-classes-transition"
+        enter-active-class="animated tada"
+        leave-active-class="animated bounceOutRight"
+        appear
+      >
+        <p v-if="show">Hello</p>
+      </transition>
+
+      <p v-if="show">Hello</p>
+
+      <button @click="show = !show">Toggle</button>
+    </div>
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          show: true
+        }
+      })
+    </script>
+  </body>
+</html>

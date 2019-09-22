@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <input v-model.number="number" type="number" step="20">
+      <p>{{ animationNumber }}</p>
+
+    </div>
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          number: 0,
+          animationNumber: 0
+        },
+        watch: {
+          number: function(newVal, oldVal) {
+            // 监听number的改变，得到绝对值
+            var gap = newVal - oldVal;
+
+            // 在多少秒之内完成   Math.abs(gap) 次，
+            for (var i = 0, len = Math.abs(gap); i < len; i++) {
+              setTimeout(()=> {
+                gap > 0 ? this.animationNumber++ : this.animationNumber--
+              }, i * 500 /Math.abs(gap))            
+            }
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

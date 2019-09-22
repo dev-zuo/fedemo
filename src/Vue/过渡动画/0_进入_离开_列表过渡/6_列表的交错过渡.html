@@ -1,0 +1,58 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+      /* .list-item {
+        display: inline-block;
+        margin-right: 15px;
+      } */
+      .list-enter-active, .list-leave-active {
+        transition: all .5s;
+      }
+      .list-enter, .list-leave-to {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      .list-move {
+        transition: transform .5s; 
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <input v-model="search" placeholder="input a search text" />
+      <transition-group name="list" tag="ul">
+        <li v-for="item in computedItems" :key="item.msg" class="list-item">
+          {{ item.msg }}
+        </li>
+      </transition-group>
+    </div>
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          search: '',
+          items: [
+            { msg: 'Bruce Lee' },
+            { msg: 'Jackie Chan' },
+            { msg: 'Chuck Norris' },
+            { msg: 'Jet Li' },
+            { msg: 'Kung Fury' }
+          ]
+        },
+        computed: {
+          computedItems: function() {
+            return this.items.filter((item)=> {
+              return item.msg.toLowerCase().includes(this.search);
+            })
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
