@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 
+        参数传递时，默认为字符串，如果非变量，且不是字符串，
+        可以加上v-bind，保留其自身类型
+      -->
+      <a-heading level="1">Hello world!</a-heading>
+      <a-heading level="2">Hello world!</a-heading>
+      <a-heading level="3">Hello world!</a-heading>
+      <a-heading level="4">Hello world!</a-heading>
+      <a-heading :level="5">Hello world!</a-heading>
+      <a-heading :level="6">Hello world!</a-heading>
+    </div>
+    <script>
+      Vue.component('a-heading', {
+        props: ['level'],
+        template: `
+          <h1 v-if="level === '1'">
+            <slot></slot>
+          </h1>
+          <h2 v-else-if="level === '2'">
+            <slot></slot>
+          </h2>
+          <h3 v-else-if="level === '3'">
+            <slot></slot>
+          </h3>
+          <h4 v-else-if="level === '4'">
+            <slot></slot>
+          </h4>
+          <h5 v-else-if="level === 5">
+            <slot></slot>
+          </h5>
+          <h6 v-else="level === 6">
+            <slot></slot>
+          </h6>
+        `
+      })
+
+      var app = new Vue({
+        el: '#app',
+        data: {
+        }
+      })
+    </script>
+  </body>
+</html>
