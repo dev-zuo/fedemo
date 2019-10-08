@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>规模化</title>
+  </head>
+  <body>
+    <div id="app">
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      const NotFound = { template: '<p>Page not found</p>'}
+      const Home = { template: '<p>Home page</p>'}
+      const About = { template: '<p>About page</p>'}
+  
+      const routes = {
+        '/': Home,
+        '/about': About
+      }
+
+      let app = new Vue({
+        el: '#app',
+        data: {
+          currentRoute: window.location.pathname
+        },
+        computed: {
+          ViewComponent() {
+            return routes[this.currentRoute] || NotFound
+          }
+        },
+        render(h) {
+          return h(this.ViewComponent)
+        }
+        // 等价于
+        // render: function(h) {
+        //   return h(this.ViewComponent)
+        // }
+      })
+    </script>
+  </body>
+</html>
