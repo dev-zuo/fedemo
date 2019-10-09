@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>规模化</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Hello App!</h1>
+      <p>
+        <!-- router-link标签会默认渲染为一个a标签，to属性用来指定链接-->
+        <router-link to="/foo">Go to Foo</router-link>
+        <router-link to="/bar">Go to Bar</router-link>
+      </p>
+
+      <!-- 路由出口，路由匹配到组件将在这里渲染 -->
+      <router-view></router-view>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script>
+      const User = {
+        template: `
+          <div class="user">
+            <h2> User {{ $route.params.id }} </h2>
+            <router-view></router-view>
+          </div>
+        `
+      }
+      const UserHome = { template: '<p>UserHome</p>' }
+      const UserProfile = { template: '<p>UserProfile</p>' }
+      const UserPosts = { template: '<p>UserPosts</p>' }
+      const TestUser = { template: '<p>TestUser</p>' }
+      const router = new VueRouter({
+        // mode: 'history',
+        routes: [
+          {
+            path: '/user/:id',
+            component: User,
+            children: [
+              {
+                path: '',
+                component: UserHome
+              },
+              {
+                // 当 /user/:id/profile 匹配成功，
+                // UserProfile 会被渲染在 User 的 <router-view> 中
+                path: 'profile',
+                component: UserProfile
+              },
+              {
+                // 当 /user/:id/posts 匹配成功
+                // UserPosts 会被渲染在 User 的 <router-view> 中
+                path: 'posts',
+                component: UserPosts
+              },
+              {
+                path: '/testuser',
+                component: TestUser
+              }
+            ]
+          }
+        ]
+      })
+
+      let app = new Vue({
+        el: '#app',
+        router,
+      })
+      // 也可以这样写
+      // const app = new Vue({
+      //   router
+      // }).$mount('#app')
+    </script>
+  </body>
+</html>

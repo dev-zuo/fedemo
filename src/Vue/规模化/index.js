@@ -6,7 +6,8 @@ app.use('*', function(req, res) {
   console.log('接收到请求')
   console.log(req.baseUrl)
 
-  res.sendfile('0_从零开始简单的路由.html')
+  // res.sendfile('0_从零开始简单的路由.html')
+  res.sendfile('4_嵌套路由.html')
 })
 
 app.listen(3000, function() {  
