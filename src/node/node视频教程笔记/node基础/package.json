@@ -1,0 +1,15 @@
+{
+  "name": "nodebase",
+  "version": "1.0.0",
+  "description": "node base",
+  "main": "01_run.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "guoqzuo",
+  "license": "MIT",
+  "dependencies": {
+    "download-git-repo": "^3.0.2",
+    "ora": "^4.0.2"
+  }
+}

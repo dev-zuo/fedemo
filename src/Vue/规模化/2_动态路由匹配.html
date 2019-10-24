@@ -31,7 +31,7 @@
         },
         beforeRouteUpdate (to, from, next) {
           console.log('beforeRouteUpdate', to, from);
-          next(); // 如果这里不调用next，RouterView不会加载新的页面
+          next(); // 如果这里不调用next()，RouterView不会加载新的页面
         }
       }
 
