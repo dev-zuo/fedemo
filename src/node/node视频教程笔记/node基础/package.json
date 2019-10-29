@@ -9,6 +9,7 @@
   "author": "guoqzuo",
   "license": "MIT",
   "dependencies": {
+    "commander": "^3.0.2",
     "download-git-repo": "^3.0.2",
     "ora": "^4.0.2"
   }
