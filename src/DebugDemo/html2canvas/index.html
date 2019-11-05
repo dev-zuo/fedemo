@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="html2canvas.js"></script>
+</head>
+<body>
+  <div style="display:flex;">
+    <div>1</div>
+    <div style="margin-left:50px;">2</div>
+  </div>
+  <div id="test" style="background-image: url('bg.jpg');height:707px;width:500px;color: #fff;">
+    <div style="padding-top:250px;padding-left:100px;">
+        <h1>邀请函</h1>
+        <div style="width: 200px;
+        word-break: break-word;">
+          你好，邀请你xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        </div>
+        <p>
+          --- guoqzuo
+        </p>
+    </div>
+  </div>
+  <script>
+    let testElement = document.getElementById('test')
+    html2canvas(testElement).then(function(canvas) {
+      console.log(canvas)
+      let img = new Image()
+      img.src = canvas.toDataURL()
+      img.onload = function() {
+        document.body.appendChild(img);
+      }
+    });
+  </script>
+</body>
+</html>
