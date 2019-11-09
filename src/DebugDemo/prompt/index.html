@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+
+    .el-message-box__wrapper {
+      position: fixed;
+      top: 0px;
+      bottom: 0px;
+      left: 0px;
+      right: 0px;
+      text-align: center;
+    }
+    .el-message-box {
+      display: inline-block;
+      width: 420px;
+      padding-bottom: 10px;
+      vertical-align: middle;
+      background-color: rgb(255, 255, 255);
+      font-size: 18px;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 12px 0px;
+      text-align: left;
+      backface-visibility: hidden;
+      border-radius: 4px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: rgb(235, 238, 245);
+      border-image: initial;
+      overflow: hidden;
+    }
+    .el-message-box__header {
+      position: relative;
+      padding: 15px 15px 10px;
+    }
+    .el-message-box__title {
+      padding-left: 0px;
+      margin-bottom: 0px;
+      font-size: 18px;
+      line-height: 1;
+      color: rgb(48, 49, 51);
+    }
+    .el-message-box__headerbtn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 16px;
+      cursor: pointer;
+      padding: 0px;
+      border-width: initial;
+      border-style: none;
+      border-color: initial;
+      border-image: initial;
+      outline: none;
+      background: transparent;
+    }
+    .el-message-box__content {
+      position: relative;
+      color: rgb(96, 98, 102);
+      font-size: 14px;
+      padding: 10px 15px;
+    }
+    .el-message-box__message {
+      margin: 0px;
+    }
+    .el-message-box__input {
+      padding-top: 15px;
+    }
+    .el-message-box__errormsg {
+      color: rgb(245, 108, 108);
+      font-size: 12px;
+      min-height: 18px;
+      margin:5px;
+    }
+    .el-message-box__btns {
+      text-align: right;
+      padding: 5px 15px 0px;
+    }
+    .el-message-box__btns button:nth-child(2) {
+        margin-left: 10px;
+    }
+    .el-button {
+      display: inline-block;
+      line-height: 1;
+      white-space: nowrap;
+      cursor: pointer;
+      color: rgb(96, 98, 102);
+      -webkit-appearance: none;
+      text-align: center;
+      box-sizing: border-box;
+      font-weight: 500;
+      user-select: none;
+      font-size: 14px;
+      background: rgb(255, 255, 255);
+      border-width: 1px;
+      border-style: solid;
+      border-color: rgb(220, 223, 230);
+      border-image: initial;
+      outline: none;
+      margin: 0px;
+      transition: all 0.1s ease 0s;
+      padding: 12px 20px;
+      border-radius: 4px;
+    }
+
+    .el-button--primary {
+        color: rgb(255, 255, 255);
+        background-color: rgb(64, 158, 255);
+        border-color: rgb(64, 158, 255);
+    }
+    .el-button--small {
+      font-size: 12px;
+      padding: 9px 15px;
+      border-radius: 3px;
+    }
+    .el-button:focus, .el-button:hover {
+        color: rgb(64, 158, 255);
+        background-color: rgb(236, 245, 255);
+        border-color: rgb(198, 226, 255);
+    }
+    .el-button--primary:focus, .el-button--primary:hover {
+        color: rgb(255, 255, 255);
+        background-color: rgb(64, 158, 255);
+        border-color: rgb(102, 177, 255);
+    }
+    .el-input__inner:focus {
+      border-color: rgb(102, 177, 255);
+    }
+    .el-input__inner {
+      -webkit-appearance: none;
+      background-color: rgb(255, 255, 255);
+      background-image: none;
+      box-sizing: border-box;
+      color: rgb(96, 98, 102);
+      display: inline-block;
+      font-size: inherit;
+      height: 40px;
+      line-height: 40px;
+      width: 100%;
+      border-radius: 4px;
+      border-width: 1px;
+      border-style: solid;
+      border-top-style: solid;
+      border-right-style: solid;
+      border-bottom-style: solid;
+      border-left-style: solid;
+      border-color: rgb(220, 223, 230);
+      border-image: initial;
+      outline: none;
+      padding: 0px 15px;
+      transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+  }
+  .el-button--primary:disabled {
+    background: rgb(102, 177, 255);
+    cursor: not-allowed;
+  }
+  .v-modal {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    background: rgb(0, 0, 0);
+  }
+  .el-message-box__wrapper::after {
+      content: "";
+      display: inline-block;
+      height: 100%;
+      width: 0px;
+      vertical-align: middle;
+  }
+  </style>
+</head>
+
+<body>
+  <div>
+    <p>水电费水电费等所发生的是法撒旦法水电费是所发生的</p>
+    <p>水电费水电费等所发生的是法撒旦法水电费是所发生的</p>
+    <p>水电费水电费等所发生的是法撒旦法水电费是所发生的</p>
+    <p>水电费水电费等所发生的是法撒旦法水电费是所发生的</p>
+    <p>水电费水电费等所发生的是法撒旦法水电费是所发生的</p>
+    <p>水电费水电费等所发生的是法撒旦法水电费是所发生的</p>
+    <p>水电费水电费等所发生的是法撒旦法水电费是所发生的</p>
+    <p>水电费水电费等所发生的是法撒旦法水电费是所发生的</p>
+    <p>水电费水电费等所发生的是法撒旦法水电费是所发生的</p>
+    <p>水电费水电费等所发生的是法撒旦法水电费是所发生的</p>
+    <p>水电费水电费等所发生的是法撒旦法水电费是所发生的</p>
+    <p>水电费水电费等所发生的是法撒旦法水电费是所发生的</p>
+    <p>水电费水电费等所发生的是法撒旦法水电费是所发生的</p>
+  </div>
+  <button onclick="showMsg()">弹窗</button>
+  <!-- <div class="el-message-box__errormsg" style="visibility: display;">格式不正确</div> -->
+<script>
+    /**
+     * 向window挂载 elcustomPrompt 函数，代替系统的prompt
+     * window.elCustomPrompt
+     * 从 element UI中抽出messagebox抽取的
+     */
+    (function() {
+      /**
+       * @description elementUI风格自定义propmt封装
+       * @param { String } title  标题propmt第一个参数
+       * @param { String } placeholder input的placeholder
+       * @param { Function } validateFunc 动态校验值函数
+       *   - 点击确认后，执行的函数，参数为当前值， 
+       *   - return格式:
+       *     { result: true, msg: '成功'}
+       *     { result: false, msg: '自定义错误信息' }
+       * 考虑到阻塞程序向下执行，兼容性问题，不使用promise，使用回调函数。
+       * @param { Function } callback 获取到值后的回调
+       */
+      function elCustomPrompt(title, placeholder, validateFunc, callback) {
+        console.log('show elCustomPrompt')
+
+        var deleteImgUrl = 'delete.png' // 16 * 16
+        var errMsg = '' // 错误信息
+
+        // 创建dom并挂载
+        var domStr = '<!--遮罩--><div class="v-modal" tabindex="0" style="z-index:2054;"></div><!--弹窗_start--><div id="elCustomPromptMain" tabindex="-1" role="dialog" class="el-message-box__wrapper" style="z-index:2055;"><!--消息盒子_Start--><div class="el-message-box" id="elCustomPromptMessageBox"><!--顶部title以及关闭按钮--><div class="el-message-box__header"><div class="el-message-box__title"><span>'+title+'</span></div><button type="button" aria-label="Close" class="el-message-box__headerbtn" id="elCustomPromptCloseBtn"><img src="'+deleteImgUrl+'" style="width:16px;height:16px"></button></div><!--内容--><div class="el-message-box__content"><div class="el-message-box__input"><div class="el-input"><input type="text" id="elCustomPromptInput" autocomplete="off" placeholder="'+placeholder+'" class="el-input__inner"></div><div class="el-message-box__errormsg" id="elCustomPromptErrMsgDiv" style="visibility:hidden;">'+errMsg+'</div></div></div><!--底部按钮--><div class="el-message-box__btns"><button type="button" class="el-button el-button--default el-button--small" id="elCustomPromptCancelBtn"><span>取消</span></button><button type="button" class="el-button el-button--default el-button--small el-button--primary" id="elCustomPromptOkBtn" disabled="disabled"><span>确定</span></button></div></div><!--消息盒子_end--></div><!--弹窗_end-->'
+        var div = document.createElement('div')
+        div.setAttribute('id', 'elCustomPromptDiv')
+        div.innerHTML = domStr
+        document.body.appendChild(div)
+
+        // 移除弹窗框
+        function removeDiv() {
+          document.body.removeChild(div)
+        }
+
+        // 绑定事件
+        var elCustomPromptErrMsgDiv = document.getElementById('elCustomPromptErrMsgDiv'), 
+            elCustomPromptCloseBtn = document.getElementById('elCustomPromptCloseBtn'),
+            elCustomPromptCancelBtn = document.getElementById('elCustomPromptCancelBtn'),
+            elCustomPromptOkBtn = document.getElementById('elCustomPromptOkBtn'),
+            elCustomPromptInput = document.getElementById('elCustomPromptInput'),
+            elCustomPromptMain = document.getElementById('elCustomPromptMain')
+            elCustomPromptMessageBox = document.getElementById('elCustomPromptMessageBox')
+
+        // 关闭弹窗、取消事件
+        elCustomPromptCloseBtn.onclick = function() {
+          removeDiv()
+        }
+        elCustomPromptCancelBtn.onclick = function() {
+          removeDiv()
+        }
+
+        // 点击确定后的操作
+        elCustomPromptOkBtn.onclick = function() {
+          console.log('点击了确定')
+          // 再次校验
+          let tempResult = validateFunc(elCustomPromptInput.value)
+          if (!tempResult.result) {
+            elCustomPromptErrMsgDiv.style.visibility = 'visible'
+            elCustomPromptErrMsgDiv.innerHTML = tempResult.msg
+            elCustomPromptOkBtn.setAttribute('disabled', 'disabled')
+            return
+          }
+          // 关闭 弹窗，调用callback
+          removeDiv()
+          callback(elCustomPromptInput.value)
+        }
+
+        // 输入事件
+        elCustomPromptInput.oninput = function(e) {
+          console.log(elCustomPromptInput.value)
+          // 校验并显示信息
+          var tempResult = validateFunc(elCustomPromptInput.value)
+          console.log(tempResult)
+          if (tempResult.result) {
+            console.log('成功')
+            // 校验成功
+            elCustomPromptErrMsgDiv.style.visibility = 'hidden'
+            elCustomPromptErrMsgDiv.innerHTML = ''
+            elCustomPromptOkBtn.removeAttribute('disabled')
+          } else {
+            // 校验失败
+            console.log('失败')
+            elCustomPromptErrMsgDiv.style.visibility = 'visible'
+            elCustomPromptErrMsgDiv.innerHTML = tempResult.msg
+            elCustomPromptOkBtn.setAttribute('disabled', 'disabled')
+          }
+        }
+
+        // 空白位置点击关闭弹窗
+        elCustomPromptMain.onclick = function() {
+          removeDiv()
+        }
+        elCustomPromptMessageBox.onclick = function(e) {
+          event.stopPropagation()
+        }
+      }
+      window.elCustomPrompt = elCustomPrompt
+    })()
+
+        
+    var title = '自定义客户属性标签',
+        placeholder = '请输入标签，最多5个汉字或英文'
+    
+    // 校验函数    
+    var validateFunc = function() {
+      var that = this
+      return function(text) {
+        var MSG_FORMAT_ERROR = '格式错误，只能是1-5个汉字或字符串'
+        var MSG_TAG_EXIST = '该客户属性已存在，无法添加'
+        var MSG_NOT_EMPTY = '内容不能为空'
+
+        // 格式校验
+        if (text === '') {
+          return { result: false, msg: MSG_NOT_EMPTY }  
+        }
+        if (!/^[\u4E00-\u9FA5a-zA-Z]{1,5}$/.test(text)) {
+          return { result: false, msg: MSG_FORMAT_ERROR } 
+        }
+
+        // 是否有重复
+        return { result: true, msg: '成功' }
+      }
+    }
+
+    // 回调
+    var callback = function() {
+      var that = this
+      return function(text) {
+        // 执行后续操作
+        console.log('执行成功', text)
+      }
+    }
+
+    // elCustomPrompt(title, placeholder, validateFunc, callback)
+    function showMsg() {
+      elCustomPrompt(title, placeholder, validateFunc(), callback())
+    }
+
+  </script>
+</body>
+
+</html>
