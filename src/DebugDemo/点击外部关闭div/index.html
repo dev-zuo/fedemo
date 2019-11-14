@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    
+  </style>
+</head>
+<body>
+  <button id="clickme">点击我弹窗对话框</button>
+  <script>
+    function showPopup(event) {
+      let tempHtml = `
+        <!-- 遮罩 -->
+        <div class="mask" style="position:absolute;z-index:25555;top:0;bottom:0;width:100%;background:#888;opacity:0.5"></div>
+        <!-- 内容区域-->
+        <div id="popup-content-container" class="content-container" style="position:absolute;z-index:25556;top:0;bottom:0;width:100%">
+          <div id="popup-content-main" class="content-main" style="position:absolute;top:50%;left:50%; transform: translate(-50%, -50%); width:300px;height:200px;background:#fff;border:1px solid #ddd;">
+            我是弹窗盒子  
+            <button id="closebtn">关闭</button>
+          </div>
+        </div>
+      `
+
+      // 创建div
+      let div = document.createElement('div')
+      div.setAttribute('id', 'popup-div')
+      div.innerHTML = tempHtml
+
+      // 挂载到dom
+      document.body.appendChild(div)
+
+      // 事件监听
+      // 关闭弹窗
+      document.getElementById('closebtn').onclick = function(e) {
+        document.body.removeChild(div)  // 移除元素
+      }
+
+      // 点击外部关闭div 关键代码  
+      document.getElementById('popup-content-container').onclick = function(e) {
+        document.body.removeChild(div)  // 移除元素
+      }
+      document.getElementById('popup-content-main').onclick = function(e) {
+        e.stopPropagation() 
+      }
+    }
+
+    // 简单的弹窗框封装，只为测试点击外部关闭div
+    document.getElementById('clickme').onclick = (event) => {
+      showPopup(event)
+    }
+
+  </script>
+</body>
+</html>

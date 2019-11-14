@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    var a = 5
+
+    function callback() {
+      var a = 1
+      console.log('-- callback this', this, this.a, '--')
+    }
+    function validate() {
+      var a = 2
+      console.log('-- validate this', this, this.a, '--')
+    }
+    function showPrompt(title, validate, callback) {
+      validate() // 打印 5
+      callback() // 打印 5
+    }
+    showPrompt('1', validate, callback) // 5 5 
+    showPrompt('1', validate.bind(validate), callback.bind(callback)) // 2 1
+  </script>
+</body>
+</html>
