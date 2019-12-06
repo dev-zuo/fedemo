@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    /* 默认样式 */
+    .icon {
+      width: 1em;
+      height: 1em;
+      vertical-align: -0.15em;
+      fill: currentColor;
+      overflow: hidden;
+    }
+  </style>
+  <!-- <script src="iconfont.js"></script> -->
+  <script src="iconfont_delete_fill.js"></script>
+</head>
+<body>
+  <!-- 
+    这里发现设置color无效，网上百度了，发现 iconfont.js里面写死了fill的颜色  批量替换 fill="#181818" 为空字符串即可 
+    参考: [iconfont图标symbol引用方式，有的图标不能通过设置color样式来修改颜色的解决办法] https://www.cnblogs.com/jopny/p/9454785.html
+  -->
+  <svg class="icon" aria-hidden="true" style="font-size:10em;color:blue">
+    <use xlink:href="#icon-icon-test"></use>
+  </svg>
+
+  <svg class="icon" aria-hidden="true" style="font-size:5em;color:red">
+    <use xlink:href="#icon-icon-test7"></use>
+  </svg>
+</body>
+</html>
