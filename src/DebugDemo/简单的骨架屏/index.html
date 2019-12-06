@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <style>
+    .fast-loading {
+      height: 20px;
+      margin: 10px 0;
+      width: 200px;
+      background-color: rgb(245, 245, 245);
+      background-image: repeating-linear-gradient(90deg, #eee, #f5f5f5 100%);
+
+      animation-name: fastLoading;
+      animation-timing-function: linear;
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
+    }
+    @keyframes fastLoading {
+      from {
+        background-position: 0 0;
+      }
+      to {
+        background-position: 100px 0;
+      }
+    }
+    .w100 { width: 100% }
+    .w80 { width: 80% }
+    .w60 { width: 60% }
+    .w40 { width: 50% }
+    .w30 { width: 30% }
+  </style>
+</head>
+<body>
+  <div style="width: 50%;margin: 50px auto;">
+    <div class="fast-loading"></div>
+    <div class="fast-loading w40"></div>
+    <div class="fast-loading w80"></div>
+    <div class="fast-loading w60"></div>
+    <div class="fast-loading w30"></div>
+    <div class="fast-loading w30"></div>
+    <div class="fast-loading w50"></div>
+    <div class="fast-loading w60"></div>
+  </div>
+</body>
+</html>

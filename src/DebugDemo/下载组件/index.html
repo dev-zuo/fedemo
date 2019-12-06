@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <template>
+    <div class="dp-container" v-if="isShowProgress">
+      <!-- 进度 -->
+      <el-progress type="circle" :percentage="percentage"></el-progress>
+
+      <!-- 信息提示 -->
+      <div class="dp-info">
+        <i class="el-icon-loading"></i>
+        <span v-if="status === 'PENDING'"> {{ pendingText }} </span>
+        <span v-else>{{ progressText }} </span>
+      </div>
+
+      <!-- 取消 -->
+      <div>
+        <button @click="cancelDownload">取消</button>
+      </div>
+    </div>
+  </template>
+  <script>
+    export default {
+      props: ['progressEvent', 'isShowProgress'],
+      data() {
+        return {
+          status: 'PENDING', // 状态
+          pendingText: '数据准备中...',
+          progressText: '',
+          pendingPercent: 0, // 0.1 - 0.9 初始百分比
+          percentage: 0, // 进度组件渲染
+        }
+      },
+      watch: {
+        progressEvent(newVal, oldVal) {
+          if (!this.isShowProgress) {
+            this.initData()
+            return;
+          }
+
+          if (this.status === 'PENDING') {
+            this.status = 'PROCESS'
+          }
+
+          let {loaded = 0, total = 0, lengthComputable } = this.progressEvent
+
+          // 对于 progressEvent.lengthComputable 为false的接口，total属性会无效
+          // 参考：https://developer.mozilla.org/en-US/docs/Web/API/ProgressEvent/lengthComputable
+          if (lengthComputable) {
+            if (total === 0) return ''
+            this.progressText = `下载中: ${this.formatFileSize(loaded)} / ${this.formatFileSize(total)}`
+
+            // 数据百分比，进度 1 - pendingPercent
+            this.percentage = this.pendingPercent * 100 + Math.ceil((loaded / total)*(1 - this.pendingPercent) * 100)
+          } else {
+            // 资源无法计算size, total无效的情况
+            this.progressText = '下载中: ${this.formatFileSize(loaded)}'
+
+            // 进度无法精准计算，只能模拟，没触发一次onprogress时间，进度增加10%，加到90%就停止
+            if (this.percentage <= 80) {
+              this.percentage += 10
+            }
+          }
+        },
+        isShowProgress(val) {
+          val === false && this.initData()
+        }
+      },
+      mounted() {
+        this.initData()
+      },
+      methods() {
+        initData() {
+          Object.assign(this, {
+            status: 'PENDING',
+            progressText: '',
+            percentage: this.pendingPercent * 100
+          })
+        },
+
+        cancelDownload() {
+          this.$emit('cancelDownload')
+        },
+
+        formatFileSize(value) {
+          let sizeArr = [
+            { sizeStr: 'B', index: 10 },
+            { sizeStr: 'KB', index: 20 },
+            { sizeStr: 'MB', index: 30 },
+            { sizeStr: 'GB', index: 40 },
+            { sizeStr: 'TB', index: 50 },
+          ]
+
+          for (let i = 0, len = sizeArr.length; i < len; i++) {
+            if (value < 2 ** sizeArr[i].index) {
+              let newVal = value / 2 ** (sizeArr[i].index - 10)
+
+              newVal = Number.isInteger(newVal) ? newVal : newVal.toFixed(2)
+              return `${newVal}${sizeArr[i].sizeStr}`
+            }
+          }
+          
+          return 'too large > 1025 T'
+        }
+      }
+    }
+  </script>
+  <style lang="less" scoped>
+    .dp-container {
+      padding: 20px;
+      box-sizing: border-box;
+      text-align: center;
+      .dp-info {
+        margin: 10px;
+        font-size: 16px;
+      }
+      .cancel-download {
+        font-size: 14px;
+      }
+    }
+  </style>
+</body>
+</html>
