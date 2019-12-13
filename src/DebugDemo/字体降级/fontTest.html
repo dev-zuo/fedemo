@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>字体测试</title>
+  <style>
+    .wryh-zh {
+      font-family: '微软雅黑';
+    }
+    .wryh-en {
+      font-family: 'Microsoft YaHei';
+    }
+    .ss {
+      font-family: 'Sans-serif';
+    }
+    .st {
+      font-family: '宋体',SimSun;
+    }
+    .ht {
+      font-family: '黑体',SimHei;
+    }
+    .pf {
+      font-family: 'PingFangSC-Regular'
+    }
+
+    .hh {
+      font-family: 'PingFangSC-Regular', '微软雅黑', 'Microsoft YaHei', '黑体', SimHei, 'Sans-serif';
+    }
+  </style>
+</head>
+<body>
+  <p class="default">
+    默认字体，default font family
+  </p>
+
+  <p class="wryh-zh">
+      微软雅黑，wei ruan ya hei 中文
+  </p>
+
+  <p class="wryh-en">
+      微软雅黑英文，'Microsoft YaHei'
+  </p>
+
+  <p class="ss">
+      'Sans-serif', 这里是 Sans-serif 字体
+  </p>
+
+  <p class="st">
+      '宋体', 这里是 song ti, SimSun
+  </p>
+
+  <p class="ht">
+      '黑体', 这里是 hei ti, SimHei
+  </p>
+
+  <p class="pf">
+      '苹方', 这里是 PingFangSC-Regular
+  </p>
+  
+  <p class="hh">
+      降级测试：font-family: 'PingFangSC-Regular', '微软雅黑', 'Microsoft YaHei', '黑体', SimHei, 'Sans-serif';
+  </p>
+  <hr>
+
+  <div>
+    <p>
+      字体名称 是不区分大小写的，参考: https://segmentfault.com/q/1010000002692595
+    </p>
+    <p>css中需要加引号的字体有两种。</p>
+    <p>1. 字体名称为中文，如：微软雅黑；</p>
+    <p>2. 字体名称为英文但是名称有多个单词组成，中间包含空格。如:"Times New Roman"</p>
+  </div>
+  <hr>
+  <div>
+      <p>navigator.platform; navigator.product; navigator.userAgent:</p>
+      <p id="info"></p>
+  </div>
+  <script>
+    document.getElementById('info').innerHTML = navigator.platform + ';' + navigator.product + ';' + navigator.userAgent
+  </script>
+</body>
+</html>
