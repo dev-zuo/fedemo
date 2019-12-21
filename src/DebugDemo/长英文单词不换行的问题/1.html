@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .sec {
+      width: 200px;
+      margin: 20px;
+      border: 1px solid #ccc;
+    }
+    .fix1 {
+      word-break: break-all;
+    }
+    .fix2 {
+      word-wrap: break-word;
+    }
+  </style>
+</head>
+<body>
+    <div class='sec'>
+      我是汉字 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa我是汉字
+    </div>
+    <div class='sec fix1'>
+      我是汉字 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa我是汉字
+    </div>
+    <div class='sec fix2'>
+      我是汉字 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa我是汉字
+    </div>
+</body>
+</html>
