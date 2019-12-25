@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script type="module">
+    let myModule = () => import('./testModule.js')
+    
+    // 类似于路由组件component懒加载逻辑。myModule仅是一个函数，返回promise，需要调用时 myModule().then() 即可
+    window.onload = () => {
+      console.log('onload')
+
+      // dom已加载，3秒后加载模块
+      setTimeout(() => {
+        console.log(myModule, typeof myModule) // () => import('./testModule.js') "function"
+        // myModule() 函数执行后，返回promise
+        myModule().then((res) => {
+          console.log('模块加载成功', res) // 加载成功 Module {Symbol(Symbol.toStringTag): "Module"}
+          let data = res.default // {a: 1, b: "test"}
+          console.log(data.a) // 1
+        },(e) => {
+          console.log('import 加载异常')
+        })
+      }, 3000)
+    }
+  </script>
+</body>
+</html>
