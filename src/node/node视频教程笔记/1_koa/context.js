@@ -1,6 +1,6 @@
 
 module.exports = {
-  get rul() {
+  get url() {
     return this.request.url
   },
   get body() {
