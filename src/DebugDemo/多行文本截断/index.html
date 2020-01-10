@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .module {
+      width: 300px;
+      margin: 20px;
+    }
+    .module p {
+      margin: 0;
+    }
+    .method-inline {
+      width: 100%;
+      white-space: nowrap;
+      display: inline-block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .method-a {
+      line-height: 1.2rem;
+      max-height: 3.6rem;
+      overflow: hidden;
+      position: relative;
+    }
+    .method-a::after {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 30%;
+      max-width: 100px;
+      content: '';
+      height: 1.2rem;
+      background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1) 90%);
+    }
+    .method-b {
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+
+    .method-c {
+      line-height: 1.2rem;
+      max-height: 3.6rem;
+      overflow: hidden;
+      position: relative;
+    }
+    .method-c::after {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 20px;
+      content: '...';
+      height: 1.2rem;
+      background:white;
+    }
+  </style>
+</head>
+<body>
+  <div class="module">
+    <span class='method-inline'>单行隐藏：”不忘初心、牢记使命”主题教育从去年5月底开始自上而下分两批进行，目前已基本结束，整个主题教育达到了预期目的，取得了重大成果：各级党组织</span>
+  </div>
+  <div class="module">
+    <p>”不忘初心、牢记使命”主题教育从去年5月底开始自上而下分两批进行，目前已基本结束，整个主题教育达到了预期目的，取得了重大成果：各级党组织和广大党员、干部深入学习实践习近平新时代中国特色社会主义思想</p>
+  </div>
+  <div class="module method-a">
+    <p>”不忘初心、牢记使命”主题教育从去年5月底开始自上而下分两批进行，目前已基本结束，整个主题教育达到了预期目的，取得了重大成果：各级党组织和广大党员、干部深入学习实践习近平新时代中国特色社会主义思想</p>
+  </div>
+  <div class="module method-b">
+    <p>”不忘初心、牢记使命”主题教育从去年5月底开始自上而下分两批进行，目前已基本结束，整个主题教育达到了预期目的，取得了重大成果：各级党组织和广大党员、干部深入学习实践习近平新时代中国特色社会主义思想</p>
+  </div>
+  <div class="module method-c">
+    <p>”不忘初心、牢记使命”主题教育从去年5月底开始自上而下分两批进行，目前已基本结束，整个主题教育达到了预期目的，取得了重大成果：各级党组织和广大党员、干部深入学习实践习近平新时代中国特色社会主义思想</p>
+  </div>
+</body>
+</html>

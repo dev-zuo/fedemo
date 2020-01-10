@@ -19,17 +19,31 @@ class Router {
     this.register(path, 'post', middleware)
   }
 
-  routers() {
+  routes() {
     // 返回一个中间件回调函数 (ctx, next) => { 进行路由处理 }
     let stock = this.stack
     return async (ctx, next) => {
-      // 遍历路由进行匹配，如果匹配到了则执行，停止往下执行下一个中间件，否则向下执行
-      stock.forEach((item) => {
-        if (ctx.url === item.path && item.methods.includes(ctx.method)) {
-          return
-        }
+      if (ctx.url === '/favicon.ico') {
         await next()
-      })
+        return
+      }
+      const len = stock.length
+      let route
+      for(let i = 0; i < len; i++) {
+        let item = stock[i]
+        console.log(ctx.url, item, ctx.method)
+        if (ctx.url === item.path && item.methods.includes(ctx.method.toLowerCase())) {
+          route = item.middleware
+          break
+        }
+      }
+      console.log('route', route)
+      if (typeof route === 'function') {
+        // 如果匹配到了路由
+        route(ctx, next)
+      } else {
+        await next()
+      }
     }
   }
 }
