@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    (async () => {
+      axios.defaults.baseURL = 'http://127.0.0.1:3000';
+      axios.defaults.withCredentials = true;
+      // let res = await axios.get('/api/users', {headers: {'X-Token': 'test'}})
+      let res = await axios.post('/api/users', {a: 1, b: 2}, {headers: {'X-Token': 'test'}})
+      console.log(JSON.stringify(res, null, 2))
+
+      // 一种埋点方式
+      let img = new Image()
+      img.src="/api/users?button=123"
+
+    })()
+    // {
+    //   "data": [
+    //     {
+    //       "name": "Tom",
+    //       "age": 20
+    //     }
+    //   ],
+    //   "status": 200,
+    //   "statusText": "OK",
+    //   "headers": {
+    //     "connection": "keep-alive",
+    //     "content-length": "25",
+    //     "content-type": "application/json",
+    //     "date": "Sun, 12 Jan 2020 06:27:54 GMT"
+    //   },
+    //   "config": {
+    //     "url": "/api/users",
+    //     "method": "get",
+    //     "headers": {
+    //       "Accept": "application/json, text/plain, */*"
+    //     }
+    //     ...
+    //   }
+    // }
+  </script>
+</body>
+</html>
