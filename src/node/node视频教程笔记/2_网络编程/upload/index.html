@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- <form action="/api/upload" method="POST" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <input type="text" name="info" value="123">
+    <input type="submit" value="上传">
+  </form> -->
+  <input id='file1' type="file" />
+  <script>
+    window.onload=function(){
+        var files = document.getElementsByTagName('input'),
+        len = files.length,
+        file;
+        for (var i = 0; i < len; i++) {
+            file = files[i];
+            if (file.type !== 'file') continue; // 不是文件类型的控件跳过
+            file.onchange = function() {
+                console.log('change')
+                var _files = this.files;
+                if (!_files.length) return;
+                if (_files.length === 1) { // 选择单个文件
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', '/api/upload');
+                    var filePath = files[0].value;
+                    console.log(filePath) // C:\fakepath\2_koa中间件洋葱圈模型.png
+                    // 'setRequestHeader' on 'XMLHttpRequest': Value is not a valid ByteString.
+                    // 请求的头信息中不能出现中文或UTF-8码的字符
+                    xhr.setRequestHeader('file-name', filePath.substring(filePath.lastIndexOf('\\') + 1));
+                    xhr.send(_files[0]);
+                } else { }
+            };
+        }
+    };
+  </script>
+</body>
+</html>

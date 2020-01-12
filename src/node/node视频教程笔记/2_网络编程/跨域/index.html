@@ -10,8 +10,8 @@
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script>
     (async () => {
-      axios.defaults.baseURL = 'http://127.0.0.1:3000';
-      axios.defaults.withCredentials = true;
+      // axios.defaults.baseURL = 'http://127.0.0.1:3000';
+      // axios.defaults.withCredentials = true;
       // let res = await axios.get('/api/users', {headers: {'X-Token': 'test'}})
       let res = await axios.post('/api/users', {a: 1, b: 2}, {headers: {'X-Token': 'test'}})
       console.log(JSON.stringify(res, null, 2))
