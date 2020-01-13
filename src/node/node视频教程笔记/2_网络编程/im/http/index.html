@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- vue -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <!-- axios -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div>
+      <input type="text" v-model="message">
+      <input type="button" value="发送" @click="send">
+      <input type="button" value="清除" @click="clear">
+    </div>
+    <div>
+      <ul>
+        <li v-for="item in msgList">{{ item }}</li>
+      </ul>
+    </div>
+  </div>
+  <script>
+    let vm = new Vue({
+      el: '#app',
+      data: {
+        message: '',
+        msgList: [],
+      },
+      mounted() {
+        setInterval(() => {
+          this.getMsgList()
+        }, 1000)
+      },
+      methods: {
+        async send() {
+          try {
+            let res = await axios.post('/api/send', { msg: this.message })
+          } catch(e) {
+            console.log(e)
+          }
+        },
+        async clear() {
+          try {
+            let res = await axios.post('/api/clear')
+          } catch(e) {
+            console.log(e)
+          }
+        },
+        async getMsgList() {
+          try {
+            let res = await axios.get('/api/list')
+            console.log(res)
+            this.msgList = res.data
+          } catch(e) {
+            console.log(e)
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>
