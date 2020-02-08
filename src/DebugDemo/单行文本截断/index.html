@@ -1,0 +1,17 @@
+<head>
+  <meta chaset="utf-8">
+  <title>单行文本截断测试</title>
+  <style>
+    .test {
+      width: 20em;          /* 指定宽度 */
+      white-space: nowrap;  /* 不换行，如果是span就可以不用这个 */
+      overflow: hidden;     /* 溢出内容隐藏 */
+      text-overflow: ellipsis; /* 文本溢出时显示省略号 */
+    }
+  </style>
+<head>
+<body>
+  <div class="test">
+    我是一个很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长的文本
+  </div>
+</body>
