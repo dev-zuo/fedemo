@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vuex - test</title>
+  </head>
+  <body>
+    <div id="app">
+      {{ count }}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vuex"></script>
+    <script>
+
+      const store = new Vuex.Store({
+        // state 用来存储多个组件实例需要共用的状态
+        state: { 
+          count: 0
+        },  
+
+        // getters，从store.state中派生的状态，用于进行一些state值初步的计算或过滤。
+        getters: { 
+          couterAdds() {
+            return store.state.count + 1
+          }
+        },
+      })
+
+      let app = new Vue({
+        el: '#app',
+        data: {
+        },
+        computed: {
+          count() {
+            return store.getters.couterAdds
+          }
+          // ViewComponent() {
+          //   return routes[this.currentRoute] || NotFound
+          // }
+        }
+      })
+    </script>
+  </body>
+</html>
