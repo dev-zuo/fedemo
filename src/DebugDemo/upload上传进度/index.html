@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <input type="file" name="file" id="test">
+    <div id="progressDiv"></div>
+  </div>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    let fileInput = document.getElementById('test')
+    let progressDiv = document.getElementById('progressDiv')
+
+    // 当input文件输入框值改变时
+    fileInput.onchange = () => {
+      let file = fileInput.files[0]
+      this.uploadFile(file)
+    } 
+
+    // 上传文件到后台
+    async function uploadFile(file) {
+      let fd = new FormData()
+      fd.append('file', file)
+      fd.append('type', 'mask')
+      try {
+        let payload = fd
+        let res = await axios.post('/upload', payload, {
+          // axios 接收进度事件文档
+          // https://github.com/axios/axios#request-config
+          onUploadProgress: function (progressEvent) {
+            // {loaded: 1687552, total: 35353356, ...}
+            console.log('接收到进度事件', progressEvent)
+            progressDiv.innerHTML = `
+              <div>上传中，当前进度：${((progressEvent.loaded / progressEvent.total) * 100).toFixed(2) }% </div> 
+              <div>文件大小: ${progressEvent.loaded}/${progressEvent.total}
+            `
+          },
+        })
+        console.log(res)
+      } catch(e) {
+        cosnoel.error(e)
+      }
+    }
+  </script>
+</body>
+</html>
