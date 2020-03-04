@@ -5,21 +5,27 @@
     <meta charset="utf-8">
     <title>vue</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
   </head>
   <body>
     <div id="app">
-      <select v-model="selected" multiple>
-        <option disabled value="">请选择</option> <!--选择时按option不可选-->
+      <!-- <select v-model="selected" multiple>
+        <option disabled value="">请选择</option>
         <option>A</option>
         <option>B</option>
         <option>C</option>
       </select>
       <p> 已选择: {{ selected }} </p>
       <select v-model="youSelected">
-        <option disabled value="">请选择</option> <!--选择时按option不可选-->
+        <option disabled value="">请选择</option>
         <option v-for="item in options" :value="item.value"> {{ item.text }} </option>
       </select>
-      <p> 已选择: {{ youSelected }} </p>
+      <p> 已选择: {{ youSelected }} </p> -->
+      <el-input v-model="name" @change="k.nameChange && k.nameChange"></el-input>
+      {{name}}
     </div>
     <script>
       var vm = new Vue({
@@ -31,7 +37,13 @@
             {text: '1', value: 'a'}, 
             {text: '2', value: 'b'}, 
             {text: '3', value: 'c'}, 
-          ]
+          ],
+          name: '',
+          k: {
+            nameChange: function(event) {
+              console.log(event)
+            }
+          }
         }
       })
     </script>
