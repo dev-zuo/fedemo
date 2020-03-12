@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* hover后单独改变某一个子元素的样式 */
+    .cur-element:hover .child-1 {
+      color: red;
+    }
+    /* 设置相邻的后一个兄弟节点样式 */
+    .cur-element:hover + div {
+      background: blue;
+    }
+     /* 设置后面的所有对应的兄弟节点样式，不必相邻，但需要再其后面 */
+     .cur-element:hover ~ div {
+      background: red;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="parent">
+      <div>再前一个兄弟元素</div>
+      <div>前一个兄弟元素</div>
+      <div class="cur-element">
+        测试hover
+        <span class="child-1">child-1</span>
+        <span class="child-2">child-2</span>
+      </div>
+      <div>后一个兄弟元素</div>
+      <div>再后一个兄弟元素</div>
+      <div>再再后一个兄弟元素</div>
+    </div>
+  </div>
+</body>
+</html>
