@@ -8,20 +8,15 @@
 </head>
 <body>
   <div>
-    <canvas id="drawing" width="720" height="40" >A draw of something.</canvas>
-    <canvas id="drawing2" width="720" height="40" >A draw of something.</canvas>
-    <canvas id="drawing3" width="720" height="40" >A draw of something.</canvas>
-    <canvas id="drawing4" width="720" height="40" >A draw of something.</canvas>
-    <canvas id="drawing5" width="720" height="40" >A draw of something.</canvas>
-    <canvas id="drawing6" width="720" height="40" >A draw of something.</canvas>
+    <canvas id="drawing1" width="720" height="45" >A draw of something.</canvas>
+    <canvas id="drawing2" width="720" height="45" >A draw of something.</canvas>
+    <canvas id="drawing3" width="720" height="45" >A draw of something.</canvas>
+    <canvas id="drawing4" width="720" height="45" >A draw of something.</canvas>
+    <canvas id="drawing5" width="720" height="45" >A draw of something.</canvas>
+    <canvas id="drawing6" width="720" height="45" >A draw of something.</canvas>
   </div>
   <script>
-    drawStatus('drawing', 1)
-    drawStatus('drawing2', 2)
-    drawStatus('drawing3', 3)
-    drawStatus('drawing4', 4)
-    drawStatus('drawing5', 5)
-    drawStatus('drawing6', 6)
+    new Array(6).fill(0).forEach((item, index) => drawStatus(`drawing${index + 1}`, index + 1))
 
     function drawStatus(domId, position) {
       let str = ['① 状态一', '② 状态二', '③ 状态三', '④ 状态四', '⑤ 状态五', '⑥ 状态六']
@@ -31,13 +26,9 @@
         extendLength: 20,
         radius: 4
       }
-      let config2 = {
-        width: 110,
-        height: 40,
-        extendLength: 20,
-        radius: 4
-      }
+      let config2 = { ...config, width: 110 }
       let cur = str.length - position
+
       str.reverse().forEach((item, index) => {
         let pos = str.length - index - 1
         let x = 0 + (str.length - 1) * config.radius
@@ -52,16 +43,14 @@
         drawUnnormalShape(domId, x , 0, str[index], curConfig)
       })
     }
+
     function drawUnnormalShape(domId, x, y, text, config) {
-      var drawing = document.getElementById(domId);
-      var ctx = drawing.getContext('2d');
-
+      let drawing = document.getElementById(domId);
+      let ctx = drawing.getContext('2d');
       let { width, height, extendLength, radius, isFocus } = config 
-
-      // var ctx = drawing.getContext('2d');
       ctx.beginPath(); // 如果都需要重新beginPath 不然，后面的fill会覆盖前面的fill
-      
-      // 不规则矩形上边线条
+    
+      // 不规则矩形
       ctx.moveTo(x + radius, y) // 从左上角 (x + radius, y) 位置开始
       ctx.arcTo(x, y, x, y + radius, radius) // 左上圆角
       ctx.lineTo(x, y + height - 2 * radius) // 画左边
@@ -76,8 +65,8 @@
       ctx.lineTo(x + radius, y)
 
       var gradient = ctx.createLinearGradient(x, y + height / 2, x + width + extendLength, y + height / 2); // 从(130,130)到(160,160)渐变
-      gradient.addColorStop(0, isFocus ? '#62ccff' : '#fff'); // 渐变的起点色为白色
-      gradient.addColorStop(1, isFocus ? '#0486fe' : '#fff'); // 渐变的结束色为白色
+      gradient.addColorStop(0, isFocus ? '#62ccff' : '#fff'); // 渐变的起点色
+      gradient.addColorStop(1, isFocus ? '#0486fe' : '#fff'); // 渐变的结束色
 
       ctx.shadowOffsetX = 6;
       ctx.shadowOffsetY = 2;
@@ -85,8 +74,7 @@
       ctx.shadowColor = "rgba(58, 86, 111, 0.15)";
 
       ctx.fillStyle = gradient
-      ctx.fill()
-      // ctx.stroke()
+      ctx.fill() // ctx.stroke()
 
       let textArr = text.split(' ')
       ctx.font = "15px arial"
