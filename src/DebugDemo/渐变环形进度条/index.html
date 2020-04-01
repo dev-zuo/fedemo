@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="drawing" width="180" height="180" >A draw of something.</canvas>
+  <script>
+    let drawing = document.getElementById('drawing');
+    let ctx = drawing.getContext('2d');
+    let percent = 80
+    let circleRadios = 80 // 圆环半径
+    let lineWidth = 10
+    let PI = 3.1415926
+    let long  = (percent / 100) * PI * 2 // 百分比进度条长度
+    let start = 1.5 * PI // 圆心正上方位置是 1.5PI
+    ctx.lineWidth = lineWidth
+
+    // 背景圆环
+    let x = circleRadios + lineWidth
+    let y = x
+    ctx.beginPath()
+    ctx.strokeStyle = 'rgb(241,247,255)'
+    ctx.arc(x, y, circleRadios, start + long, start)
+    ctx.stroke()
+
+    // 进度圆环
+    ctx.beginPath()
+    let gradient = ctx.createLinearGradient(circleRadios * 2 + lineWidth * 2, lineWidth + circleRadios, 0 , circleRadios + lineWidth); // 从(130,130)到(160,160)渐变
+    gradient.addColorStop(0, '#64E1FA'); // 渐变的起点色
+    gradient.addColorStop(1, '#215BF7'); // 渐变的结束色
+    ctx.strokeStyle = gradient
+    ctx.arc(x, y, circleRadios, start, start + long)
+    ctx.lineCap = "round";
+    ctx.stroke()
+
+    // 中间圆
+    ctx.beginPath()
+    ctx.arc(x, y, 51.5, 0, 2 * PI)
+    ctx.lineWidth = 0
+    ctx.fillStyle="white"
+    // 阴影
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 4;
+    ctx.shadowBlur = 4; // 模糊像素
+    ctx.shadowColor = "rgba(237, 237, 237, 0.61)";
+    // ctx.shadowColor = "rgba(0, 237, 237, 1)";
+    ctx.fill()
+
+    // 文字
+    ctx.font = "24px Impact"
+    ctx.fillStyle = "#4A4A4A"
+    ctx.fillText(percent + '%', x - ctx.measureText(percent + '%').width / 2, y)
+    ctx.font = "14px PingFangSC-Regular"
+    ctx.fillText('百分比例', x - ctx.measureText('百分比例').width / 2, y + 20)
+
+  </script>
+</body>
+</html>
