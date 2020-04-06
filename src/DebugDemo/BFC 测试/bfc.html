@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- margin 塌陷 -->
+  <div>
+    <div class="elementA" style="margin: 10px">123</div>
+    <div class="elementB" style="margin: 10px">456</div>
+  </div>
+
+  <!-- margin 塌陷测试-->
+  <div>
+    <div class="elementA" style="margin: 10px">123</div>
+    <div>
+      <div class="elementB" style="margin: 10px;">456</div>
+    </div>
+  </div>
+
+  <!-- BFC 解决margin塌陷测试-->
+  <div>
+    <div class="elementA" style="margin: 10px">123</div>
+    <div style="overflow:hidden">
+      <div class="elementB" style="margin: 10px;">456</div>
+    </div>
+  </div>
+</body>
+
+</html>
