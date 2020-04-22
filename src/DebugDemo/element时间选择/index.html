@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <!-- 引入样式 -->
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <!-- 引入组件库 -->
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <p>当前选择时间：{{ date }}</p>
+    <el-date-picker v-model="date" type="daterange" :picker-options="pickerOptions">
+    </el-date-picker>
+  </div>
+  <script>
+    let vm = new Vue({
+      el: '#app',
+      data() {
+        const pickerOptions = {
+          // 选中时间时触发 element第一次选中后会赋值给minDate
+          onPick: ({ maxDate, minDate }) => {
+            console.log(this)
+            this._curClickDate = minDate.getTime()
+            // 第二次选中后，按两次点击的时间顺序依次赋值给 minDate、maxDate
+            // 且面板会关闭，这时要清空_curClickDate，供下一次使用
+            maxDate && (this._curClickDate = '')
+          },
+          disabledDate: time => {
+            const { _curClickDate } = this
+            const gap = 31 * 24 * 3600 * 1000 // 一个月，按31天算
+            const t = time.getTime()
+            let start = _curClickDate - gap
+            let end = _curClickDate + gap
+            return t > Date.now() || (_curClickDate && (t > end || t < start))
+          }
+        }
+        return {
+          date: '',
+          pickerOptions,
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

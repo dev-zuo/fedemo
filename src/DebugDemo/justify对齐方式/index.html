@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>justify对齐</title>
+  <style>
+    .sec,
+    .sec2 {
+      width: 150px;
+      text-align: justify;
+    }
+
+    /* fix 占位元素高度问题 */
+    .sec>div,
+    .sec2>div {
+      height: 25px;
+      line-height: 25px;
+    }
+
+    .zw {
+      display: inline-block;
+      width: 100%
+    }
+
+    .sec2>div::after {
+      content: '';
+      display: inline-block;
+      width: 100%;
+      overflow: hidden;
+      height: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="sec">
+    <div>
+      我是较长<p class="zw"></p>
+    </div>
+    <div>
+      我是较长的<p class="zw"></p>
+    </div>
+    <div>
+      我是较长的文字<p class="zw"></p>
+    </div>
+  </div>
+  <hr>
+  <div class="sec2">
+    <div>我是较长</div>
+    <div>我是较长的</div>
+    <div>我是较长的文字</div>
+  </div>
+</body>
+
+</html>
