@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="btn" onclick="clickBtn()">点击</button>
+  <script>
+    function clickBtn() {
+      alert('点击了按钮')
+    }
+
+    // 模拟点击
+    let event = document.createEvent("MouseEvents")
+    event.initEvent('click', true, true, document.defaultView, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+    var btn = document.getElementById('btn');
+    // 触发事件
+    setTimeout(() => {
+      btn.dispatchEvent(event);
+    }, 2000);
+  </script>
+</body>
+</html>

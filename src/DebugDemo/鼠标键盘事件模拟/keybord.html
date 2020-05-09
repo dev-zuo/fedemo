@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- <button id="btn" onclick="clickBtn()">点击</button> -->
+  <input id="myInput" placeholder="请输入内容">
+  <script>
+    document.body.onkeydown = (e) => {
+      console.log(e)
+    }
+
+    // 模拟键盘事件
+    let event1 = document.createEvent("keyboardEvent")
+    let event2 = document.createEvent("keyboardEvent")
+    let event3 = document.createEvent("keyboardEvent")
+    event1.initKeyboardEvent('keydown', true, true, document.defaultView, 'a', 0, 'shift', 0);
+    event2.initKeyboardEvent('keypress', true, true, document.defaultView, 'a', 0, 'shift', 0);
+    event3.initKeyboardEvent('keyup', true, true, document.defaultView, 'a', 0, 'shift', 0);
+    var textbox = document.getElementById('myInput');
+    // https://www.zhihu.com/question/24896417?sort=created
+    // https://github.com/puppeteer/puppeteer/blob/v3.0.2/docs/api.md#class-keyboard
+    setTimeout(() => {
+      console.log('模拟键盘输入')
+      textbox.dispatchEvent(event1);
+      textbox.dispatchEvent(event2);
+      textbox.dispatchEvent(event2);
+    }, 2000);
+  </script>
+</body>
+</html>
