@@ -1,0 +1,19 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input id="input" type="text">
+  <script>
+    let inputEl = document.querySelector('#input')
+    inputEl.addEventListener('input', (e) => {
+      console.log(e) // e.data 只是拿到的 当前输入的字符，而不是input里输入的整体内容
+      console.log(inputEl.value) // 这个才是整体内容
+    })
+  </script>
+</body>
+</html>

@@ -6,12 +6,31 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   </head>
   <body>
-    <div id="app">{{message}}</div>
+    <div id="app">
+      {{message}}     
+      <div>{{name}}</div>
+      <!-- <div><input v-model="name"></div> -->
+      <!-- <input :value="name" @input="e => { name =  e.target.value }"> -->
+      {{compositioin}}
+      <input :value="name" @input="e => { !compositioin && (name =  e.target.value) }" @compositionstart="compositioin = true" @compositionend="(e) => { compositioin = false; name = e.target.value }">
+      <div>{{name2}}</div>
+      <div><input :value="name2" @input="inputChange"></div>
+    </div>
+   
     <script>
       var app = new Vue({
         el: '#app',
         data: {
-          message: 'Hello Vue'
+          message: 'Hello Vue',
+          name: '',
+          name2: '',
+          compositioin: false,
+        },
+        methods: {
+          inputChange(e) {
+            console.log(e.target.value)
+            this.name2 = e.target.value
+          }
         }
       })
     </script>
