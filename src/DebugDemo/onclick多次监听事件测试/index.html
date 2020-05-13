@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="btn">测试</button>
+  <script>
+    let btn = document.getElementById('btn')
+    btn.onclick = () => {
+      console.log('on click 1')
+    }
+    btn.onclick = () => {
+      console.log('on click 2')
+    }
+    btn.addEventListener('click', () => {
+      console.log('event click 1')
+    })
+    btn.addEventListener('click', () => {
+      console.log('event click 2')
+    })
+  </script>
+</body>
+</html>
