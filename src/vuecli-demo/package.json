@@ -11,6 +11,8 @@
     "axios": "^0.19.2",
     "core-js": "^3.6.4",
     "element-ui": "^2.13.0",
+    "less-loader": "^6.1.0",
+    "pinyin": "^2.9.1",
     "vue": "^2.6.11",
     "vue-infinite-scroll": "^2.0.2",
     "vue-router": "^3.1.5",

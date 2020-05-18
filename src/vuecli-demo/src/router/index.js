@@ -25,6 +25,16 @@ const routes = [
     name: "InfiniteScroll",
     component: InfiniteScroll
   },
+  {
+    path: "/lessPageA",
+    name: "lessMixinTestA",
+    component: () => import('../views/lessMixinTest/PageA.vue')
+  },
+  {
+    path: "/lessPageB",
+    name: "lessMixinTestB",
+    component: () => import('../views/lessMixinTest/PageB.vue')
+  },
 ];
 
 const router = new VueRouter({

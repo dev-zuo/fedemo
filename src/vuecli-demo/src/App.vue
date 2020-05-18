@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <user-selection v-model="showUserSelection" @confirm="confirm"/>
+    <!-- <user-selection v-model="showUserSelection" @confirm="confirm"/>
     <el-button type="primary" @click="showUserSelection = true">打开弹窗</el-button>
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
-    </div>
+    </div> -->
     <router-view />
   </div>
 </template>
@@ -13,7 +13,7 @@
 <script>
 export default {
   components: {
-    UserSelection: () => import("../src/components/user-selection/src/main")
+    // UserSelection: () => import("../src/components/user-selection/src/main")
   },
   data() {
     return {
@@ -28,6 +28,9 @@ export default {
 }
 </script>
 <style>
+body {
+  margin: 0;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

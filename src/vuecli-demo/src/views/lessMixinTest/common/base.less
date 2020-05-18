@@ -1,0 +1,24 @@
+
+.container-mixin() {
+  .container {
+    @headerHeight: 100px;
+    .top {
+      height: @headerHeight;
+      background: #999;
+    }
+    .main {
+      display: flex;
+      height: calc(100vh - @headerHeight);
+      background-color: rgba(255, 0, 0, 0.2);
+      .left {
+        width: 20%;
+        background-color: greenyellow;
+      }
+      .right {
+        width: 80%;
+        background-color: turquoise;
+      }
+    }
+  }
+}
+
