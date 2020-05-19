@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>拖动图片demo</title>
+  <style>
+    img {
+      width: 100px;
+    }
+    .wrap {
+      width: 200px;
+      height: 200px;
+      margin: 20px;
+      padding: 20px;
+      border: 1px dotted #000;
+    }
+    table {
+      border-collapse: collapse;
+    }
+    th,td {
+      padding:10px;
+    }
+    .active {
+      border: 5px dotted green;
+    }
+  </style>
+</head>
+<body>
+  <h3>测试拖拽图片</h3>
+  <div>
+    <!-- 图片默认的 draggable="true" 而想 h1这种默认为false不可拖动 -->
+    <img id="img" src="test.png" >
+
+    <!-- 放置区域a -->
+    <div class="wrap" id="targetA"></div>
+
+    <!-- 放置区域B -->
+    <div class="wrap">
+      <table border="1">
+        <tr>
+          <td>测试</td>
+          <td>测试</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>测试</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <script>
+    // 被拖动元素的事件监听
+    let img = document.getElementById('img')
+    // 当元素开始拖动时触发，仅触发一次
+    img.addEventListener('dragstart', (ev) => {
+      // 设置值，在放置区域触发drop事件时，可以通过ev.dataTransfer.getData获取这里的值
+      ev.dataTransfer.setData("text", ev.target.id)
+      // link 会音响拖动到放置区域的鼠标样式，只是样式，并不决定行为 
+      ev.dataTransfer.effectAllowed = 'copy'; 
+    })
+
+    // 放置区域A的事件监听
+    let targetA = document.getElementById('targetA')
+    // 当有拖动元素(放到)落到放置区域时触发，一次
+    targetA.addEventListener('drop', (ev) => {
+      ev.stopPropagation(); // 必要，阻止冒泡，防止火狐浏览器放置图片后打开新的窗口
+      ev.preventDefault(); // 必要，阻止默认行为 防止火狐浏览器放置后直接打开图片
+
+      // 放置落下时，接收被拖拽的元素在 dragstart时用ev.dataTransfer.setData设置的值
+      // 这里传的id备用
+      let reciveData = ev.dataTransfer.getData("text")
+      console.log('drop, recive data', reciveData, ev.dataTransfer.dropEffect)
+
+      // 必要，设置拖动后放置的效果，移动还是copy
+      // 放置后，删除原来的图片
+      // ev.target.appendChild(document.querySelector(`#${reciveData}`))
+      // 放置后，保留原图片
+      ev.target.appendChild(document.querySelector(`#${reciveData}`).cloneNode(true))
+
+      ev.target.classList.remove('active') // 必要，放置在区域里后，还原样式
+    })
+
+    // 当拖动元素移动到放置区域时触发，触发多次
+    targetA.addEventListener('dragover', (ev) => {
+      ev.preventDefault() // 必要，chrome drop兼容必须
+    })
+    // 当拖动元素进入放置区域时触发，一次
+    targetA.addEventListener('dragenter', (ev) => {
+      ev.preventDefault() // 必要，chrome drop兼容必须
+      ev.target.classList.add('active') // 必要，设置进入时的样式
+    })
+     // 当拖动元素离开放置区域时触发，一次
+    targetA.addEventListener('dragleave', (ev) => {
+      ev.target.classList.remove('active') // 必要，设置离开后的样式
+    })
+
+
+    // 拖动到表格
+    document.querySelector('td').addEventListener('drop', (ev) => {
+      ev.stopPropagation(); // 必要，阻止冒泡，防止火狐浏览器放置图片后打开新的窗口
+      ev.preventDefault(); // 必要，阻止默认行为 防止火狐浏览器放置后直接打开图片
+
+      // 放置落下时，接收被拖拽的元素在 dragstart时用ev.dataTransfer.setData设置的值
+      // 这里传的id备用
+      let reciveData = ev.dataTransfer.getData("text")
+      console.log('drop, recive data', reciveData, ev.dataTransfer.dropEffect)
+
+      // 必要，设置拖动后放置的效果，移动还是copy
+      // 放置后，删除原来的图片
+      // ev.target.appendChild(document.querySelector(`#${reciveData}`))
+      // 放置后，保留原图片
+      ev.target.appendChild(document.querySelector(`#${reciveData}`).cloneNode(true))
+
+      ev.target.classList.remove('active') // 必要，放置在区域里后，还原样式
+    })
+    document.querySelector('td').addEventListener('dragover', (ev) => {
+      ev.preventDefault() // 必要，chrome drop兼容必须
+    })
+    document.querySelector('td').addEventListener('dragenter', (ev) => {
+      ev.preventDefault() // 必要，chrome drop兼容必须
+      ev.target.classList.add('active') // 必要，设置进入时的样式
+    })
+    document.querySelector('td').addEventListener('dragleave', (ev) => {
+      ev.target.classList.remove('active') // 必要，设置离开后的样式
+    })
+  </script>
+</body>
+</html>
