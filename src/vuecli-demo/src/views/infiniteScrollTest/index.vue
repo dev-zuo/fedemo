@@ -13,24 +13,20 @@
 export default {
   components: {
     // SubComps: () => import('./subComps'),
-    SubCompsMiddle: () => import('./subCompsMiddle')
+    SubCompsMiddle: () => import("./subCompsMiddle")
   },
   data() {
-    return {
-
-    }
+    return {};
   },
   mounted() {
-    console.log('index mounted')
+    console.log("index mounted");
   },
   methods: {
     loadMore() {
-      console.log('触发了loadMore')
+      console.log("触发了loadMore");
     }
   }
-}
+};
 </script>
 
-<style lang="less" scoped>
-
-</style>
+<style lang="less" scoped></style>

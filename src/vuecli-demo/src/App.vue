@@ -18,14 +18,14 @@ export default {
   data() {
     return {
       showUserSelection: false
-    }
+    };
   },
   methods: {
     confirm(value) {
-      console.log(value)
+      console.log(value);
     }
   }
-}
+};
 </script>
 <style>
 body {

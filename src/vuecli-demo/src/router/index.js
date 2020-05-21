@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import InfiniteScroll from '../views/infiniteScrollTest/index.vue'
+import InfiniteScroll from "../views/infiniteScrollTest/index.vue";
 
 Vue.use(VueRouter);
 
@@ -28,13 +28,18 @@ const routes = [
   {
     path: "/lessPageA",
     name: "lessMixinTestA",
-    component: () => import('../views/lessMixinTest/PageA.vue')
+    component: () => import("../views/lessMixinTest/PageA.vue")
   },
   {
     path: "/lessPageB",
     name: "lessMixinTestB",
-    component: () => import('../views/lessMixinTest/PageB.vue')
+    component: () => import("../views/lessMixinTest/PageB.vue")
   },
+  {
+    path: "/sessionTest",
+    name: "sessionTest",
+    component: () => import("../views/sessionFailureNewTabTest/")
+  }
 ];
 
 const router = new VueRouter({

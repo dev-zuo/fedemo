@@ -13,20 +13,18 @@
 <script>
 export default {
   components: {
-    SubCompsMiddle: () => import('./subCompsMiddle')
+    SubCompsMiddle: () => import("./subCompsMiddle")
   },
   data() {
-    return {
-
-    }
+    return {};
   },
   mounted() {
-    console.log('sub mounted')
+    console.log("sub mounted");
   },
   methods: {
     loadMore() {
-      console.log('加载了loadmore')
+      console.log("加载了loadmore");
     }
   }
-}
+};
 </script>

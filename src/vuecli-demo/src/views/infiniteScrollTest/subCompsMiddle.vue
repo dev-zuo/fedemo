@@ -8,14 +8,11 @@
 <script>
 export default {
   data() {
-    return {
-      
-    }
+    return {};
   },
   mounted() {
-    console.log('sub middle mounted')
+    console.log("sub middle mounted");
   },
-  methods: {
-  }
-}
+  methods: {}
+};
 </script>

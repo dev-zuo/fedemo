@@ -9,12 +9,10 @@
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style lang="less" scoped>
-@import url('./common/base.less');
+@import url("./common/base.less");
 .container-mixin();
 </style>
