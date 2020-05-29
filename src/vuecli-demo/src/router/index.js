@@ -39,6 +39,11 @@ const routes = [
     path: "/sessionTest",
     name: "sessionTest",
     component: () => import("../views/sessionFailureNewTabTest/")
+  },
+  {
+    path: "/elementForm",
+    name: "elementForm",
+    component: () => import("../views/elementForm/")
   }
 ];
 
