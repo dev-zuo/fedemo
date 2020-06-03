@@ -1,10 +1,13 @@
 <template>
   <!-- /elementForm -->
   <div>
-    <z-form v-model="searchForm">
-      {{ searchForm }}
+    <z-form v-model="form" :rules="rules">
+      {{ form }}
       <z-form-item label="姓名" prop="name">
-        <z-input v-model="searchForm.name" placeholder="请输入姓名"></z-input>
+        <z-input v-model="form.name" placeholder="请输入姓名"></z-input>
+      </z-form-item>
+      <z-form-item label="电话" prop="mobile">
+        <z-input v-model="form.mobile" placeholder="请输入电话"></z-input>
       </z-form-item>
     </z-form>
   </div>
@@ -12,11 +15,6 @@
 
 <script>
 export default {
-  provide() {
-    return {
-      searchForm: this.searchForm
-    };
-  },
   components: {
     ZInput: () => import("./ZInput"),
     ZFormItem: () => import("./ZFormItem"),
@@ -24,18 +22,20 @@ export default {
   },
   data() {
     return {
-      name: "",
-      searchForm: {
+      form: {
         name: "",
-        password: ""
+        mobile: ""
+      },
+      rules: {
+        name: [
+          { required: true, message: "请输入姓名", trigger: "blur" },
+          { min: 3, max: 5, message: "长度在 3 到 5 个字符", trigger: "blur" }
+        ],
+        mobile: [{ required: true, message: "请输入电话", trigger: "change" }]
       }
     };
   },
-  methods: {
-    oninput(e) {
-      console.log(e);
-    }
-  }
+  methods: {}
 };
 </script>
 

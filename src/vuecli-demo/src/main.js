@@ -20,6 +20,10 @@ Vue.use(ElementUI);
 
 Vue.use(infiniteScroll);
 
+import Echarts from "echarts";
+Vue.use(Echarts);
+Vue.prototype.$echarts = Echarts;
+
 new Vue({
   router,
   store,

@@ -44,6 +44,11 @@ const routes = [
     path: "/elementForm",
     name: "elementForm",
     component: () => import("../views/elementForm/")
+  },
+  {
+    path: "/echarts",
+    name: "echarts",
+    component: () => import("../views/echarts/")
   }
 ];
 

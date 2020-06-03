@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  inject: ["searchForm"], // 从祖先组件接收searchForm传参
+  inject: ["form"], // 从祖先组件接收searchForm传参
   props: {
     label: {
       // 对应的标签名
@@ -35,7 +35,18 @@ export default {
 
   methods: {
     validate() {
-      console.log("start validate", this.searchForm[this.prop]);
+      console.log(this.form);
+      let prop = this.prop;
+      let value = this.form.model[prop];
+      let rule = this.form.rules[prop];
+      console.log(prop, value, rule);
+      //  rules: {
+      //     name: [
+      //       { required: true, message: "请输入姓名", trigger: "blur" },
+      //       { min: 3, max: 5, message: "长度在 3 到 5 个字符", trigger: "blur" }
+      //     ],
+      //     mobile: [{ required: true, message: "请输入电话", trigger: "change" }]
+      //   }
     }
   }
 };
