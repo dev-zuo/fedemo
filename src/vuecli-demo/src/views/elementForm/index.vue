@@ -1,7 +1,7 @@
 <template>
   <!-- /elementForm -->
   <div>
-    <z-form v-model="form" :rules="rules">
+    <z-form ref="ruleForm" v-model="form" :rules="rules">
       {{ form }}
       <z-form-item label="姓名" prop="name">
         <z-input v-model="form.name" placeholder="请输入姓名"></z-input>
@@ -9,6 +9,8 @@
       <z-form-item label="电话" prop="mobile">
         <z-input v-model="form.mobile" placeholder="请输入电话"></z-input>
       </z-form-item>
+      <button @click="submitForm('ruleForm')">提交</button>
+      <button @click="resetForm('ruleForm')">重置</button>
     </z-form>
   </div>
 </template>
@@ -35,7 +37,21 @@ export default {
       }
     };
   },
-  methods: {}
+  methods: {
+    submitForm(formName) {
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          alert("submit!");
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
+    },
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
+    }
+  }
 };
 </script>
 

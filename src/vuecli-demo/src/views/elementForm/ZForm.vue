@@ -23,6 +23,26 @@ export default {
     rules: {
       type: Object
     }
+  },
+  methods: {
+    // submit时的校验
+    async validate(cb) {
+      // this.$children 所有form-item vue实例 获取实例的this.prop属性，有值则校验
+      let tasks = this.$children
+        .filter(item => item.prop)
+        .map(item => item.validate);
+
+      try {
+        await Promise.all(tasks);
+        cb(true);
+      } catch (e) {
+        cb(false);
+      }
+    },
+
+    resetFields() {
+      console.log(this.value, this.rules);
+    }
   }
 };
 </script>

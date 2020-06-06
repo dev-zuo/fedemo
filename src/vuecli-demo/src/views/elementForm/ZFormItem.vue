@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import schema from "async-validator";
 export default {
   inject: ["form"], // 从祖先组件接收searchForm传参
   props: {
@@ -34,12 +35,53 @@ export default {
   },
 
   methods: {
-    validate() {
+    // promise验证
+    validatePromise() {
       console.log(this.form);
       let prop = this.prop;
       let value = this.form.model[prop];
-      let rule = this.form.rules[prop];
-      console.log(prop, value, rule);
+      let rules = this.form.rules[prop];
+      console.log(prop, value, rules);
+
+      let desc = { [prop]: rules };
+      let validator = new schema(desc);
+      return validator.validate({ [prop]: value }, this.handleErrors);
+    },
+
+    handleErrors(errors, fields) {
+      return function() {
+        console.log("校验失败", errors, fields);
+        this.errMsg = errors[0].message;
+      };
+    },
+
+    async validate() {
+      console.log(this.form);
+      let prop = this.prop;
+      let value = this.form.model[prop];
+      let rules = this.form.rules[prop];
+      console.log(prop, value, rules);
+
+      let desc = { [prop]: rules };
+      let validator = new schema(desc);
+      validator
+        .validate({ [prop]: value })
+        .then(() => {})
+        .catch(() => {
+          return this.handleErrors;
+        });
+      // try {
+      //   await this.validatePromise();
+      //   console.log("校验成功");
+      // } catch (e) {
+      //   console.log(e);
+      //   console.log("校验失败", e);
+      //   let errors = "";
+      //   // let fields = "";
+      //   return () => {
+      //     this.errMsg = errors[0].message;
+      //   };
+      // }
       //  rules: {
       //     name: [
       //       { required: true, message: "请输入姓名", trigger: "blur" },
@@ -57,6 +99,10 @@ export default {
   display: flex;
   .label {
     margin-right: 15px;
+  }
+  .error {
+    margin-left: 10px;
+    color: red;
   }
 }
 </style>
