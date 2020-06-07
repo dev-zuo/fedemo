@@ -30,8 +30,11 @@ export default {
       // this.$children 所有form-item vue实例 获取实例的this.prop属性，有值则校验
       let tasks = this.$children
         .filter(item => item.prop)
-        .map(item => item.validate);
+        .map(item => item.validate());
 
+      console.log("tasks", tasks);
+      // 执行他们的校验方法，如果大家的Promise全部都resolve，校验通过
+      // 如果其中有reject，catch()中可以处理错误提示信息
       try {
         await Promise.all(tasks);
         cb(true);
@@ -41,7 +44,13 @@ export default {
     },
 
     resetFields() {
-      console.log(this.value, this.rules);
+      // form，这样做可能只是清空了值，但没有清楚form-item的错误提示信息
+      // Object.keys(this.value).forEach(key => {
+      //   this.value[key] = "";
+      // });
+      this.$children
+        .filter(item => item.prop)
+        .forEach(item => item.resetFields());
     }
   }
 };

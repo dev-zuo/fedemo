@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import schema from "async-validator";
+import Schema from "async-validator";
 export default {
   inject: ["form"], // 从祖先组件接收searchForm传参
   props: {
@@ -31,64 +31,39 @@ export default {
 
   mounted() {
     // 当前组件监听validate事件，子组件通过$parent.$emit触发
-    this.$on("validate", this.validate);
+    this.$on("validate", () => {
+      this.validate();
+    });
   },
 
   methods: {
     // promise验证
-    validatePromise() {
-      console.log(this.form);
-      let prop = this.prop;
-      let value = this.form.model[prop];
-      let rules = this.form.rules[prop];
-      console.log(prop, value, rules);
+    validate() {
+      let value = this.form.model[this.prop];
+      let rules = this.form.rules[this.prop];
+      console.log(this.prop, value, rules);
 
-      let desc = { [prop]: rules };
-      let validator = new schema(desc);
-      return validator.validate({ [prop]: value }, this.handleErrors);
+      let desc = { [this.prop]: rules };
+      let schema = new Schema(desc);
+      return schema.validate({ [this.prop]: value }, errors => {
+        if (errors) {
+          this.errMsg = errors[0].message;
+        } else {
+          console.log("验证成功");
+          this.errMsg = "";
+        }
+      });
     },
-
-    handleErrors(errors, fields) {
-      return function() {
-        console.log("校验失败", errors, fields);
-        this.errMsg = errors[0].message;
-      };
-    },
-
-    async validate() {
-      console.log(this.form);
-      let prop = this.prop;
-      let value = this.form.model[prop];
-      let rules = this.form.rules[prop];
-      console.log(prop, value, rules);
-
-      let desc = { [prop]: rules };
-      let validator = new schema(desc);
-      validator
-        .validate({ [prop]: value })
-        .then(() => {})
-        .catch(() => {
-          return this.handleErrors;
-        });
-      // try {
-      //   await this.validatePromise();
-      //   console.log("校验成功");
-      // } catch (e) {
-      //   console.log(e);
-      //   console.log("校验失败", e);
-      //   let errors = "";
-      //   // let fields = "";
-      //   return () => {
-      //     this.errMsg = errors[0].message;
-      //   };
-      // }
-      //  rules: {
-      //     name: [
-      //       { required: true, message: "请输入姓名", trigger: "blur" },
-      //       { min: 3, max: 5, message: "长度在 3 到 5 个字符", trigger: "blur" }
-      //     ],
-      //     mobile: [{ required: true, message: "请输入电话", trigger: "change" }]
-      //   }
+    //  rules: {
+    //     name: [
+    //       { required: true, message: "请输入姓名", trigger: "blur" },
+    //       { min: 3, max: 5, message: "长度在 3 到 5 个字符", trigger: "blur" }
+    //     ],
+    //     mobile: [{ required: true, message: "请输入电话", trigger: "change" }]
+    //   }
+    resetFields() {
+      this.form.model[this.prop] = ""; // 重置值
+      this.errMsg = ""; // 重置错误消息
     }
   }
 };
