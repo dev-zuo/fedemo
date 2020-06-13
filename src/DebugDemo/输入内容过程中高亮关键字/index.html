@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #editdiv {
+      width: 200px;
+      height: 100px;
+      padding: 8px;
+      border: 1px solid #ccc;
+      overflow: scroll;
+      outline: none;
+    }
+
+    .highlight {
+      color: red;
+      padding: 0 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="editdiv" contenteditable></div>
+  <button id="highlight">highlight</button>
+  <script>
+    const keyArr = ['今天', '明天', '上午', '下午', '11点', '12点', 'zuo']
+    let editdiv = document.querySelector('#editdiv')
+    // 输入内容改变
+    editdiv.oninput = (e) => {
+      let curValue = editdiv.innerHTML
+      console.log('当前值', curValue)
+      let value = keyArr.filter(item => curValue.includes(item))
+      console.log(value)
+      // // 开始高亮
+      value.forEach(item => {
+        console.log(item, curValue)
+        // 如果之前已经设置了highlight，就不设置了
+        let nextText = `<span class="highlight">${item}</span><div></div>`
+        !curValue.includes(nextText) &&  (curValue = curValue.replace(item, nextText))
+      })
+      editdiv.innerHTML = curValue
+      focusToElementEnd(editdiv)
+
+      // // 移除焦点
+      // var sel = window.getSelection();
+      // sel.removeAllRanges();
+      // document.execCommand('insertHtml', ' ');
+      console.log(editdiv.innerHTML)
+    }
+
+    // set 光标到末尾
+    // https://www.cnblogs.com/jonie-wong/p/5519822.html
+    // div输入@光标定位
+    // 知乎div编辑器，@功能的光标定位问题
+    // https://segmentfault.com/q/1010000005617160
+    function focusToElementEnd(el) {
+      el.focus();
+      if (!window.getSelection) {
+        var range = document.selection.createRange();
+        this.last = range;
+        range.moveToElementText(el);
+        range.select();
+        document.selection.empty(); //取消选中
+      }
+      else {
+        var range = document.createRange();
+        range.selectNodeContents(el);
+        range.collapse();
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+      }
+    }
+  </script>
+</body>
+
+</html>
