@@ -49,6 +49,21 @@ const routes = [
     path: "/echarts",
     name: "echarts",
     component: () => import("../views/echarts/")
+  },
+  {
+    path: "/elementTabs",
+    name: "elementTabs",
+    component: () => import("../views/elementTabs/")
+  },
+  {
+    path: "/vuehooks",
+    name: "vuehooks",
+    component: () => import("../views/vuehooks/")
+  },
+  {
+    path: "/componentAndIs",
+    name: "componentAndIs",
+    component: () => import("../views/componentAndIs/")
   }
 ];
 
