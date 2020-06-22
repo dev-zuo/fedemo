@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let customerList = [
+      { id: '1', info: 'xxx' },
+      { id: '3', info: 'xxx' },
+      { id: '1', info: 'xxx' },
+      { id: '2', info: 'xxx' },
+      { id: '3', info: 'xxx' },
+    ]
+
+    // 去重
+    let tempSet = new Set()
+    let newList = customerList.filter(item => {
+      if (tempSet.has(item.id)) {
+        return false
+      }
+      tempSet.add(item.id)
+      return true
+    })
+    console.log(newList)
+  </script>
+</body>
+
+</html>
