@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 判断一个字符串出现次数最多的字符，并输出其次数
+        let str = "ababadectwestsfdadsfb"
+        let max = 1
+        str.reduce((result, item) => {
+            if (result[item] === undefined) {
+                result[item] = 1
+            } else {
+                result[item]++
+            }
+            // if ()
+        }, {})
+    </script>
+</body>
+</html>
