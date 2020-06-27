@@ -64,6 +64,11 @@ const routes = [
     path: "/componentAndIs",
     name: "componentAndIs",
     component: () => import("../views/componentAndIs/")
+  },
+  {
+    path: "/vloading",
+    name: "vloading",
+    component: () => import("../views/vloading/")
   }
 ];
 

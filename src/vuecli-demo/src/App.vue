@@ -28,6 +28,8 @@ export default {
 };
 </script>
 <style>
+@import url("./assets/css/common.css");
+/* @ */
 body {
   margin: 0;
 }
