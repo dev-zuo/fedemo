@@ -31,25 +31,26 @@
     // 输入内容改变
     editdiv.oninput = (e) => {
       let curValue = editdiv.innerHTML
-      console.log('当前值', curValue)
-      let value = keyArr.filter(item => curValue.includes(item))
-      console.log(value)
-      // // 开始高亮
-      value.forEach(item => {
+      console.log('当前富文本输入内容', curValue)
+      let needHighlightArr = keyArr.filter(item => curValue.includes(item))
+      // 开始高亮
+      needHighlightArr.forEach(item => {
         console.log(item, curValue)
-        // 如果之前已经设置了highlight，就不设置了
-        let nextText = `<span class="highlight">${item}</span><div></div>`
-        !curValue.includes(nextText) &&  (curValue = curValue.replace(item, nextText))
+        // 如果之前已经设置了highlight，就不设置了 class="highlight"
+        let nextText = `<span>${item}</span>`
+        if (!curValue.includes(nextText)) {
+          curValue = curValue.replace(item, nextText)
+        }
       })
       editdiv.innerHTML = curValue
-      focusToElementEnd(editdiv)
-
-      // // 移除焦点
-      // var sel = window.getSelection();
-      // sel.removeAllRanges();
-      // document.execCommand('insertHtml', ' ');
-      console.log(editdiv.innerHTML)
+      focusToElementEnd(editdiv) // 将光标移动到末尾
+      console.log('替换后，再次获取富文本输入内容', editdiv.innerHTML)
     }
+    editdiv.onkeyup = (e) => {
+      console.log('onkeyup', e)
+      document.execCommand('forecolor', false, 'yellow')
+    }
+    // document.execCommand('forecolor', false, 'black')
 
     // set 光标到末尾
     // https://www.cnblogs.com/jonie-wong/p/5519822.html
