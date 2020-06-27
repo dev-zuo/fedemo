@@ -1,23 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
 </head>
+
 <body>
-    <script>
-        // 判断一个字符串出现次数最多的字符，并输出其次数
-        let str = "ababadectwestsfdadsfb"
-        let max = 1
-        str.reduce((result, item) => {
-            if (result[item] === undefined) {
-                result[item] = 1
-            } else {
-                result[item]++
-            }
-            // if ()
-        }, {})
-    </script>
+	<script>
+		// let str = "ebababeadectwebsetesfdaedbsfbe"
+		// let str = "aabb"
+		let str = "ccddaabbjj"
+		console.log(str, getMostChar(str))
+
+		// 获取字符串str中出现次数最多的字符，以及其次数
+		function getMostChar(str) {
+			// 先把字符串切分为数组
+			let mostChar = {
+				count: 0,
+				char: ''
+			}
+
+			let charCountObj = str.split('').reduce((result, item) => {
+				if (result[item] === undefined) {
+					result[item] = 1
+				} else {
+					result[item]++
+				}
+
+				if (result[item] > mostChar.count) {
+					mostChar.count = result[item]
+					mostChar.char = item
+				} else if (result[item] === mostChar.count) {
+					if (typeof mostChar.char === 'string') {
+						mostChar.char = [mostChar.char, item]
+					} else {
+						mostChar.char.push(item)
+					}
+				}
+
+				return result
+			}, {})
+
+			return {
+				mostChar, // 出现次数最多的字符
+				charCountObj, // 字符串中所有字符出现的次数
+			}
+		}
+
+		console.log('每个字符串出现的次数', JSON.stringify(getCharCount(str)))
+		// {"a":4,"b":3,"d":3,"e":2,"c":1,"t":2,"w":1,"s":3,"f":2}
+
+		// 思路：1.我们先获取字符串中每个字符出现的次数
+		function getCharCount(str) {
+			// 先把字符串切分为数组
+			return str.split('').reduce((result, item) => {
+				if (result[item] === undefined) {
+					result[item] = 1
+				} else {
+					result[item]++
+				}
+				return result
+			}, {})
+		}
+
+		// function getCharCount(str) {
+		// 	// 先把字符串切分为数组
+		// 	let result = {}
+		// 	str.split('').forEach(item => {
+		// 		if (result[item] === undefined) {
+		// 			result[item] = 1
+		// 		} else {
+		// 			result[item]++
+		// 		}
+		// 	})
+		// 	return result
+		// }
+
+	</script>
 </body>
+
 </html>
