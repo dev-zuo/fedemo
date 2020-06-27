@@ -342,3 +342,5 @@ var option = {
 };
 
 console.log(option);
+
+export default option;

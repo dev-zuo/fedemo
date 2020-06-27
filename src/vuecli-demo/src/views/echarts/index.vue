@@ -2,16 +2,20 @@
   <div>
     echarts
     <div id="main" style="width: 600px;height:400px;"></div>
+
+    <div id="round" style="width: 600px;height:400px;"></div>
   </div>
 </template>
 
 <script>
+import round from "./round";
 export default {
   data() {
     return {};
   },
 
   mounted() {
+    this.$echarts.init(document.querySelector("#round")).setOption(round);
     // var myChart = this.$echarts.init(document.getElementById("main"));
 
     // // 指定图表的配置项和数据
