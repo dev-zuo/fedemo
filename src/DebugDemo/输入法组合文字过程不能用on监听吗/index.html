@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <input id="input"></input>
+  <script>
+    let input = document.querySelector('#input')
+    console.log('input', input)
+    let composition = false
+
+    // input.addEventListener('compositionstart', (e) => {
+    //   console.log('oncompositionstart')
+    //   composition = true
+    // });
+    // input.addEventListener('compositionend', (e) => {
+    //   console.log('oncompositionend')
+    //   composition = false
+    // });
+
+    input.oncompositionstart = (e) => {
+      console.log('oncompositionstart', composition)
+      composition = true
+    }
+
+    input.oncompositionend = (e) => {
+      console.log('oncompositionend', composition)
+      composition = false
+    }
+
+  </script>
+</body>
+
+</html>

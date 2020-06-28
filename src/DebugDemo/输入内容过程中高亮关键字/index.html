@@ -17,41 +17,53 @@
 
     .highlight {
       color: red;
-      padding: 0 5px;
+      /* padding: 0 5px; */
     }
   </style>
 </head>
 
 <body>
+  <div>关键字: ['今天', '明天', '上午', '下午', '11点', '12点', 'zuo']</div>
   <div id="editdiv" contenteditable></div>
-  <button id="highlight">highlight</button>
+  <button onclick="alert(document.querySelector('#editdiv').textContent)">获取textContent</button>
+  <button onclick="alert(document.querySelector('#editdiv').innerHTML)">获取innerHTML</button>
   <script>
     const keyArr = ['今天', '明天', '上午', '下午', '11点', '12点', 'zuo']
+    let composition = false // 是否是在输入法组合文字的过程中
     let editdiv = document.querySelector('#editdiv')
-    // 输入内容改变
-    editdiv.oninput = (e) => {
-      let curValue = editdiv.innerHTML
-      console.log('当前富文本输入内容', curValue)
+ 
+    editdiv.onkeyup = (e) => {
+      console.log('输入法组合文字过程,composition: ', composition)
+      if (composition) {
+        return 
+      }
+      console.log('onkeyup', e, editdiv.textContent)
+      
+      let curValue = editdiv.textContent
       let needHighlightArr = keyArr.filter(item => curValue.includes(item))
       // 开始高亮
       needHighlightArr.forEach(item => {
         console.log(item, curValue)
         // 如果之前已经设置了highlight，就不设置了 class="highlight"
-        let nextText = `<span>${item}</span>`
+        let nextText = `<span class="highlight">${item}</span>`
         if (!curValue.includes(nextText)) {
           curValue = curValue.replace(item, nextText)
         }
       })
       editdiv.innerHTML = curValue
       focusToElementEnd(editdiv) // 将光标移动到末尾
-      console.log('替换后，再次获取富文本输入内容', editdiv.innerHTML)
     }
-    editdiv.onkeyup = (e) => {
-      console.log('onkeyup', e)
-      document.execCommand('forecolor', false, 'yellow')
-    }
-    // document.execCommand('forecolor', false, 'black')
 
+    editdiv.addEventListener('compositionstart', (e) => {
+      console.log('oncompositionstart')
+      composition = true
+    });
+
+    editdiv.addEventListener('compositionend',  (e) => {
+      console.log('oncompositionend')
+      composition = false
+    });
+  
     // set 光标到末尾
     // https://www.cnblogs.com/jonie-wong/p/5519822.html
     // div输入@光标定位
