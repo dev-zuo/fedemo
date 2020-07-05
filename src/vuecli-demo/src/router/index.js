@@ -69,6 +69,11 @@ const routes = [
     path: "/vloading",
     name: "vloading",
     component: () => import("../views/vloading/")
+  },
+  {
+    path: "/jsVueToast",
+    name: "jsVueToast",
+    component: () => import("../views/jsVueToast/")
   }
 ];
 
