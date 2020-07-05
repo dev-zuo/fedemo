@@ -8,9 +8,29 @@
 </head>
 
 <body>
-  12123123
+  <div> 
+    <button id="btn">发送请求</button>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script>
+    let btn = document.getElementById('btn')
+    btn.onclick = () => {
+      sendRequest()
+    }
 
+    async function sendRequest() {
+      try { 
+        let res = await  axios.get('/listData', {
+          // headers: {'Cache-Control': 'no-cache'},
+          // headers: {'Cache-Control': 'no-store'},
+         
+          // headers: {'Cache-Control': 'max-age=3600'},
+        });
+        console.log(res)
+      } catch(e) {
+        console.log(e)
+      }
+    }
   </script>
 </body>
 
