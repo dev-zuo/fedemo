@@ -74,6 +74,11 @@ const routes = [
     path: "/jsVueToast",
     name: "jsVueToast",
     component: () => import("../views/jsVueToast/")
+  },
+  {
+    path: "/tree",
+    name: "tree",
+    component: () => import("../views/tree/")
   }
 ];
 
