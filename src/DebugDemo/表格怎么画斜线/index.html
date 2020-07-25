@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 基本表格元素 */
+    table {
+      border-collapse: collapse;
+    }
+    th,td {
+      border: 1px solid #666;
+      padding: 5px;
+    }
+
+    /* th单元格 */
+    .slash-wrap {
+      position: relative;
+      box-sizing: border-box;
+      width: 150px;
+      height: 80px;
+    }
+
+    /* 斜线 */
+    .slash {
+      position: absolute;
+      display: block;
+      top: 0;
+      left: 0;
+      /* 斜边边长 */
+      /* Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2)) */
+      /* Math.sqrt(Math.pow(150, 2) + Math.pow(80, 2)) = 170 */
+      width: 170px;
+      height: 1px;
+      background-color:#000;
+      /* 旋转角度计算公式 */ 
+      /*  Math.atan(height / width) * 180 / Math.PI  */
+      /*  Math.atan(80 / 150) * 180 / Math.PI  = 28.072486935852954 */
+      transform: rotate(28.072486935852954deg); 
+      transform-origin: top left;
+    }
+
+    /* 左下角文字 */
+    .left {
+      position: absolute;
+      /* 左下角 left:0; bottom: 0; */
+      left: 15px;
+      bottom: 15px;
+    }
+
+    /* 右上角文字 */
+    .right {
+      position: absolute;
+      /* 右上角 left:0; bottom: 0; */
+      right: 15px;
+      top: 15px;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <table>
+      <tr>
+        <th class="slash-wrap">
+          <span class="left">姓名</span>
+          <span class="slash"></span>
+          <span class="right">科目</span>
+        </th>
+        <th>语文</th>
+        <th>数学</th>
+      </tr>
+      <tr>
+        <td>张三</td>
+        <td>89</td>
+        <td>80</td>
+      </tr>
+      <tr>
+        <td>李四</td>
+        <td>89</td>
+        <td>80</td>
+      </tr>
+    </table>
+  </div>
+</body>
+
+</html>
