@@ -79,6 +79,11 @@ const routes = [
     path: "/tree",
     name: "tree",
     component: () => import("../views/tree/")
+  },
+  {
+    path: "/table",
+    name: "talbe",
+    component: () => import("../views/table/")
   }
 ];
 

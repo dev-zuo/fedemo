@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>test测试</h1>
+  <button id="userInfoBtn">获取user信息</button>
+  <button id="editInfoBtn">修改user信息</button>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    let userInfoBtn = document.querySelector('#userInfoBtn')
+    let eidtInfoBtn = document.querySelector('#userInfoBtn')
+    userInfoBtn.onclick = () => {
+      axios.get('/user').then((res) => {
+        console.log(res)
+      }).catch((e) => {
+        console.error(e.message)
+      })
+    }
+    editInfoBtn.onclick = () => {
+      axios.put('/user').then((res) => {
+        console.log(res)
+      }).catch((e) => {
+        console.error(e.message)
+      })
+    }
+  </script>
+</body>
+
+</html>
