@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #editdiv {
+      width: 200px;
+      height: 100px;
+      padding: 8px;
+      border: 1px solid #ccc;
+      overflow: scroll;
+      outline: none;
+    }
+
+    .highlight {
+      color: red;
+      /* padding: 0 5px; */
+    }
+    .mark {
+        position: relative;
+    }
+    .sel {
+        position: absolute;
+        left: 20px;
+        top: 0;
+        width: 100px;
+        /* height: 50px; */
+        border: 1px solid #ccc;
+        /* background: #ddd; */
+    }
+    .sel span {
+        display: block;
+        border-bottom: 1px solid #ccc;
+        /* background: #ddd; */
+        padding:5px;
+        cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div>关键字: ['今天', '明天', '上午', '下午', '11点', '12点', 'zuo']</div>
+  <div id="editdiv" contenteditable></div>
+  <button onclick="alert(document.querySelector('#editdiv').textContent)">获取textContent</button>
+  <button onclick="alert(document.querySelector('#editdiv').innerHTML)">获取innerHTML</button>
+  <script>
+    // const keyArr = ['今天', '明天', '上午', '下午', '11点', '12点', 'zuo']
+    let composition = false // 是否是在输入法组合文字的过程中
+    let editdiv = document.querySelector('#editdiv')
+ 
+    editdiv.onkeyup = (e) => {
+      console.log('输入法组合文字过程,composition: ', composition, e)
+      if (composition) {
+        return 
+      }
+      console.log('onkeyup', e, editdiv.textContent)
+      
+      let curValue = editdiv.textContent
+      if (curValue.includes('@') && !curValue.includes('<span class="mark">@</span>')) {
+        curValue = curValue.replace('@', '<span class="mark">@</span>')
+      }
+    //   let needHighlightArr = keyArr.filter(item => curValue.includes(item))
+      // 开始高亮
+    //   needHighlightArr.forEach(item => {
+    //     console.log(item, curValue)
+    //     // 如果之前已经设置了highlight，就不设置了 class="highlight"
+    //     let nextText = `<span class="highlight">${item}</span>`
+    //     if (!curValue.includes(nextText)) {
+    //       curValue = curValue.replace(item, nextText)
+    //     }
+    //   })
+      editdiv.innerHTML = curValue
+      if (curValue.includes('<span class="mark">@</span>')) {
+        let el = document.querySelector('.mark')
+
+        let div = document.createElement('div')
+        let top = el.offsetTop + 'px'
+        let left = el.offsetLeft + 20 + 'px'
+        div.innerHTML = `
+            <div class="sel" style="position:absolute;top:${top};left:${left}">
+                <span>a</span>
+                <span>b</span>
+                <span>c</span>
+            </div>
+        `
+        document.documentElement.appendChild(div)
+      }
+      focusToElementEnd(editdiv) // 将光标移动到末尾
+    }
+
+    editdiv.addEventListener('compositionstart', (e) => {
+      console.log('oncompositionstart')
+      composition = true
+    });
+
+    editdiv.addEventListener('compositionend',  (e) => {
+      console.log('oncompositionend')
+      composition = false
+    });
+  
+    // set 光标到末尾
+    // https://www.cnblogs.com/jonie-wong/p/5519822.html
+    // div输入@光标定位
+    // 知乎div编辑器，@功能的光标定位问题
+    // https://segmentfault.com/q/1010000005617160
+    function focusToElementEnd(el) {
+      el.focus();
+      if (!window.getSelection) {
+        var range = document.selection.createRange();
+        this.last = range;
+        range.moveToElementText(el);
+        range.select();
+        document.selection.empty(); //取消选中
+      }
+      else {
+        var range = document.createRange();
+        range.selectNodeContents(el);
+        range.collapse();
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+      }
+    }
+  </script>
+</body>
+
+</html>

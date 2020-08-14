@@ -84,6 +84,11 @@ const routes = [
     path: "/table",
     name: "talbe",
     component: () => import("../views/table/")
+  },
+  {
+    path: "/textarea_trim",
+    name: "textarea_trim",
+    component: () => import("../views/textarea_trim/")
   }
 ];
 
