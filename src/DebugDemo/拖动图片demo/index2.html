@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 图片默认的 draggable="true" 而想 h1这种默认为false不可拖动 -->
+    <img id="img" src="test.png">
+
+    <!-- 放置区域a -->
+    <div id="targetA" style="width: 200px;height:200px;border: 1px solid red;"></div>
+    <script>
+        let targetA = document.querySelector('#targetA')
+        targetA.addEventListener('drop', (ev) => {
+            console.log('drop')
+            // ev.preventDefault() // 必要，chrome drop兼容必须
+        })
+         // 当拖动元素移动到放置区域时触发，触发多次
+        targetA.addEventListener('dragover', (ev) => {
+            console.log('dragover')
+            ev.preventDefault() // 必要，chrome drop兼容必须
+        })
+        // 当拖动元素进入放置区域时触发，一次
+        targetA.addEventListener('dragenter', (ev) => {
+            console.log('dragenter')
+            ev.preventDefault() // 必要，chrome drop兼容必须
+        // ev.target.classList.add('active') // 必要，设置进入时的样式
+        })
+        // // 当拖动元素离开放置区域时触发，一次
+        // targetA.addEventListener('dragleave', (ev) => {
+        //     console.log('dragleave')
+        // // ev.target.classList.remove('active') // 必要，设置离开后的样式
+        // })
+    </script>
+</body>
+
+</html>
