@@ -10,4 +10,4 @@ img.classList.add('logo')
 let imgWrap = document.querySelector('#imgWrap')
 imgWrap.append(img)
 
-document.write('hello webpack，结婚就是sfds')
+document.write('hello webpack，结婚就是')
