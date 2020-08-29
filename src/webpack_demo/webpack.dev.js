@@ -13,6 +13,7 @@ module.exports = {
     filename: '[name]_[chunkhash:8].js'
   },
   mode: 'development',
+  devtool: 'cheap-module-eval-source-map',
   module: {
     rules: [
       {
@@ -24,7 +25,8 @@ module.exports = {
             name: '[name].[ext]',
             outputPath: 'images/',
             // 我这里图片为26k，就调到了限制，一般建议 2048, 2KB
-            limit: 40960 // 单位字节，小于40KB的jpg，图片自动转base64，可以减少一次http请求
+            // 图片太大会影响主包，还是设置为2048
+            limit: 2048 // 单位字节，小于40KB的jpg，图片自动转base64，可以减少一次http请求
           }
         }
       },
@@ -34,7 +36,6 @@ module.exports = {
         // 注意css loader有执行顺序，从又向左执行
         // use: ['style-loader', 'css-loader', 'less-loader', 'postcss-loader']
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader', 'postcss-loader']
-
       },
       {
         test: /\.(eot|ttf|woff|woff2|svg)$/,
@@ -55,13 +56,23 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: '测试webpack生成htmllll',
-      filename: 'app.html',
+      filename: 'index.html',
       template: './src/index.html'
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: "[name][contenthash:8].css"
     })
-  ]
+  ],
+  devServer: {
+    contentBase: './dist', // 指定服务器的静态资源目录
+    open: true, // 自动再浏览器打开
+    port: 8081, // 端口
+    proxy: {
+      "/api": {
+        target: "http://127.0.0.1:9002"
+      }
+    }
+  }
 }
 

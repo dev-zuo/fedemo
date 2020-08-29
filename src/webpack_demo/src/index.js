@@ -10,4 +10,10 @@ img.classList.add('logo')
 let imgWrap = document.querySelector('#imgWrap')
 imgWrap.append(img)
 
-document.write('hello webpack，结婚就是')
+document.write('hello webpack，结婚就是您')
+console.log('test soruce mapaaa')
+
+import axios from 'axios'
+axios.get('/api/info').then(res => {
+  console.log(res)
+})
