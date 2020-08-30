@@ -21,8 +21,8 @@ Vue.use(ElementUI);
 
 Vue.use(infiniteScroll);
 
-import VConsole from "vconsole";
-new VConsole();
+// import VConsole from "vconsole";
+// new VConsole();
 
 import Echarts from "echarts";
 Vue.use(Echarts);

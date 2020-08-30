@@ -89,6 +89,16 @@ const routes = [
     path: "/textarea_trim",
     name: "textarea_trim",
     component: () => import("../views/textarea_trim/")
+  },
+  {
+    path: "/provide",
+    name: "provide",
+    component: () => import("../views/provide/")
+  },
+  {
+    path: "/sameCompTabs",
+    name: "sameCompTabs",
+    component: () => import("../views/sameCompTabs/")
   }
 ];
 
