@@ -3,15 +3,15 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import infiniteScroll from "vue-infinite-scroll";
-import pinyin from "pinyin";
+// import pinyin from "pinyin";
 
-console.log(
-  "[pinyin test]",
-  pinyin("测试", {
-    style: pinyin.STYLE_NORMAL, // 设置拼音风格
-    heteronym: true
-  }).join("")
-);
+// console.log(
+//   "[pinyin test]",
+//   pinyin("测试", {
+//     style: pinyin.STYLE_NORMAL, // 设置拼音风格
+//     heteronym: true
+//   }).join("")
+// );
 
 Vue.config.productionTip = false;
 

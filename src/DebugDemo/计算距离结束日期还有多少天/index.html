@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    距离 2020/11/01 还有 <span id="gap-day"></span> 天
+  </div>
+  <script>
+    let endDate = new Date('2020/11/01')
+    let startDate = new Date()
+    let gapDay = (endDate - startDate) / (3600 * 1000 * 24)
+    console.log(gapDay)
+    let gapDayEl = document.querySelector('#gap-day')
+    gapDayEl.innerHTML = (Math.round(gapDay * 100) / 100).toFixed(2)
+  </script>
+</body>
+</html>
