@@ -3,6 +3,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+// const webpack = require('webpack')
 
 module.exports = {
   entry: {
@@ -10,7 +11,8 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: '[name]_[chunkhash:8].js'
+    filename: '[name].js'
+    // filename: '[name]_[chunkhash:8].js'
   },
   mode: 'development',
   devtool: 'cheap-module-eval-source-map',
@@ -34,8 +36,8 @@ module.exports = {
       {
         test: /\.less$/,
         // 注意css loader有执行顺序，从又向左执行
-        // use: ['style-loader', 'css-loader', 'less-loader', 'postcss-loader']
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader', 'postcss-loader']
+        use: ['style-loader', 'css-loader', 'less-loader', 'postcss-loader']
+        // use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader', 'postcss-loader']
       },
       {
         test: /\.(eot|ttf|woff|woff2|svg)$/,
@@ -60,14 +62,19 @@ module.exports = {
       template: './src/index.html'
     }),
     new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin({
-      filename: "[name][contenthash:8].css"
-    })
+    // new MiniCssExtractPlugin({
+    //   // filename: "[name]_[contenthash:8].css" 
+    //   filename: "[name].css"
+    // })
+    // new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
     contentBase: './dist', // 指定服务器的静态资源目录
     open: true, // 自动再浏览器打开
     port: 8081, // 端口
+    hot: true,
+    //即便便HMR不不⽣生效，浏览器器也不不⾃自动刷新，就开启hotOnly 
+    // hotOnly: true,
     proxy: {
       "/api": {
         target: "http://127.0.0.1:9002"
