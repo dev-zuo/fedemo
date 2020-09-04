@@ -41,6 +41,14 @@ let devConfig = {
         target: "http://127.0.0.1:9002"
       }
     }
+  },
+  optimization: {
+    // tree shaking
+    usedExports: true,
+    // 自动代码分割
+    splitChunks: {
+      chunks: "all", // 默认⽀持异步，我们使用all 
+    }
   }
 }
 
