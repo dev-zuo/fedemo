@@ -99,6 +99,31 @@ const routes = [
     path: "/sameCompTabs",
     name: "sameCompTabs",
     component: () => import("../views/sameCompTabs/")
+  },
+  {
+    path: "/keepAlive",
+    name: "keepAlive",
+    component: () => import("../views/keepAlive/"),
+    children: [
+      {
+        path: "a",
+        name: "keepAliveA",
+        component: () => import("../views/keepAlive/comps/PageA.vue")
+      },
+      {
+        path: "b",
+        name: "keepAliveB",
+        meta: {
+          keepAlive: true
+        },
+        component: () => import("../views/keepAlive/comps/PageB.vue")
+      },
+      {
+        path: "c",
+        name: "keepAliveC",
+        component: () => import("../views/keepAlive/comps/PageC.vue")
+      }
+    ]
   }
 ];
 
