@@ -1,7 +1,5 @@
 <template>
-  <div>
-    我是C组件页面
-  </div>
+  <div>我是TestA组件</div>
 </template>
 
 <script>

@@ -114,7 +114,8 @@ const routes = [
         path: "b",
         name: "keepAliveB",
         meta: {
-          keepAlive: true
+          keepAlive: true,
+          include: "PageB"
         },
         component: () => import("../views/keepAlive/comps/PageB.vue")
       },
@@ -124,6 +125,11 @@ const routes = [
         component: () => import("../views/keepAlive/comps/PageC.vue")
       }
     ]
+  },
+  {
+    path: "/subcomp_samename",
+    name: "subcomp_samename",
+    component: () => import("../views/subcomp_samename/")
   }
 ];
 
