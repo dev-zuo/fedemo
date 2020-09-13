@@ -14,24 +14,29 @@
     console.log('input', input)
     let composition = false
 
-    // input.addEventListener('compositionstart', (e) => {
-    //   console.log('oncompositionstart')
-    //   composition = true
-    // });
-    // input.addEventListener('compositionend', (e) => {
-    //   console.log('oncompositionend')
-    //   composition = false
-    // });
-
-    input.oncompositionstart = (e) => {
-      console.log('oncompositionstart', composition)
+    input.addEventListener('compositionstart', (e) => {
+      console.log('oncompositionstart')
       composition = true
+    });
+    input.addEventListener('compositionend', (e) => {
+      console.log('oncompositionend')
+      composition = false
+    });
+
+    input.oninput = (e) => {
+      console.log('oninput', e)
     }
 
-    input.oncompositionend = (e) => {
-      console.log('oncompositionend', composition)
-      composition = false
-    }
+    // input.oncompositionstart = (e) => {
+    //   console.log('oncompositionstart', composition)
+    //   console.log('onCompositionstart', composition)
+    //   composition = true
+    // }
+
+    // input.oncompositionend = (e) => {
+    //   console.log('onCompositionend', composition)
+    //   composition = false
+    // }
 
   </script>
 </body>
