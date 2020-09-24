@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <div style="margin-left: 1rem;">margin-left: 1rem;</div>
+  <div style="margin-left: 100px;">margin-left: 100px;</div>
+  <script src="./vconsole.min.js"></script>
+  <script>
+    var vConsole = new VConsole();
+    initRem()
+    function initRem() {
+      let html = document.documentElement
+      let resizeEventName = 'orientationchange' in window ? 'orientationchange' : 'resize'
+      let recalc = () => {
+        console.log('recalc', html);
+        let w = html.clientWidth < 320 ? 320 : html.clientWidth
+        let fontSize = w > 750 ? 200 : ((w / 375) * 100)
+        html.style.fontSize = fontSize + 'px'
+      }
+      recalc()
+      document.addEventListener('DOMContentLoaded', recalc, false)
+      window.addEventListener(resizeEventName, recalc, false)
+    }
+  </script>
+</body>
+
+</html>

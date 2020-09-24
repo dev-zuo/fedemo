@@ -13,9 +13,10 @@
 
 <script>
 export default {
-  components: {
-    ZTree: () => import("./ZTree")
-  },
+  // components: {
+  //   ZTree: () => import("./ZTree")
+  // },
+  name: "ZTree",
   props: {
     data: {
       type: Array,

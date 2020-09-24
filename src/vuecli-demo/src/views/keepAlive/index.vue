@@ -19,7 +19,7 @@
       <router-view v-if="$route.meta.keepAlive"></router-view>
     </keep-alive>
     <router-view v-if="!$route.meta.keepAlive"></router-view>
-    $route.meta.include {{$route.meta.include}}
+    $route.meta.include {{ $route.meta.include }}
   </div>
 </template>
 
@@ -32,9 +32,9 @@ export default {
   },
   created() {
     setTimeout(() => {
-      this.$route.meta.include = "test"
-      console.log('this.$route.meta.include', 'test')
-    }, 3000)
+      this.$route.meta.include = "test";
+      console.log("this.$route.meta.include", "test");
+    }, 3000);
   }
 };
 </script>

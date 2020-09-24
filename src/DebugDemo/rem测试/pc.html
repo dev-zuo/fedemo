@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <div style="margin-left: 1rem;">margin-left: 1rem;</div>
+  <div style="margin-left: 100px;">margin-left: 100px;</div>
+  <script>
+    initRem()
+    function initRem() {
+      const recalc = () => {
+        console.log('resize')
+        let designSize = 1920
+        let minWidth = 520
+        let html = document.documentElement
+        let w = html.clientWidth < minWidth ? minWidth : html.clientWidth
+        let rem = (w / designSize) * 100
+        html.style.fontSize = `${rem}px`  // 会影响所有页面
+        
+      }
+      recalc()
+      // 窗口变更后，变更rem
+      window.addEventListener('resize', recalc)
+    }
+  </script>
+</body>
+
+</html>
