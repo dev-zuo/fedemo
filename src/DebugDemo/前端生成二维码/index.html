@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div style="margin-bottom:20px;">
+    <input id="input" type="text">
+    <button id="btn">生成二维码</button>
+  </div>
+  <div id="qrcode"></div>
+  <script src="./qrcode.min.js"></script>
+  <script type="text/javascript">
+    let inputEl = document.getElementById('input')
+    let btnEl = document.getElementById('btn')
+    btnEl.onclick = () => {
+      document.getElementById("qrcode").innerHTML = ''
+      // new QRCode(document.getElementById("qrcode"), inputEl.value);
+      new QRCode(document.getElementById("qrcode"), {
+        text: inputEl.value,
+        width: 128,
+        height: 128,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+      });
+    }
+  </script>
+</body>
+
+</html>
