@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <div style="height:50px;">我是占位文本</div>
+    <img class="lazy-img" data-src="http://zuo11.com/images/blog/c/c_vim.png">
+    <div style="height:500px;">我是占位文本</div>
+    <img class="lazy-img" data-src="http://zuo11.com/images/blog/c/c_saolei_3.png">
+  </div>
+  <script>
+    let imgEls = document.querySelectorAll('.lazy-img')
+    let imgs = []
+    imgEls.forEach(imgEl => {
+      imgEl.style.height = '300px'
+      imgEl.style.width = '300px'
+      imgEl.src = "placeholder.png"
+      // 存储信息用于监听滚动后比对
+      imgs.push({
+        offsetTop: imgEl.offsetTop,
+        el: imgEl,
+        src: imgEl.dataset.src,
+        isLoad: false
+      })
+    })
+    console.log(imgs)
+    // 判断滚动位置，显示图片
+    function showImg() {
+      console.log('>>>>>>')
+      imgs.forEach(item => {
+        // 如果图片未加载
+        if (!item.isLoad) {
+          console.log(window.innerHeight, item.src, item.el.getBoundingClientRect())
+          let elPos = item.el.getBoundingClientRect()
+          if (elPos.top < window.innerHeight) {
+            // 如果元素相对顶部的距离 < 视窗高度，加载图片
+            item.el.src = item.src
+            item.isLoad = true
+          }
+        }
+      })
+    }
+    showImg()
+    window.onscroll = () => {
+      showImg()
+    }
+  </script>
+</body>
+</html>

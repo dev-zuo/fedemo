@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div> 
+    <button id="btn">发送请求</button>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    let btn = document.getElementById('btn')
+    btn.onclick = () => {
+      sendRequest()
+    }
+
+    async function sendRequest() {
+      try { 
+        let res = await  axios.post('/user');
+        console.log(res)
+      } catch(e) {
+        console.log(e)
+      }
+    }
+  </script>
+</body>
+
+</html>
