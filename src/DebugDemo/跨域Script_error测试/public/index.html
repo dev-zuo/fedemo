@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button onclick="btnClick()">点击</button>
+  <!-- <script src="http://127.0.0.1:5002/a.js"></script> -->
+  <script src="http://127.0.0.1:5002/a.js" crossorigin="anonymous"></script>
+  <!-- <script src="vconsole.min.js"></script> -->
+  <script>
+    // init vConsole
+    // var vConsole = new VConsole()
+    window.addEventListener('error', e => {
+      console.log(e, e.message)
+    })
+  </script>
+</body>
+
+</html>
