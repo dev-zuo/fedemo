@@ -130,6 +130,11 @@ const routes = [
     path: "/subcomp_samename",
     name: "subcomp_samename",
     component: () => import("../views/subcomp_samename/")
+  },
+  {
+    path: "/at",
+    name: "at",
+    component: () => import("../views/at/")
   }
 ];
 
