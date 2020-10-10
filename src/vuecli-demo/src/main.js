@@ -3,21 +3,36 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import infiniteScroll from "vue-infinite-scroll";
-// import pinyin from "pinyin";
-
-// console.log(
-//   "[pinyin test]",
-//   pinyin("测试", {
-//     style: pinyin.STYLE_NORMAL, // 设置拼音风格
-//     heteronym: true
-//   }).join("")
-// );
 
 Vue.config.productionTip = false;
 
-import ElementUI from "element-ui";
+import {
+  Input,
+  Button,
+  Dialog,
+  Radio,
+  RadioGroup,
+  Select,
+  Option,
+  Tabs,
+  TabPane,
+  Loading,
+  Table,
+  TableColumn
+} from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
-Vue.use(ElementUI);
+Vue.use(Input);
+Vue.use(Button);
+Vue.use(Dialog);
+Vue.use(Radio);
+Vue.use(RadioGroup);
+Vue.use(Select);
+Vue.use(Option);
+Vue.use(Tabs);
+Vue.use(TabPane);
+Vue.use(Loading);
+Vue.use(Table);
+Vue.use(TableColumn);
 
 Vue.use(infiniteScroll);
 

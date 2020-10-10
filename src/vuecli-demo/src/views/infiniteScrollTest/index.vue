@@ -1,6 +1,9 @@
 <template>
   <div>
     <!-- <sub-comps></sub-comps> -->
+    <!-- <div v-infinite-scroll="loadMore" infinite-scroll-distance="10">
+      测试
+    </div> -->
     <sub-comps-middle>
       <div v-infinite-scroll="loadMore" infinite-scroll-distance="10">
         测试

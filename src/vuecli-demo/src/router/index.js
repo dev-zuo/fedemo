@@ -1,7 +1,5 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-import InfiniteScroll from "../views/infiniteScrollTest/index.vue";
 
 Vue.use(VueRouter);
 
@@ -9,7 +7,7 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home
+    component: () => import("../views/Home.vue")
   },
   {
     path: "/about",
@@ -23,7 +21,7 @@ const routes = [
   {
     path: "/infiniteScroll",
     name: "InfiniteScroll",
-    component: InfiniteScroll
+    component: () => import("../views/infiniteScrollTest/index.vue")
   },
   {
     path: "/lessPageA",

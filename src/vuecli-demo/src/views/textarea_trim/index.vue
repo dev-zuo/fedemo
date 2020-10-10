@@ -29,7 +29,7 @@ export default {
       // 非数字全部转换为''
       e.target.value = e.target.value.replace(/[^\d]/g, "");
       // 开始的0处理
-      if ([0, "0"].includes(e.target.value)) {
+      if (e.target.value.startsWith("0")) {
         e.target.value = "";
       }
       this.peopleCount = e.target.value;

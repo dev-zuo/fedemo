@@ -80,11 +80,13 @@
         let top = el.offsetTop + 'px'
         let left = el.offsetLeft + 20 + 'px'
         div.innerHTML = `
+          <div style="">
             <div class="sel" style="position:absolute;top:${top};left:${left}">
                 <span>a</span>
                 <span>b</span>
                 <span>c</span>
             </div>
+          </div>
         `
         document.documentElement.appendChild(div)
       }
