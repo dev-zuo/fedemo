@@ -6,33 +6,35 @@ import infiniteScroll from "vue-infinite-scroll";
 
 Vue.config.productionTip = false;
 
-import {
-  Input,
-  Button,
-  Dialog,
-  Radio,
-  RadioGroup,
-  Select,
-  Option,
-  Tabs,
-  TabPane,
-  Loading,
-  Table,
-  TableColumn
-} from "element-ui";
-import "element-ui/lib/theme-chalk/index.css";
-Vue.use(Input);
-Vue.use(Button);
-Vue.use(Dialog);
-Vue.use(Radio);
-Vue.use(RadioGroup);
-Vue.use(Select);
-Vue.use(Option);
-Vue.use(Tabs);
-Vue.use(TabPane);
-Vue.use(Loading);
-Vue.use(Table);
-Vue.use(TableColumn);
+import ElementUI from "element-ui";
+Vue.use(ElementUI);
+// import {
+//   Input,
+//   Button,
+//   Dialog,
+//   Radio,
+//   RadioGroup,
+//   Select,
+//   Option,
+//   Tabs,
+//   TabPane,
+//   Loading,
+//   Table,
+//   TableColumn
+// } from "element-ui";
+// // import "element-ui/lib/theme-chalk/index.css";
+// Vue.use(Input);
+// Vue.use(Button);
+// Vue.use(Dialog);
+// Vue.use(Radio);
+// Vue.use(RadioGroup);
+// Vue.use(Select);
+// Vue.use(Option);
+// Vue.use(Tabs);
+// Vue.use(TabPane);
+// Vue.use(Loading);
+// Vue.use(Table);
+// Vue.use(TableColumn);
 
 Vue.use(infiniteScroll);
 
