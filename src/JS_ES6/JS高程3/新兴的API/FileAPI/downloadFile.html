@@ -24,18 +24,42 @@
         // 方法1 
         // blob:http://127.0.0.1:5501/dffc0dee-93e7-4b8f-bee2-8a3b8671aeb2
         let dataUrl = window.URL.createObjectURL(this.files[0])
-        document.getElementById('img').src = dataUrl
+        // document.getElementById('img').src = dataUrl
         document.querySelector('#imgSrc').innerHTML = dataUrl
+        downloadFile(dataUrl)
       } else {
         // 方法2 
         // data:image/png;base64,iVBORw0KGgoAAA....
         let reader = new FileReader();
         reader.readAsDataURL(this.files[0])
         reader.onload = function (e) {
-          document.getElementById('img').src = reader.result
+          // document.getElementById('img').src = reader.result
           document.querySelector('#imgSrc').innerHTML = reader.result
+          downloadFile(reader.result)
+        }
+        reader.onerror = (e) => {
+          console.log(e)
         }
       }
+    }
+
+    function downloadFile(dataUrl) {
+      // 如果是IE，特殊处理，防止IE下提提示 "拒绝访问"
+      // blob拒绝访问文件 fix
+      if (window.navigator.msSaveBlob) {
+        try {
+          // 根据实际情况加后缀名
+          window.navigator.msSaveBlob(dataUrl, '下载文件.zip')
+        } catch(e) {
+          console.log('msSaveBlob异常', e)
+        }
+        return
+      } 
+      const downloadEl = document.createElement('a')
+      downloadEl.href = dataUrl
+      // downloadEl.download = '下载文件' // download文件名
+      document.body.appendChild(downloadEl)
+      downloadEl.click() 
     }
   </script>
 </body>

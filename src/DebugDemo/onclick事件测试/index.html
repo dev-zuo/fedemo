@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- vue 中，@click="test" 默认参数是event，如果 @click="test('a')"，参数就是 'a' -->
+  <button onclick="test">onclick="test"</button>
+  <button onclick="test()">onclick="test()"</button>
+  <script>
+    function test() {
+      alert('test')
+    }
+  </script>
+</body>
+</html>
