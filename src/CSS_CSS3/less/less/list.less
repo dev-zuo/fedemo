@@ -1,0 +1,46 @@
+
+@colors: red, rgb(30, 30, 31), yellow;
+@list: 768px 1024px 1366px 1920px;
+.btn {
+  width: length(@colors);
+  height: length(@list);
+}
+span {
+  // extract 从 1 开始
+  color: extract(@colors, 3);
+  width: extract(@colors, 1);
+  padding: range(4);
+  margin: range(10px, 30px, 10);
+}
+
+// each 遍历
+@selectors: blue, green, yellow;
+each(@selectors, {
+  .btn-@{value} {
+    color: @value;
+  }
+})
+
+@set: {
+  one: blue;
+  two: green;
+  three: yellow;
+}
+.set {
+  each(@set, {
+    @{key}-@{index}: @value;
+  })
+}
+
+// mixins 参数
+.set-2() {
+  one: blue;
+  two: green;
+  three: red;
+}
+.set-2 {
+  // Call mixin and iterate each rule
+  each(.set-2(), .(@v, @k, @i) {
+    @{k}-@{i}: @v;
+  });
+}

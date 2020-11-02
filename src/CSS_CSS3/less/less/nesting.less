@@ -1,0 +1,13 @@
+@leftWidth: 300px;
+.container {
+  color: black;
+  .left {
+    width: @leftWidth;
+    span {
+      color: red;
+    }
+  }
+  .right {
+    width: calc(100% - @leftWidth)
+  }
+}

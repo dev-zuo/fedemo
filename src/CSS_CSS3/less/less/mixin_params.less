@@ -1,0 +1,10 @@
+.border-radius(@width: 1px, @color: red, @radius: 5px) {
+  border: @width solid @color;
+  border-radius: @radius;
+}
+.btn {
+  .border-radius(2px, blue, 10px);
+}
+.btn-2 {
+  .border-radius();
+}

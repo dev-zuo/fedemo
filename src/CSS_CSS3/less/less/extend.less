@@ -1,0 +1,19 @@
+.animal {
+  background-color: black;
+  color: white;
+}
+.bear {
+  &:extend(.animal);
+  background-color: brown;
+}
+
+.my-inline-block {
+  display: inline-block;
+  font-size: 0;
+}
+.thing1 {
+  &:extend(.my-inline-block);
+}
+.thing2 {
+   &:extend(.my-inline-block);
+}

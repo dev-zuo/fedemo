@@ -1,0 +1,36 @@
+.classtest {
+  border: 1px solid #ccc;
+}
+#idtest {
+  margin-top: 10px;
+}
+#a span {
+  border: 1px solid #ccc;
+  margin-top: 10px;
+  color: blue;
+}
+.tips {
+  border: 1px solid #ccc;
+  margin-top: 10px;
+}
+.some a {
+  color: red;
+}
+.some .btn {
+  width: 100px;
+}
+.some2 {
+  width: 100px;
+}
+.button {
+  color: blue;
+  border: 1px solid green;
+}
+.thing1 {
+  display: inline-block;
+  font-size: 0;
+}
+.thing2 {
+  display: inline-block;
+  font-size: 0;
+}

@@ -1,0 +1,59 @@
+// 单个样式 mixin
+.classtest {
+  border: 1px solid #ccc;
+}
+
+#idtest {
+  margin-top: 10px;
+}
+
+#a span {
+  .classtest();
+  #idtest();
+  color: blue;
+}
+
+.tips {
+  .classtest();
+  #idtest();
+}
+
+
+// 一组，多个样式 mixin
+.grouptest() {
+  a { 
+    color: red;
+  }
+  .btn { 
+    width: 100px;
+  }
+}
+.some {
+  .grouptest();
+}
+.some2 {
+  .grouptest.btn();
+}
+
+// mixins map用法
+#colors() {
+  primary: blue;
+  success: green;
+}
+
+.button {
+  color: #colors[primary];
+  border: 1px solid #colors[success];
+}
+
+
+.my-inline-block() {
+  display: inline-block;
+  font-size: 0;
+}
+.thing1 {
+  .my-inline-block;
+}
+.thing2 {
+  .my-inline-block;
+}

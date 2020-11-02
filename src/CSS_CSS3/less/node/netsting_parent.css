@@ -1,0 +1,21 @@
+.btn {
+  color: #666;
+}
+.btn:hover {
+  border: 1px solid red;
+}
+.btn-primary {
+  color: blue;
+}
+.btn-danger {
+  color: red;
+}
+.link + .link {
+  color: red;
+}
+.link .link {
+  color: green;
+}
+.tes .link {
+  color: blue;
+}

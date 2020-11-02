@@ -1,0 +1,14 @@
+@some: foo;
+@result: boolean(isstring(@some));
+
+div {
+  margin: if((2 > 1), 0, 3px);
+  color:  if((iscolor(@some)), @some, black);
+  height: if(@result, 100px, 200px)
+}
+
+.test {
+  color: if(not (true), foo, bar);
+  size: if((true) and (2 > 1), foo, bar);
+  width: if((false) or (isstring("boo!")), foo, bar);
+}

@@ -1,0 +1,13 @@
+
+@test: (min-width: 768px);
+@min768: ~"(min-width: 768px)";
+@media @test {
+  a {
+    color: blue;
+  }
+}
+@media @min768 {
+  a {
+    color: blue;
+  }
+}

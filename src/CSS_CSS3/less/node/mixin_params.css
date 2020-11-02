@@ -1,0 +1,8 @@
+.btn {
+  border: 2px solid blue;
+  border-radius: 10px;
+}
+.btn-2 {
+  border: 1px solid red;
+  border-radius: 5px;
+}

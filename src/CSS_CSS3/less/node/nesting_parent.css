@@ -1,0 +1,12 @@
+.btn {
+  color: #666;
+}
+.btn:hover {
+  border: 1px solid red;
+}
+.btn-primary {
+  color: blue;
+}
+.btn-danger {
+  color: red;
+}

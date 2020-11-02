@@ -1,0 +1,14 @@
+.animal,
+.bear {
+  background-color: black;
+  color: white;
+}
+.bear {
+  background-color: brown;
+}
+.my-inline-block,
+.thing1,
+.thing2 {
+  display: inline-block;
+  font-size: 0;
+}

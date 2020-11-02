@@ -1,0 +1,9 @@
+
+
+@k: ceil(2.4) floor(2.6) round(2.4) round(2.6) percentage(0.5) sqrt(25px) abs(-12%) min(1, 2);
+
+.btn {
+  each(@k, {
+    a-@{index}: @value;
+  })
+}

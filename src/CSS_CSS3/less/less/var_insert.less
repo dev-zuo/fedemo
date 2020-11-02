@@ -1,0 +1,18 @@
+// 选择器
+@my-selector: my-div;
+.@{my-selector} {
+  color: red;
+}
+
+// URL
+@images: "../images";
+div {
+  background: url("@{images}/test.png");
+}
+
+// 属性名
+@property: color;
+.widget {
+  @{property}: #0ee;
+  background-@{property}: #999;
+}

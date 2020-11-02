@@ -1,0 +1,29 @@
+.btn {
+  width: 3;
+  height: 4;
+}
+span {
+  color: yellow;
+  width: red;
+  padding: 1 2 3 4;
+  margin: 10px 20px 30px;
+}
+.btn-blue {
+  color: blue;
+}
+.btn-green {
+  color: green;
+}
+.btn-yellow {
+  color: yellow;
+}
+.set {
+  one-1: blue;
+  two-2: green;
+  three-3: yellow;
+}
+.set-2 {
+  one-1: blue;
+  two-2: green;
+  three-3: red;
+}
