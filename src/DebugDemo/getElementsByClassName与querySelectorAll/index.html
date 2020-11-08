@@ -1,0 +1,223 @@
+<nav>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+</nav>
+<script>
+  let nav = document.getElementsByTagName('nav')[0]
+  let linkArr = nav.getElementsByTagName('a')
+  console.log(linkArr) // HTMLCollection [] => Object
+  console.log(linkArr[0].__proto__)  //  HTMLAnchorElement
+  // HTMLAnchorElement => HTMLElement => Element => Node => EventTarget => Object
+  // <nav> HTMLElement
+  // <li> HTMLLIElement 
+  console.log(linkArr[0].nodeType, linkArr[0].nodeName) // 1 "A"
+  console.log(linkArr.__proto__) // HTMLCollection [] 
+
+  // Uncaught TypeError: linkArr.forEach is not a function
+  // linkArr.forEach(item => console.log(item))
+
+  // OK 因为 HTMLCollection 实现了 Symbol.iterator 迭代方法
+  for (item of linkArr) { console.log(item) }
+
+  [1,2,3].forEach((item, index, array) => console.log(item, index, array))
+  // OK
+  let cb = (item, index, array) => console.log(item, index, array)
+  Array.prototype.forEach.call(linkArr, cb)
+
+
+  // 和 querySelectorAll 对比
+  let linkArr2 = document.querySelectorAll('li a')
+  console.log(linkArr2) // NodeList [] => Object
+  console.log(linkArr2[0].__proto__)  //  HTMLAnchorElement
+  console.log(linkArr2[0].nodeType, linkArr2[0].nodeName) // 1
+  console.log(linkArr2.__proto__) // NodeList [] 
+  linkArr2.forEach(item => console.log(item))
+</script>
+
+<!-- HTMLElement
+clientHeight: (...)
+clientLeft: (...)
+clientTop: (...)
+clientWidth: (...)
+contentEditable: (...)
+dataset: (...)
+dir: (...)
+draggable: (...)
+elementTiming: (...)
+enterKeyHint: (...)
+firstChild: (...)
+firstElementChild: (...)
+focus: ƒ focus()
+hidden: (...)
+id: (...)
+innerHTML: (...)
+innerText: (...)
+inputMode: (...)
+isConnected: (...)
+isContentEditable: (...)
+lang: (...)
+lastChild: (...)
+lastElementChild: (...)
+localName: (...)
+namespaceURI: (...)
+nextElementSibling: (...)
+nextSibling: (...)
+nodeName: (...)
+nodeType: (...)
+nodeValue: (...)
+nonce: (...)
+offsetHeight: (...)
+offsetLeft: (...)
+offsetParent: (...)
+offsetTop: (...)
+offsetWidth: (...)
+onabort: (...)
+onanimationend: (...)
+onanimationiteration: (...)
+onanimationstart: (...)
+onauxclick: (...)
+onbeforecopy: (...)
+onbeforecut: (...)
+onbeforepaste: (...)
+onbeforexrselect: (...)
+onblur: (...)
+oncancel: (...)
+oncanplay: (...)
+oncanplaythrough: (...)
+onchange: (...)
+onclick: (...)
+onclose: (...)
+oncontextmenu: (...)
+oncopy: (...)
+oncuechange: (...)
+oncut: (...)
+ondblclick: (...)
+ondrag: (...)
+ondragend: (...)
+ondragenter: (...)
+ondragleave: (...)
+ondragover: (...)
+ondragstart: (...)
+ondrop: (...)
+ondurationchange: (...)
+onemptied: (...)
+onended: (...)
+onerror: (...)
+onfocus: (...)
+onformdata: (...)
+onfullscreenchange: (...)
+onfullscreenerror: (...)
+ongotpointercapture: (...)
+oninput: (...)
+oninvalid: (...)
+onkeydown: (...)
+onkeypress: (...)
+onkeyup: (...)
+onload: (...)
+onloadeddata: (...)
+onloadedmetadata: (...)
+onloadstart: (...)
+onlostpointercapture: (...)
+onmousedown: (...)
+onmouseenter: (...)
+onmouseleave: (...)
+onmousemove: (...)
+onmouseout: (...)
+onmouseover: (...)
+onmouseup: (...)
+onmousewheel: (...)
+onpaste: (...)
+onpause: (...)
+onplay: (...)
+onplaying: (...)
+onpointercancel: (...)
+onpointerdown: (...)
+onpointerenter: (...)
+onpointerleave: (...)
+onpointermove: (...)
+onpointerout: (...)
+onpointerover: (...)
+onpointerrawupdate: (...)
+onpointerup: (...)
+onprogress: (...)
+onratechange: (...)
+onreset: (...)
+onresize: (...)
+onscroll: (...)
+onsearch: (...)
+onseeked: (...)
+onseeking: (...)
+onselect: (...)
+onselectionchange: (...)
+onselectstart: (...)
+onstalled: (...)
+onsubmit: (...)
+onsuspend: (...)
+ontimeupdate: (...)
+ontoggle: (...)
+ontransitionend: (...)
+onvolumechange: (...)
+onwaiting: (...)
+onwebkitanimationend: (...)
+onwebkitanimationiteration: (...)
+onwebkitanimationstart: (...)
+onwebkitfullscreenchange: (...)
+onwebkitfullscreenerror: (...)
+onwebkittransitionend: (...)
+onwheel: (...)
+outerHTML: (...)
+outerText: (...)
+ownerDocument: (...)
+parentElement: (...)
+parentNode: (...)
+part: (...)
+prefix: (...)
+previousElementSibling: (...)
+previousSibling: (...)
+scrollHeight: (...)
+scrollLeft: (...)
+scrollTop: (...)
+scrollWidth: (...)
+shadowRoot: (...)
+slot: (...)
+spellcheck: (...)
+style: (...)
+tabIndex: (...)
+tagName: (...)
+textContent: (...)
+title: (...)
+translate: (...) -->
+
+
+<!-- Element
+classList: (...)
+className: (...)
+clientHeight: (...)
+clientLeft: (...)
+clientTop: (...)
+clientWidth: (...)
+id: (...)
+innerHTML: (...)
+insertAdjacentElement: ƒ insertAdjacentElement()
+insertAdjacentHTML: ƒ insertAdjacentHTML()
+insertAdjacentText: ƒ insertAdjacentText()
+lastChild: (...)
+lastElementChild: (...)
+localName: (...)
+scrollTop: (...)
+scrollWidth -->
+
+<!-- Node
+nodeName: (...)
+nodeType: (...)
+nodeValue: (...)
+parentNode: (...)
+previousSibling: (...)
+removeChild: ƒ removeChild() -->
+
+<!-- EventTarget 
+addEventListener: ƒ addEventListener()
+dispatchEvent: ƒ dispatchEvent()
+removeEventListener: ƒ removeEventListener() -->
