@@ -1,0 +1,5 @@
+const worker = new Worker('./worker.js')
+worker.onmessage = ({ data }) => console.log(data)
+worker.postMessage(5)
+worker.postMessage(7)
+worker.postMessage(10)
