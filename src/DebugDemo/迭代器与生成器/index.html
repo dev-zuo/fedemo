@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let obj = {
+      count: 5,
+      [Symbol.iterator]() {
+        let index = 1,
+          limit = this.count
+        return {
+          next() {
+            if (index <= limit) {
+              return { value: index++, done: false }
+            } else {
+              return { value: undefined, done: true }
+            }
+          },
+          return() {
+            console.log('exit iterator')
+            return { done: true }
+          }
+        }
+      }
+    }
+
+    for (item of obj) {
+      if (item > 3) {
+        break
+      }
+      console.log(item)
+    }
+  </script>
+</body>
+
+</html>

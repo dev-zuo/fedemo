@@ -10,7 +10,145 @@
 <body>
   promise实现
   <script>
+    class MyPromise {
+      #status = 'pending'
+      #result = undefined
 
+      // 发布订阅
+      #listenObj = {}
+      #on(prop, cb) {
+        let listenObj = this.#listenObj
+        listenObj[prop] ? listenObj[prop].push(cb) : (listenObj[prop] = [cb])
+      }
+      #emit(prop) {
+        let listeners = this.#listenObj[prop]
+        Array.isArray(listeners) && listeners.forEach(cb => cb())
+      }
+
+      /**
+       * new 的时候执行执行传入的函数 func，函数执行后改变状态 #status
+       * 并将返回的结果记录到 #result 中，这里 #status 和 #result 都用的私有变量
+       */
+      constructor(func) {
+        let exec = (data, status) => {
+          if (this.isStatusSettled()) {
+            return
+          }
+          setTimeout(() => {
+            this.#status = status
+            this.#result = data
+            this.#emit(status)
+          }, 0) // 触发 _then 里面的回调，支持异步
+        }
+        func(data => exec(data, 'fulfilled'), err => exec(err, 'rejected'))
+      }
+
+      /**
+       * 用 _then 方法取值时，看 #status 的状态，决定执行哪个函数
+       * 如果状态是 settled
+       * 1. 没有传入对应的 cb，创建保存当前状态的 promise 副本并返回
+       * 2. 传入了对应的 cb，创建一个基于 cb 返回值的副本
+       * 3. 如果 cb 没返回值时，fulfilled, rejected 都默认返回 fulfilled
+       * 如果状态时 pending，直接返回 this
+       */
+      _then(successCallback, failCallback) {
+        // 是否有传入对应的回调函数
+        const result = this.#result
+        const successCb = () => {
+          if (typeof successCallback !== 'function') {
+            return MyPromise.resolve(result)
+          }
+          let res = successCallback(result)
+          return MyPromise.resolve(res === undefined ? result : res)
+        }
+        const failCb = () => {
+          if (typeof failCallback !== 'function') {
+            return MyPromise.reject(result)
+          }
+          let res = failCallback(result)
+          return res === undefined ? MyPromise.reject(result) : MyPromise.resolve(res)
+        }
+
+        // 如果状态已经落定，不用监听了
+        if (this.isStatusSettled()) {
+          return this.#status === 'fulfilled' ? successCb() : failCb()
+        } else {
+          // 状态没落定，开启监听，并先返回 pending 状态的 this
+          this.#on('fulfilled', successCb)
+          this.#on('rejected', failCb)
+          return this
+        }
+      }
+
+      _catch(cb) {
+        return this._then(null, cb)
+      }
+
+      _finally(cb) {
+        // 当状态落定后，且状态不是 pending 时执行
+        // 如果没有 cb，返回当前 Promise 状态副本，如果有 cb ，且 cb 返回值为 Promise 实例，
+        // 且实例的状态为 pending 或 reject，就返回对应的 Promise 实例副本
+        let finallyCb = () => {
+          if (typeof cb === 'function') {
+            let res = cb(this.#result)
+            let isNoChange = !(res instanceof MyPromise) || res.getData().status === 'fulfilled'
+            return isNoChange ? this.clone(this) : MyPromise.resolve(res)
+          } else {
+            return this.clone(this)
+          }
+        }
+        // 如果状态已落定
+        if (this.isStatusSettled()) {
+          return finallyCb()
+        } else {
+          // 状态没落定，开启监听，并先返回 pending 状态的 this
+          this.#on('fulfilled', finallyCb)
+          this.#on('rejected', finallyCb)
+          return this
+        }
+      }
+
+      // 如果是 Promise 实例，返回对应的实例，否则返回以 value 为值的结果
+      static resolve(value) {
+        let isPromiseInstance = typeof value === 'object' && value instanceof MyPromise
+        return isPromiseInstance ? value : new MyPromise(resolve => resolve(value))
+      }
+
+      static reject(value) {
+        return new MyPromise((resolve, reject) => reject(value))
+      }
+
+      // 状态是否是落定状态
+      isStatusSettled() {
+        return ['fulfilled', 'rejected'].includes(this.#status)
+      }
+
+      // 返回落定状态的实例副本，只是复制 status 和 result
+      clone(promise) {
+        let p = new MyPromise(r => r('test'))
+        p.setData(promise.getData())
+        return p
+      }
+
+      getData() {
+        return {
+          status: this.#status,
+          result: this.#result
+        }
+      }
+
+      setData({ status, result }) {
+        this.#status = status
+        this.#result = result
+      }
+    }
+
+    a = new MyPromise(r => r('a1')); 
+    a._then((d) => console.log(d));
+    console.log('done')
+    a2 = new MyPromise(r => r('a2')); 
+    a2._then((d) => console.log(d));
+    console.log('done2')
   </script>
 </body>
 
