@@ -1,0 +1,20 @@
+<div id="div">Click Me!</div>
+<script>
+  let div = document.querySelector('#div')
+  div.onclick = e => console.log('div onclick')
+  document.body.onclick = e => console.log('body onclick')
+  document.documentElement.onclick = e => console.log('html onclick')
+  document.onclick = e => console.log('document onclick')
+  window.onclick = e => console.log('window onclick')
+
+  window.addEventListener('click', e => console.log('window click / 捕获'), true)
+  window.addEventListener('click', e => console.log('window click / 冒泡'))
+  document.addEventListener('click', e => console.log('document click / 捕获'), true)
+  document.addEventListener('click', e => console.log('document click / 冒泡'))
+  document.documentElement.addEventListener('click', e => console.log('html click / 捕获'), true)
+  document.documentElement.addEventListener('click', e => console.log('html click / 冒泡'))
+  document.body.addEventListener('click', e => console.log('body click / 捕获'), true)
+  document.body.addEventListener('click', e => console.log('body click / 冒泡'))
+  div.addEventListener('click', e => console.log('div click / 捕获'), true)
+  div.addEventListener('click', e => console.log('div click / 冒泡'))
+</script>

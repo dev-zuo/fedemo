@@ -1,0 +1,18 @@
+<!-- <script>
+  document.addEventListener('keypress', (event) => {
+    console.log(event)
+  })
+</script> -->
+
+<div id="myDiv">123</div>
+<script>
+  let div = document.getElementById("myDiv"),
+      event;
+  div.addEventListener("myevent", event => console.log('DIV: ' + event.detail))
+  document.addEventListener("myevent", event => console.log('Document: ' + event.detail))
+  // 如果支持 DOM3
+  event = document.createEvent("CustomEvent")
+  event.initCustomEvent("myevent", true, false, "Hello world!")
+  div.dispatchEvent(event)
+</script>
+

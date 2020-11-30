@@ -1,0 +1,50 @@
+<div id="myDiv">
+  Right click or Ctrl+click me to get a custom context menu.
+</div>
+<div id="myMenu" style="position: absolute;visibility: hidden;background-color: silver">
+  <li><a href="#a">Item1</a></li>
+  <li><a href="#b">Item2</a></li>
+  <li><a href="#c">Item3</a></li>
+</div>
+<script>
+  window.addEventListener('load', (evnet) => {
+    let div = document.getElementById('myDiv');
+    // 右键点击事件， 自定义右键菜单
+    div.addEventListener("contextmenu", (event) => {
+      console.log('contextmenu');
+      event.preventDefault(); 
+
+      var menu = document.getElementById('myMenu');
+      menu.style.left = event.clientX + 'px';
+      menu.style.top = event.clientY + 'px';
+      menu.style.visibility = 'visible';
+    });
+      
+    document.addEventListener('click', (event) => {
+      document.getElementById('myMenu').style.visibility = 'hidden';
+    })
+  })
+  window.addEventListener('beforeunload', function(event) {
+    event.preventDefault()
+    var message = "是否确定退出？";
+    // 设置returnValue，且作为函数返回值，当关闭页面时，会弹出对应的提示
+    event.returnValue = message;
+    return message
+  })
+
+  window.addEventListener('load', function(event) {
+    window.addEventListener('hashchange', function(event) { 
+      console.log(event, event.oldURL, event.newURL);
+      console.log(location.hash);
+    });
+  });
+
+  window.addEventListener('load', function(event) {
+    window.addEventListener('pageshow', function(event) { 
+      console.log('pageshow');
+    });
+    window.addEventListener('pagehide', function(event) { 
+      console.log('pagehide');
+    });
+  });
+</script>
