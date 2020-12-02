@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let count = 100, 
+        htmlStr = '';
+    while(count--) {
+      htmlStr += '<li>test</li>'
+    }
+    document.body.innerHTML = `<ul>${htmlStr}</ul>`
+
+    let enabled = true
+    let cb = () => console.log('Invoked at ', Date.now())
+    window.addEventListener('scroll', () => {
+      if (enabled) {
+        enabled = false
+        window.requestAnimationFrame(cb)
+        setTimeout(() => { 
+          enabled = true 
+        }, 500)
+      }
+    })
+  </script>
+</body>
+</html>

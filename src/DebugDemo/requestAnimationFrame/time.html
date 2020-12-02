@@ -1,0 +1,24 @@
+
+<div id="status" style="width:5%;background:red;">测试</div>
+<script>
+  const element = document.getElementById('status'); 
+  let start;
+
+  function step(timestamp) {
+    console.log('tiemstamp', timestamp, typeof timestamp)
+    if (start === undefined) {
+      start = timestamp;
+    }
+    console.log('start', start)
+    const elapsed = timestamp - start;
+
+    //这里使用`Math.min()`确保元素刚好停在200px的位置。
+    element.style.transform = 'translateX(' + Math.min(0.1 * elapsed, 200) + 'px)';
+
+    if (elapsed < 2000) { // 在两秒后停止动画
+      window.requestAnimationFrame(step);
+    }
+  }
+
+  window.requestAnimationFrame(step);
+</script>

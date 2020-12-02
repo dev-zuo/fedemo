@@ -1,0 +1,19 @@
+<canvas id="drawing" width="200" height="200" style="width:100px;height:100px;border:1px solid #ccc;"></canvas>
+<script>
+  var darwing = document.getElementById('drawing');
+  var ctx = darwing.getContext('2d');
+  // 开始路径
+  ctx.beginPath();
+
+  ctx.arc(100, 100, 99, 0, 2*Math.PI, false); // 外圆
+  // 由于画完圆后，坐标停留在(200, 100)的位置，需要移动下起点。
+  ctx.moveTo(192, 100);
+  ctx.arc(100, 100, 92, 0, 2*Math.PI, false); // 内圆
+
+  // 将绘图游标移动到中心点，画指针
+  ctx.moveTo(100, 100);
+  ctx.lineTo(100, 20);
+  ctx.moveTo(100, 100);
+  ctx.lineTo(50, 100);
+  ctx.stroke();
+</script>

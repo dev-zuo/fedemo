@@ -1,0 +1,21 @@
+<canvas id="drawing" width="200" height="200" style='border:1px solid #ccc;width: 100px;'>A draw of something.</canvas>
+<script>
+  let drawing = document.getElementById('drawing')
+  let ctx = drawing.getContext('2d')
+
+  ctx.fillStyle = "red"
+  ctx.save() // 将当前设置存到栈中
+
+  ctx.fillStyle = "green"
+  ctx.translate(100, 100)
+  ctx.save() // 将当前设置存到栈中
+
+  ctx.fillStyle = 'blue'
+  ctx.fillRect(0, 0, 50, 50) // 在 (100, 100) 的位置绘制蓝色矩形
+
+  ctx.restore()
+  ctx.fillRect(10, 10, 50, 50) // 在 (110, 110) 的位置绘制绿色矩形
+
+  ctx.restore()
+  ctx.fillRect(0, 0, 50, 50) // 在 (0, 0) 的位置绘制红色矩形
+</script>

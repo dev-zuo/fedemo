@@ -1,0 +1,20 @@
+<canvas id="drawing" width="200" height="200" style="border:1px solid #ccc;width: 100px;"></canvas>
+<script>
+  let drawing = document.getElementById('drawing', {
+    // alpha: false
+  })
+  let gl = drawing.getContext('webgl')
+  console.log(gl) // WebGLRenderingContext {}
+  // let gl2 = drawing.getContext('webgl1') // null
+  // console.log(gl2) // null
+  // let gl3 = drawing.getContext('webgl2')
+  // console.log(gl3) // WebGL2RenderingContext {}
+  // 使用黑色清除绘制区域
+  gl.clearColor(0, 0, 0, 1)
+  // 使用之前定义的颜色填充画布
+  gl.clear(gl.COLOR_BUFFER_BIT)
+
+  let buffer = gl.createBuffer()
+  console.log(buffer)
+  console.log(gl.ARRAY_BUFFER)
+</script>

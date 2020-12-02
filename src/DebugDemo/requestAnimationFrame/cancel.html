@@ -1,0 +1,16 @@
+<script>
+  let start, requestID;
+  let cb = (t) => {
+    !start && (start = t)
+    console.log('重绘')
+    // console.log "重绘"，持续 5 秒
+    if (t - start < 5000) {
+      requestID = window.requestAnimationFrame(cb) 
+    } 
+  }
+  requestID = window.requestAnimationFrame(cb) 
+  // 2 秒后取消打印
+  setTimeout(() => {
+    window.cancelAnimationFrame(requestID)
+  }, 2000)
+</script>

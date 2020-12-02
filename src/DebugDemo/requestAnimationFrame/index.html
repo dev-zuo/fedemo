@@ -1,0 +1,14 @@
+
+
+<div id="status" style="width:5%;background:red;">测试</div>
+<script>
+  function updateProgress() {
+    let div = document.getElementById("status")
+    div.style.width = (parseInt(div.style.width, 10) + 1) + '%'
+    if (div.style.width !== '100%') {
+      window.requestAnimationFrame(updateProgress)
+    }
+
+  }
+  window.requestAnimationFrame(updateProgress)
+</script>

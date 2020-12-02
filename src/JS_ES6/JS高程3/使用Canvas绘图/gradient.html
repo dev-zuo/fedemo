@@ -1,0 +1,23 @@
+<canvas id="drawing" width="200" height="200" style="border:1px solid #ccc;"></canvas>
+<script>
+  var drawing = document.getElementById('drawing');
+  var ctx = drawing.getContext('2d');
+  // 设置线性渐变 从(30 ,30) 到 (60,60) 渐变
+  var gradient = ctx.createLinearGradient(30, 30, 60, 60); 
+  gradient.addColorStop(0, 'white'); // 渐变的起点色为白色
+  // gradient.addColorStop(0.5, 'blue'); 
+  gradient.addColorStop(1, 'black'); // 渐变的结束色为白色
+  // 绘制红色矩形
+  ctx.fillStyle = 'red'
+  ctx.fillRect(0, 0, 50, 50);
+  // 绘制线性渐变矩形
+  ctx.fillStyle = gradient;
+  ctx.fillRect(30, 30, 50, 50)
+
+  // 绘制辐射渐变, 绘制从 (150, 25) 起点，0 为半径的圆。到终点 (150, 25)，半径为 30 的圆渐变。
+  var gradient = ctx.createRadialGradient(150, 25, 0, 150, 25, 30) 
+  gradient.addColorStop(0, 'red')
+  gradient.addColorStop(1, 'blue')
+  ctx.fillStyle = gradient
+  ctx.fillRect(125, 0, 50, 50)
+</script>

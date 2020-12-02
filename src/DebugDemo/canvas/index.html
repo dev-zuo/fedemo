@@ -1,0 +1,27 @@
+<canvas id="drawing" width="200" height="200" style="border:1px solid #ccc;">
+</canvas>
+<script>
+  let drawing = document.getElementById('drawing')
+  // 如果浏览器支持 canvas
+  if (drawing.getContext) {
+    // 在 (10,10) 位置上，绘制一个边长为 50 的正方形。
+    let ctx = drawing.getContext('2d')
+    ctx.fillStyle = "#ff0000"
+    ctx.fillRect(10, 10, 50, 50)
+    
+    // 获取图像数据 URI，base64
+    let imgURI = drawing.toDataURL('image/png')
+
+    // 显示图片
+    let img = document.createElement('img')
+    img.src = imgURI
+    document.body.appendChild(img)
+
+    // 自动下载该图片
+    let link = document.createElement('a')
+    link.download = 'img'
+    link.href = imgURI
+    document.body.appendChild(link)
+    link.click()
+  }
+</script>

@@ -1,0 +1,19 @@
+<canvas id="drawing" width="200" height="200"></canvas>
+<script>
+  var drawing = document.getElementById('drawing');
+  var ctx = drawing.getContext('2d');
+
+  // 设置阴影
+  ctx.shadowOffsetX = 5;
+  ctx.shadowOffsetY = 5;
+  ctx.shadowBlur = 4; // 模糊像素
+  ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
+
+  // 1.1 绘制红色矩形，会自带阴影
+  ctx.fillStyle = "#ff0000";
+  ctx.fillRect(10, 10, 50, 50);
+
+  // 1.2 绘制蓝色矩形，会自带阴影
+  ctx.fillStyle = "blue";
+  ctx.fillRect(30, 30, 50, 50);
+</script>

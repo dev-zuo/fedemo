@@ -1,0 +1,37 @@
+<canvas id="drawing" width="200" height="200" style="border:1px solid #ccc;width:100px;"></canvas>
+<script>
+  // 设置全局透明度 ctx.globalAlpha
+  var drawing = document.getElementById('drawing');
+  var ctx = drawing.getContext('2d');
+  // 绘制红色矩形
+  ctx.fillStyle = 'red';
+  ctx.fillRect(10, 10, 50, 50);
+  // 修改全局透明度
+  ctx.globalAlpha = 0.5;
+  // 绘制蓝色矩形
+  ctx.fillStyle = "blue";
+  ctx.fillRect(30, 30, 50, 50);
+  // 重置全局透明度
+  ctx.globalAlpha = 1; // p568， 值为0，貌似有问题
+
+  // 7.ctx.globalCompositeOperation 设置后绘制的矩形怎样与先绘制的矩形结合。默认值为后绘制的位于先绘制的上方， source-over
+  // 绘制红色矩形
+  // ctx.globalAlpha = 1;
+  ctx.fillStyle = 'red'
+  ctx.fillRect(100, 100, 50, 50)
+  // 设置合成（composite）操作
+  // ctx.globalCompositeOperation = 'source-over' // 默认、新图像绘制在原图形上面
+  // ctx.globalCompositeOperation = 'source-in' // 新图形只绘制出与原图形重叠的部分，其他全部透明(不可见)
+  // ctx.globalCompositeOperation = 'source-out' // 新图形只绘制出不与原图形重叠的部分，其他全部透明(不可见)
+  // ctx.globalCompositeOperation = 'source-atop' // 新图形只绘制出与原图形重叠的部分，原图不受影响
+  // ctx.globalCompositeOperation = 'destination-over' // 后绘制的位于先绘制的下面
+  // ctx.globalCompositeOperation = 'destination-in' // 新图形绘制在原图形下面，重叠部分只有原图形的部分可见
+  // ctx.globalCompositeOperation = 'destination-out' // 
+  // ctx.globalCompositeOperation = 'destination-atop'
+  // ctx.globalCompositeOperation = 'lighter'
+  // ctx.globalCompositeOperation = 'copy'
+  ctx.globalCompositeOperation = 'xor'
+  // 更多参数见 p568
+  ctx.fillStyle = 'rgba(0,0,255,1)'
+  ctx.fillRect(125, 125, 50, 50)
+</script>

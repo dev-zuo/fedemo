@@ -1,0 +1,28 @@
+<div>
+  <img src="images/img.png" height="50" width="50">
+</div>
+<canvas id="drawing" width="200" height="200" style="border:1px solid #ccc;width:100px;"></canvas>
+<script>
+  let drawing = document.getElementById('drawing');
+  let ctx = drawing.getContext('2d');
+  let img = document.images[0]
+  // 图片加载完成后再绘制到 canvas
+  img.onload = () => {
+    ctx.drawImage(img, 0, 0)
+    let imgData = ctx.getImageData(0, 0, img.width, img.height)
+    let { data } = imgData
+    console.log(imgData) // { data: Uint8ClampedArray(10000) [], height: 50, width: 50 } 
+    for (let i = 0, len = data.length; i < len; i += 4) {
+      let [red, green, blue] = data.slice(i, i + 3)
+      // 取得每个像素的 RGB 平均值
+      let average = Math.floor((red + green + blue) / 3)
+      // 设置 RGB 为平均值，不管透明度
+      data[i] = average
+      data[i + 1] = average
+      data[i + 2] = average
+    }
+    // 修改后将数据写回 ImageData 并应用到画布上
+    imgData.data = data
+    ctx.putImageData(imgData, 0, 0)
+  }
+</script>

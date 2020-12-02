@@ -1,0 +1,26 @@
+<canvas id="drawing" width="200" height="200" style='border:1px solid #ccc;width: 100px;'>A draw of something.</canvas>
+<script>
+  let drawing = document.getElementById('drawing')
+  let ctx = drawing.getContext('2d')
+  ctx.beginPath()
+  // 绘制外圆
+  ctx.arc(100, 100, 99, 0, 2 * Math.PI, false)
+  // 绘制内圆
+  ctx.moveTo(194, 100)
+  ctx.arc(100, 100, 94, 0, 2 * Math.PI, false)
+
+  ctx.translate(100, 100) // 移动原点到表盘中心
+  
+  // 旋转图像
+  // ctx.rotate(Math.PI / 3) // 围绕原点将图像旋转 60°
+  // ctx.rotate(Math.PI / 2) // 围绕原点将图像旋转 90°
+  // ctx.rotate(Math.PI) // 围绕原点将图像旋转 180°
+
+  // 绘制分针与时针
+  ctx.moveTo(0, 0)
+  ctx.lineTo(0, -85)
+  ctx.moveTo(0, 0)
+  ctx.lineTo(-65, 0)
+
+  ctx.stroke()
+</script>

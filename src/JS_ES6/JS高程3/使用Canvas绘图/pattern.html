@@ -1,0 +1,17 @@
+<div>
+  <img src="images/img.png" height="50" width="50">
+</div>
+<canvas id="drawing" width="200" height="200" style="border:1px solid #ccc;width: 100px;"></canvas>
+<script>
+  var drawing = document.getElementById('drawing');
+  var ctx = drawing.getContext('2d');
+  var image = document.images[0]
+  image.onload = function(e) {
+    var pattern = ctx.createPattern(image, 'repeat'); // 创建重复的模式
+    // var pattern = ctx.createPattern(image, 'repeat-x'); // 创建重复的模式
+    // var pattern = ctx.createPattern(image, 'repeat-y'); // 创建重复的模式
+    // var pattern = ctx.createPattern(image, 'no-repeat'); // 创建重复的模式
+    ctx.fillStyle = pattern;
+    ctx.fillRect(10, 10, 150, 150)
+  }
+</script>
