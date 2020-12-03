@@ -1,0 +1,108 @@
+<div>
+  <img src="img.png" height="50" width="50">
+</div>
+<canvas id="drawing" width="200" height="200" style="border:1px solid #ddd;width: 100px;">
+</canvas>
+<!-- 顶点着色器 -->
+<script type="x-webgl/x-vertex-shader" id="vertexShader">
+attribute vec2 aVertexPosition;
+void main() {
+  gl_Position = vec4(aVertexPosition, 0.0, 1.0);
+}
+</script>
+<!-- 片段着色器 -->
+<!-- precision mediump float; -->
+<script type="x-webgl/x-fragment-shader" id="fragmentShader">
+precision mediump float;
+uniform vec4 uColor;
+void main() {
+  gl_FragColor = uColor;
+}
+</script>
+<script>
+  let drawing = document.getElementById('drawing')
+  let gl = drawing.getContext('webgl')
+
+  var image = document.images[0]
+  image.onload = function(e) {
+    // 创建纹理
+    let texture = gl.createTexture()
+    // 绑定纹理
+    gl.bindTexture(gl.TEXTURE_2D, texture)
+    // 开启 FlipY（UNPACK_FLIP_Y_WEBGL）不过不使用这个标准图片会倒过来
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true)
+    // 填充纹理内容
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image)
+    // 参数设置
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST)
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST)
+    console.log(texture)
+
+    // 清除当前纹理
+    // gl.bindTexture(gl.TEXTURE_2D, null)
+  }
+
+  // 使用白色清除绘制区域
+  gl.clearColor(255, 255, 255, 1)
+  // 使用之前定义的颜色填充画布，canvas 会被填充为黑色
+  gl.clear(gl.COLOR_BUFFER_BIT)
+
+  // 设置视口视口
+  gl.viewport(0, 0, drawing.width, drawing.height);
+
+  // 定义三角形，三个顶点信息 typed array 数组
+  let vertices = new Float32Array([0, 1, 1, -1, -1, -1])
+  // x, y 两个点坐标
+  let vertexSetSize = 2
+
+  // 创建 WebGL 缓冲区
+  let buffer = gl.createBuffer() 
+  // 将 buffer 设置为上下文的当前缓冲区
+  gl.bindBuffer(gl.ARRAY_BUFFER, buffer) 
+  // 使用一个 Float32Array 数组初始化 buffer（将内容写入 buffer）
+  // 通常把所有顶点点信息保存在 Float32Array 中
+  gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW)
+  
+  // 获取 glsl 着色器代码
+  let vertexGlsl = document.getElementById("vertexShader").text
+  let fragmentGlsl = document.getElementById("fragmentShader").text
+  console.log(vertexGlsl, fragmentGlsl)
+
+  // 根据着色器代码创建着色器实例 vertexShader、fragmentShader
+  let vertexShader = gl.createShader(gl.VERTEX_SHADER)
+  gl.shaderSource(vertexShader, vertexGlsl)
+  gl.compileShader(vertexShader)
+  let fragmentShader = gl.createShader(gl.FRAGMENT_SHADER)
+  gl.shaderSource(fragmentShader, fragmentGlsl)
+  gl.compileShader(fragmentShader)
+  // 测试片段着色器编译是否有异常
+  if(!gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS)) {
+    console.error(gl.getShaderInfoLog(fragmentShader));
+  }
+  console.log(vertexShader, fragmentShader) // WebGLShader {}
+
+  // 创建着色器程序
+  let program = gl.createProgram()
+  gl.attachShader(program, vertexShader)
+  gl.attachShader(program, fragmentShader)
+  gl.linkProgram(program)
+  gl.useProgram(program)
+  console.log(program) // WebGLProgram {}
+
+  // 给着色器赋值
+  // 在着色器程序 program 中，找到片段着色器 uColor 的内存位置
+  let uColorLocation = gl.getUniformLocation(program, "uColor")
+  // 向 uColor 内存位置，写入值 [0, 0, 0, 1]
+  gl.uniform4fv(uColorLocation, [0, 0, 0, 1])
+  // 取得顶点着色器 aVertexPosition 内存位置(索引)，并将顶点信息传入
+  let aVertexPosition = gl.getAttribLocation(program, "aVertexPosition")
+  // 激活索引
+  gl.enableVertexAttribArray(aVertexPosition)
+  // 从当前绑定的缓冲区（bindBuffer()指定的缓冲区）中读取顶点数据
+  gl.vertexAttribPointer(aVertexPosition, vertexSetSize, gl.FLOAT, false, 0, 0)
+
+  // 绘制三角形 从 index 0 开，3 个点
+  gl.drawArrays(gl.TRIANGLES, 0, vertices.length / vertexSetSize)
+  // gl.drawArrays(gl.LINE_LOOP, 0, vertices.length / vertexSetSize)
+  // gl.drawArrays(gl.LINE_STRIP, 0, vertices.length / vertexSetSize)
+</script>
