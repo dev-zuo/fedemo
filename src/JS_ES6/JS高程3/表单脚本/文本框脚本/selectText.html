@@ -1,0 +1,37 @@
+<form>
+  <input>
+  <input>
+  <button id="select">select</button>
+</form>
+<script>
+  let textInput = document.forms[0].elements[0]
+  // let selectBtn = document.querySelector('#select')
+  // // 默认情况下直接调用会直接刷新页面，清除输入框内容
+  // selectBtn.addEventListener('click', (e) => {
+  //   textInput.select()
+  // })
+
+  // // Chrome 和 Firefox 获取焦点后选中全部文本åååå
+  // // Safari 效果相当与选中后，又点击了一次文本输入框内容的末尾
+  // textInput.addEventListener('focus', (e) => {
+  //   e.target.select()
+  // })
+
+  // textInput.addEventListener("select", e => {
+  //   let { selectionStart: start, selectionEnd: end } = textInput
+  //   console.log('选中文本：', textInput.value.substring(start, end))
+  //   console.log(document.selection)
+  // })
+  textInput.value = "Hello world!"
+  textInput.setSelectionRange(4, 7)
+  textInput.focus()
+  // textInput.addEventListener('focus', (e) => {
+  //   // focus 后选中全部
+  //   // textInput.setSelectionRange(0, textInput.value.length)
+  //   // focus 后选中 "Hel"
+  //   // textInput.setSelectionRange(0, 3)
+  //   // focus 后选中 "o w"
+  //   textInput.setSelectionRange(4, 7)
+  // })
+ 
+</script>

@@ -1,0 +1,10 @@
+<form>
+  <input type="number" min="-100" max="100" step="5" name="count">
+</form>
+<script>
+let inputText = document.forms[0].elements[0]
+// inputText.stepUp() // + step  = 5
+// inputText.stepUp(6) // + 6 * step = 30
+// inputText.stepDown() // - step = -5
+inputText.stepDown(3) // - 3 * step = -15
+</script>

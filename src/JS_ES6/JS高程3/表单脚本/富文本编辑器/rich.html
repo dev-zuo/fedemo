@@ -1,0 +1,10 @@
+<p>1. iframe可编辑区域：</p>
+<iframe name="richedit" src="null.html" style="width:400px;height:400px;"></iframe>
+<p>2. div contenteditable可编辑区域</p>
+<div id="editdiv" contenteditable style="width:400px;height:400px;border:1px solid #ccc;">
+</div>
+<script>
+  window.onload = function() {
+    frames['richedit'].document.designMode = 'on'
+  }
+</script>

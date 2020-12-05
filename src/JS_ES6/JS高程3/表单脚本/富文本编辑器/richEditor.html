@@ -9,6 +9,7 @@
         </style>
     </head>
     <body>
+        我是非富文本区域内容，选中时
         <div id="tooldiv" style="margin:10px;border:1px solid #ccc;padding:10px;">
             <input type="button" id="set-backcolor" value="设置背景颜色">
             <input type="button" id="set-selectall" value="选中所有文本">
@@ -79,6 +80,7 @@
             // 工具栏按钮点击执行操作
             var tooldiv = document.getElementById('tooldiv');
             tooldiv.onclick = function(event) {
+                console.log(document.getSelection().toString())
                 var id= event.target.id;
                 // var optDocument = frames['richedit'].document;
                 // var optDocument = document;

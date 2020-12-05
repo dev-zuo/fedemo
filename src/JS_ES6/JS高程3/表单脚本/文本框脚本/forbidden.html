@@ -1,0 +1,15 @@
+<form>
+  <input>
+</form>
+<script>
+  let textInput = document.forms[0].elements[0]
+  textInput.addEventListener('keypress', event => {
+    let data1 = event.key
+    let data2 = String.fromCharCode(event.charCode)
+    console.log(data1, data2)
+    // 如果是非数字不允许输入
+    if (!/\d/.test(data2)) {
+      event.preventDefault()
+    }
+  })
+</script>

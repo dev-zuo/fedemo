@@ -1,0 +1,18 @@
+<style> input { width: 25px; text-align: center; }</style>
+<form>
+  <input maxlength="1">
+  <input maxlength="1">
+  <input maxlength="1">
+  <input maxlength="1">
+  <input maxlength="1">
+</form>
+<script>
+  let inputs = document.forms[0].elements
+  for (let item of inputs) {
+    item.addEventListener('keyup', e => {
+      if (e.target.value.length == e.target.maxLength) {
+        item.nextElementSibling && item.nextElementSibling.focus()
+      }
+    })
+  }
+</script>
