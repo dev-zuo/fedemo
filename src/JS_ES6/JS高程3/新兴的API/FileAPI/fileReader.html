@@ -1,0 +1,30 @@
+<input type="file" id="inputFile">
+<script>
+  let inputFile = document.getElementById('inputFile')
+  inputFile.addEventListener('change', (event) => {
+    let file = event.target.files[0]
+
+    // 读取文件
+    let reader = new FileReader();
+    // 如果是图片，直接获取数据 URI 直接显示， 如果是其他，直接读取文本
+    if (!file.type.includes('image')) {
+      reader.readAsText(file) // 读取文件为文本内容
+    } else {
+      reader.readAsDataURL(file) // 获取文件的 Base64 URI
+    }
+
+    reader.onerror = function() {
+      let errMsg = [null, '未找到文件', '安全性错误', '读取中断', '文件不可读', '编码错误']
+      let errCode = reader.error.code
+      console.log('读取文件错误, code: ' + errCode + '，错误提示: ' + errMsg[errCode])
+    }
+    reader.onprogress = function(e) {
+      // 文件读取中，大概 50ms 刷新一次
+      console.log(`加载进度 ${e.loaded} / ${e.total}`)
+    }
+    reader.onload = function(e) {
+      // 文件读取完成会存到 reader.result里面
+      console.log(reader.result)
+    }
+  })
+</script>

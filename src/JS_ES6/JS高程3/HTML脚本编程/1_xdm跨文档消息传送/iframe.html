@@ -1,22 +1,11 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>xdm-document2</title>
-  </head>
-  <body>
-    跨文档传输消息:
-    <div id="msg"></div>
-    <script>
-      // postMessage('sent data', 'http://127.0.0.1/xdm/document.html')
-      window.onmessage = function(event) {
-        var msg = document.getElementById('msg');
-        msg.innerHTML = event.data
-        console.log(event)
-        console.log('接收到消息：', event.data)
-        event.source.postMessage('消息已成功收到！', 'http://127.0.0.1/xdm/iframe.html')
-        console.log('消息已收到')
-      }
-    </script>
-  </body>
-</html>
+接收到主页面发送的消息: <span id="msg"></span>
+<script>
+  window.onmessage = function(event) {
+    var msg = document.getElementById('msg');
+    msg.innerHTML = event.data
+    console.log(event)
+    // event.source.postMessage('消息已成功收到！', 'http://127.0.0.1/xdm/iframe.html')
+    event.source.postMessage('消息已成功收到！')
+    console.log('消息已收到')
+  }
+</script>

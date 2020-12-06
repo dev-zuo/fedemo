@@ -1,0 +1,26 @@
+
+<input id="fileInput" type="file">
+<input id="multipleFileInput" type="file" multiple="multiple">
+<script>
+  let fileInput = document.getElementById('fileInput')
+  let multipleFileInput = document.getElementById('multipleFileInput')
+
+  // 文件内容改变时，显示文件信息
+  fileInput.addEventListener('change', fileChangeHandle, false)
+  multipleFileInput.addEventListener('change', fileChangeHandle, false)
+
+  function fileChangeHandle(event) {
+    let files = event.target.files
+    for (let i = files.length - 1; i >= 0; i--) {
+      let fileInfo = files[i] // File对象
+      console.log('name: ', fileInfo.name)
+      console.log('lastModified: ', new Date(fileInfo.lastModified).toLocaleString()) // timestamp
+      console.log('type: ', fileInfo.type)
+      console.log('size: ', fileInfo.size)  // B 字节  /1000 kb
+    }
+  }
+  // name: 截屏2020-12-03 下午8.49.12.png
+  // lastModified: 2020/12/3 下午8:49:18
+  // type: image/png
+  // size: 93192
+</script>

@@ -1,30 +1,28 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>xdm-document</title>
-  </head>
-  <body>
-    <div id="msg"></div>
-    <p>跨文档消息传送(XDM)：</p>
-    <iframe src="iframe.html" width="300" height="300"></iframe>
-    <script>
-      window.onload = function() {
-        console.log('开始postmessage')
-        setTimeout(function () {
-          try {
-            document.getElementsByTagName('iframe')[0].contentWindow.postMessage('1111', 'http://127.0.0.1/xdm/xdm.html')
-          } catch(e) {
-            console.log(e)
-          }
-        }, 2000)
-        window.onmessage = function(event) {
-          var msg = document.getElementById('msg');
-          msg.innerHTML = event.data
-          console.log(event)
-          console.log('接收到消息：', event.data)
-        }
+
+从 iframe 页面接收的消息：<span id="msg"></span>
+<p>下面是 iframe，内嵌 iframe.html 页面 </p>
+<iframe src="iframe.html" width="300" height="300"></iframe>
+<script>
+  window.onload = function() {
+    console.log('准备开始 postMessage')
+    // 2s 后向 iframe 页面发送消息
+    setTimeout(function () {
+      try {
+        let iframeWindow = frames[0]
+        // 等价于
+        // let iframeWindow = document.getElementsByTagName('iframe')[0].contentWindow
+        // iframeWindow.postMessage('1111', 'http://127.0.0.1')
+        iframeWindow.postMessage('1111')
+      } catch(e) {
+        console.log(e)
       }
-    </script>
-  </body>
-</html>
+    }, 2000)
+    // 接收 iframe 窗口的消息并显示到 msg 位置
+    window.onmessage = function(event) {
+      var msg = document.getElementById('msg');
+      msg.innerHTML = event.data
+      console.log(event)
+      // { data: "消息已成功收到！", origin: "http://127.0.0.1:5502" } 
+    }
+  }
+</script>

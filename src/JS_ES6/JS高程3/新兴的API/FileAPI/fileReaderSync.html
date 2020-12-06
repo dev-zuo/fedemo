@@ -1,0 +1,17 @@
+<input type="file" id="inputFile">
+<script>
+  let inputFile = document.getElementById('inputFile')
+  inputFile.addEventListener('change', (event) => {
+    let file = event.target.files[0]
+    // 新开一个 Worker 线程去处理
+    const worker = new Worker('worker.js')
+    // 将文件数据发送给 worker
+    worker.postMessage(file)
+    // 监听 worker 内部发送的信息
+    worker.onmessage = (msg) => {
+      console.log('接收到 worker 的值', msg)
+      // 接收到 worker 的值
+      // MessageEvent { data: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPQA…j1JhSFU",... }
+    }
+  })
+</script>
