@@ -1,0 +1,14 @@
+
+<script>
+  Notification.requestPermission().then((permission) => {
+    console.log('用户响应通知授权请求', permission)
+
+    if (permission === 'granted') {
+      new Notification('Title Text!', {
+        body: 'Body Text',
+        image: 'notification_1.png', 
+        vibrate: true // 是否震动
+      })
+    }
+  })
+</script>

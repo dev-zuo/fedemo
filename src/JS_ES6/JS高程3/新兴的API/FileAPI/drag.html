@@ -1,0 +1,53 @@
+<head>
+  <style>
+    #dragDiv { width:300px;height: 150px;border:2px dashed #ccc; }
+    .draging { border:2px dashed red !important; }
+  </style>
+</head>
+<body>
+  <div>拖拽文件到下面的方框区域</div>
+  <div id="dragDiv"></div>
+  <script>
+    let dragDiv = document.getElementById('dragDiv')
+
+    dragDiv.ondragenter = function(e) {
+      // 当文件拖动到区域，设置red边框样式
+      dragDiv.className = "draging"
+    }
+    dragDiv.ondragover = function (e) {
+      e.preventDefault() // 取消默认行为，设置可拖放
+    }
+    dragDiv.ondrop = function (e) { // 有文件拖放触发
+      dragDiv.className = ""
+      e.preventDefault() // drop默认行为会打开新的窗口，取消默认行为
+
+      // 将文件用XHR上传操作
+      // 1. 准备数据
+      let files = e.dataTransfer.files
+      let data = new FormData()
+      let info = ''
+      for (let i = files.length - 1; i >= 0; i--) {
+        console.log(files[i])
+        data.append('file' + i, files[i])
+        info += `<div>文件名: ${files[i].name}，文件类型: ${files[i].type}}</div>`
+      }
+      dragDiv.innerHTML = info
+      console.log(Object.fromEntries(data.entries()))
+
+      // 2. 开始上传
+      let xhr = new XMLHttpRequest()
+      xhr.open('post', '/fileupdate', true) // 异步发送请求
+      xhr.onload = function () {
+        if (xhr.status === 200) { // 请求成功
+          alert(xhr.responseText)
+        } else {
+          alert('请求异常', xhr.status)
+        }
+      }
+      xhr.send(data)
+    }
+    dragDiv.ondragleave = function (e) { // 文件移出
+      dragDiv.className = ""
+    }
+  </script>
+</body>

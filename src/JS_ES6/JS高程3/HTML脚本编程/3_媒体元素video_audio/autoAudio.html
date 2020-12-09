@@ -1,0 +1,14 @@
+
+<div>123</div>
+<script>
+  window.onload = () => {
+    let audio = new Audio('王菲 - 匆匆那年.mp3')
+    audio.addEventListener('canplaythrough', (event) => {
+      // Uncaught (in promise) DOMException: play() failed because the user didn't interact with the document first.
+      setTimeout(() => {
+        console.log('开始自动播放')
+        audio.play()
+      }, 3000)
+    })
+  }
+</script>

@@ -1,0 +1,47 @@
+<!-- 
+<input type="file" id="file">
+<script>
+  let fileInput = document.getElementById('file')
+  fileInput.onchange = function (e) {
+    let file = e.target.files[0]
+    let blob = file.slice(0, 32) // 只读取 32B（字节）的内容
+    console.log(blob)
+    if (blob) {
+      let reader = new FileReader()
+      reader.readAsText(blob)
+      reader.onerror = function() {
+        console.log('读取文件错误, ' + reader.error.code)
+      }
+      reader.onload = function() {
+        console.log('读取文件成功，' + reader.result)
+        let div = document.createElement('div')
+        div.appendChild(document.createTextNode(reader.result))
+        document.body.appendChild(div);
+      }
+      reader.onprogress = function(e) {
+        console.log('读取中.....' + e.loaded + '/' + e.total)
+      }
+    } else {
+      alert('您的浏览器不支持blob.slice()')
+    }
+  }
+</script> -->
+
+<input type="file" id="file">
+<img src="" id="img">
+<script>
+  var file = document.getElementById('file')
+  file.onchange = function (e) {
+    var myfile = this.files[0]
+    var img = document.getElementById('img')
+    var dataUrl = window.URL.createObjectURL(myfile)
+    console.log('dataURL: ' + dataUrl)
+    // dataURL: blob:http://localhost:63342/b42b5b0a-fef8-4cb2-b26d-1973517ac08a
+    img.src = dataUrl
+    //
+    setTimeout(function() {
+      window.URL.revokeObjectURL(dataUrl);
+      console.log(dataUrl)
+    }, 3000)
+  }
+</script>
