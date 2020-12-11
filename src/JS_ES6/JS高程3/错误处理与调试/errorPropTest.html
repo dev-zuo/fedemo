@@ -1,0 +1,28 @@
+<script>
+  try {
+  // 可能导致的错误代码
+  console.log('1');
+  var e;
+  sdfsd
+  e.showMessage(); // 这里会出现一个错误，后面的代码不会执行，会执行catch里的代码
+  console.log('2');
+  } catch(e) {
+    // 在错误处理时怎么处理
+    console.log(e.message); 
+    console.log(e.line, e.sourceId, e.sourceURL)
+    let errInfo = {
+      message: e.message, // Chrome、Safari、Firefox
+      descrption: e.descrption,
+      number: e.number,
+      fileName: e.fileName, // Firefox
+      lineNumber: e.lineNumber, // Firefox
+      stack: e.stack, // Chrome、Safari、Firefox
+      line: e.line, // Safari
+      sourceId: e.sourceId, 
+      sourceURL: e.sourceURL // Safari
+    }
+    console.log(e, errInfo)
+  } finally {
+    console.log('finally')
+}
+</script>

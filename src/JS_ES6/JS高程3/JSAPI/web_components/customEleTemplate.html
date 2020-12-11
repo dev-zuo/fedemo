@@ -1,0 +1,27 @@
+<div>123</div>
+<template id="x-foo-tpl">
+  <p>我是自定义组件的内容</p>
+  <slot></slot>
+  <style>
+    p { color: red }
+  </style>
+</template>
+<script>
+  const template = document.querySelector('#x-foo-tpl')
+  class FooElement extends HTMLElement {
+    constructor() {
+      super()
+      this.attachShadow({ mode: 'open' })
+      this.shadowRoot.appendChild(template.content.cloneNode(true))
+    }
+  }
+  customElements.define('x-foo', FooElement)
+  document.body.innerHTML += `
+    <x-foo>
+      <p>我是插槽内容</p>
+    </x-foo>
+  `
+  // 123
+  // 我是自定义组件的内容 // 红色
+  // 我是插槽内容
+</script>

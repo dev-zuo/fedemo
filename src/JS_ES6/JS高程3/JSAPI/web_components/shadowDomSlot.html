@@ -1,0 +1,18 @@
+<div id="foo">我是被隐藏的内容，在影子 DOM 中可以使用 slot 插槽来显示</div>
+<script>
+  const foo = document.querySelector('#foo')
+  const fooShadowDom = foo.attachShadow({ mode: "open"})
+  // 仅显示 abc
+  // fooShadowDom.innerHTML = `
+  //   <div id="bar">
+  //     abc
+  //   </div>
+  // `
+  // 显示 abc，以及原元素中的内容
+  fooShadowDom.innerHTML = `
+    <div id="bar">
+      abc
+      <slot></slot>
+    </div>
+  `
+</script>

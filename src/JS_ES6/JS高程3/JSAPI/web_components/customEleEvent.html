@@ -1,0 +1,22 @@
+<div>123</div>
+<script>
+  class FooElement extends HTMLElement {
+    constructor() {
+      super()
+      console.log('constructor')
+    }
+    connectedCallback() {
+      console.log('connected')
+    }
+    disconnectedCallback() {
+      console.log('disconnected')
+    }
+  }
+  customElements.define('x-foo', FooElement)
+  const fooElement = document.createElement('x-foo')
+  // constructor
+  document.body.appendChild(fooElement)
+  // connected
+  document.body.removeChild(fooElement)
+  // disconnected
+</script>

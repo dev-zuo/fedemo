@@ -1,0 +1,18 @@
+<div id="foo">
+  <div slot="a">我是a内容</div>
+  <div slot="b">我是b内容</div>
+</div>
+<script>
+  document.querySelector('#foo')
+    .attachShadow({ mode: "open"})
+    .innerHTML = `
+      内容b:
+      <slot name="b"></slot>
+      内容a: 
+      <slot name="a"></slot>
+    `
+  // 内容b:
+  // 我是b内容
+  // 内容a:
+  // 我是a内容
+</script>

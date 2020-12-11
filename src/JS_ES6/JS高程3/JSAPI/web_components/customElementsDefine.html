@@ -1,0 +1,16 @@
+<div>1212</div>
+<script>
+  class FooElement extends HTMLDivElement {
+    constructor() {
+      super()
+      console.log('hello')
+    }
+  }
+  customElements.define('x-foo', FooElement, { extends: 'div' });
+
+  document.body.innerHTML = `
+    <div is="x-foo">a</div>
+    <div is="x-foo">b</div>
+    <div is="x-foo">c</div>
+  `
+</script>

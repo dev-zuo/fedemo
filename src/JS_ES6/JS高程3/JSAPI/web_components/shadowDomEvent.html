@@ -1,0 +1,10 @@
+<div onclick="console.log('在外部处理', event.target)"></div>
+<script>
+  document.querySelector('div')
+    .attachShadow({mode: 'open'})
+    .innerHTML = `
+      <button onclick="console.log('在内部处理', event.target)">Foo</button>
+    `
+  // 在内部处理 <button onclick=​"console.log('在内部处理', event.target)​">​Foo​</button>​
+  // 在外部处理 <div onclick=​"console.log('在外部处理', event.target)​">​…​</div>​
+</script>

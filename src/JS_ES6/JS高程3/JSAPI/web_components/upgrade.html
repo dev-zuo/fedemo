@@ -1,0 +1,12 @@
+<script>
+  // 在自定义元素没有定义之前会创建 hTMLUnkownElement 对象
+  const fooElement = document.createElement('x-foo')
+  
+  // 创建自定义元素
+  class FooElement extends HTMLElement {}
+  customElements.define('x-foo', FooElement)
+  console.log(fooElement instanceof FooElement) // false
+  // 强制升级
+  customElements.upgrade(fooElement)
+  console.log(fooElement instanceof FooElement) // true
+</script>

@@ -1,0 +1,14 @@
+<div id="foo"></div>
+<template id="bar">
+  <script>console.log('template script execute')</script>
+</template>
+
+<script>
+  let fragment = document.querySelector('#bar').content
+  console.log('a')
+  document.querySelector('#foo').appendChild(fragment)
+  console.log('b')
+  // a
+  // template script execute
+  // b
+</script>

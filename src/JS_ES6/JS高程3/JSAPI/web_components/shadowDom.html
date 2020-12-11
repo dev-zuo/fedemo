@@ -1,0 +1,20 @@
+<div id="foo">a</div>
+<div id="bar">b</div>
+<script>
+  const foo = document.querySelector('#foo')
+  const bar = document.querySelector("#bar")
+  const fooShadowDom = foo.attachShadow({ mode: "open"})
+  const barShadowDom = bar.attachShadow({ mode: "closed"})
+  console.log(fooShadowDom)
+  console.log(barShadowDom)
+  console.log(foo.shadowRoot)
+  console.log(bar.shadowRoot)
+  fooShadowDom.innerHTML = `
+    <p>颜色：red</p>
+    <style>p { color: red; }</style>
+  `
+  barShadowDom.innerHTML = `
+    <p>颜色：green</p>
+    <style>p { color: green; }</style>
+  `
+</script>

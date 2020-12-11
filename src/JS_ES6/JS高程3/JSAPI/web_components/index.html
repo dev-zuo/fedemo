@@ -1,0 +1,10 @@
+<template id="foo">
+  #document-fragment
+  <p>模板内部p元素</p>  
+</template>
+<script>
+  const fragment = document.querySelector("#foo").content 
+  // #document-fragment
+  console.log( document.querySelector("p")) // null
+  console.log( fragment.querySelector("p")) // <p>...</p>
+</script>

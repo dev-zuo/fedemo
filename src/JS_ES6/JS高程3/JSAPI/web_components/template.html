@@ -1,0 +1,19 @@
+<div id="foo"></div>
+<template id="bar">
+  <p>a</p>
+  <p>b</p>
+  <p>c</p>
+</template>
+
+<script>
+  // 将 template 元素的内容转移到 foo 元素内
+  const barTemplate = document.querySelector('#bar')
+  const fragment = barTemplate.content
+  const fooElement = document.querySelector('#foo')
+  // appendChild 会移动元素，之前的元素所在的位置会删除
+  fooElement.appendChild(fragment)
+  // 如果需要保留原元素，需要在 appendChild 时创建一个节点的副本
+  // fooElement.appendChild(document.importNode(fragment, true))
+  // fooElement.appendChild(fragment.cloneNode(true))
+  console.log(barTemplate.content.children) // HTMLCollection []
+</script>

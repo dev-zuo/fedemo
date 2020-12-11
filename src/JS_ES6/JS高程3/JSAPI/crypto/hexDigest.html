@@ -1,0 +1,23 @@
+
+<script>
+(async function () {
+  const textEncoder = new TextEncoder()
+  const msg = textEncoder.encode('foo') // Uint8Array(3) [102, 111, 111]
+  const msgDigest = await crypto.subtle.digest('SHA-256', msg)
+  console.log(msgDigest) // ArrayBuffer(32)
+  console.log(new Uint8Array(msgDigest))
+
+  // 8位分割后的数据大小为 0 - 255
+  b = 44
+  b.toString(16) // "2c"
+  c = 1
+  c.toString(16) // "1"
+  c.toString(16).padStart(2, '0') // "01"
+
+  const hexDigest = Array.from(new Uint8Array(msgDigest))
+    .map(i => i.toString(16))
+    .join("")
+  console.log(hexDigest)
+  // 2c26b46b68ffc68ff99b453c1d30413413422d706483bfa0f98a5e886266e7ae
+})()
+</script>

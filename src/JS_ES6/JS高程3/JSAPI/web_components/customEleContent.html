@@ -1,0 +1,21 @@
+<div>123</div>
+<script>
+  class FooElement extends HTMLElement {
+    constructor() {
+      super()
+      this.attachShadow({ mode: 'open' })
+      this.shadowRoot.innerHTML = `
+        <p>我是自定义组件的内容</p>
+        <slot></slot>
+      `
+    }
+  }
+  customElements.define('x-foo', FooElement)
+  document.body.innerHTML = `
+    <x-foo>
+      <div>我是插槽内容</div>
+    </x-foo>
+  `
+  // 我是自定义组件的内容
+  // 我是插槽内容
+</script>

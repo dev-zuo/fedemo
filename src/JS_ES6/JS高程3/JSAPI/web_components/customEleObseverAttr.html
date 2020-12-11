@@ -1,0 +1,26 @@
+<div>123</div>
+<script>
+  class FooElement extends HTMLElement {
+    get bar() {
+      return this.getAttribute('bar')
+    }
+    set bar(value) {
+      return this.setAttribute('bar', value)
+    }
+    // 可观察属性 bar
+    static get observedAttributes() {
+      return ['bar']
+    }
+    attributeChangedCallback(name, oldValue, newValue) {
+      if (oldValue !== newValue) {
+        console.log(`oldValue: ${oldValue} => newValue: ${newValue}`)
+        this[name] = newValue
+      }
+    }
+  }
+  customElements.define('x-foo', FooElement)
+  document.body.innerHTML = `<x-foo bar="false">abc</x-foo>`
+  // oldValue: null => newValue: false
+  document.querySelector('x-foo').setAttribute('bar', 'true')
+  // oldValue: false => newValue: true
+</script>
