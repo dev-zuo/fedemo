@@ -1,0 +1,48 @@
+
+<script>
+  // fetch('http://127.0.0.1:8088/user').then(res => {
+  // fetch('/user').then(res => {
+  //   console.log(res)
+  //   let { status, statusText, url } = res
+  //   console.log(status, statusText, url)
+  // }).catch(err => {
+  //   console.log(typeof err, err, err.message)
+  // })
+
+  // 发生跨域请求时 catch 仅能捕获到 "TypeError: Failed to fetch" 错误信息 
+  // GET http://127.0.0.1:8088/user net::ERR_CONNECTION_REFUSED
+  // object
+  // TypeError: Failed to fetch 
+  // Failed to fetch 
+
+  // fetch('/user', {
+  //   method: 'POST',
+  //   headers: new Headers({
+  //     'Content-Type': 'application/json'
+  //   }),
+  //   body: JSON.stringify({
+  //     name: "张三"
+  //   })
+  // })
+  // .then(res => console.log(res))
+  // .catch(console.log)
+
+  // let xhr = new XMLHttpRequest()
+  // xhr.open('post', '/user', true)
+  // xhr.onload = (event) => {
+  //   console.log(xhr.responseText)
+  // }
+  // xhr.setRequestHeader('Content-Type', 'application/json')
+  // xhr.send(JSON.stringify({ name: "张三"}))
+
+  fetch('/user', {
+    method: 'POST',
+    headers: new Headers({
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+    }),
+    body: 'a=1&b=jack'
+  })
+  .then(res => console.log(res))
+  .catch(console.log)
+
+</script>

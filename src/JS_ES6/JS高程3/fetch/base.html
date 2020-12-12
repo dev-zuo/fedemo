@@ -1,0 +1,16 @@
+<!-- <script>
+  fetch('a.js').then(res => {
+    console.log(res)
+    res.text().then(console.log)
+  })
+</script> -->
+
+<script>
+  // fetch('a.js').then(res => {
+  //   console.log(res)
+  //   return res.text()
+  // }).then(data => console.log(data))
+
+  // 更精简的写法
+  fetch('a.js').then(r => r.text()).then(console.log)
+</script>

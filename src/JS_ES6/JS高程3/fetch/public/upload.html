@@ -1,0 +1,25 @@
+<!-- <input type="file" id="file"> -->
+<input type="file" id="file" multiple>
+<script>
+  let fileInput = document.getElementById('file')
+ 
+  fileInput.onchange = (event) => {
+    let formData = new FormData()
+    // 多个文件上传：使用同一个字段上传
+    console.log(event.target.files) // FileList 类数组对象
+    let files = event.target.files
+    for (let i = 0, len = files.length; i < len; i++) {
+      formData.append('image', files[i])
+    }
+    // 单文件上传
+    // formData.append('image', files[0])
+    formData.append('param1', 'abc')
+    fetch('/upload', {
+      method: 'POST',
+      body: formData
+    })
+    .then(console.log)
+    .catch(console.log)
+    //  { param1: 'abc' }
+  }
+</script>

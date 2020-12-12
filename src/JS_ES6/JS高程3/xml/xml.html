@@ -1,0 +1,13 @@
+<script>
+  let xmldom = new DOMParser().parseFromString('<root><child /></root>', 'text/xml')
+  let result = xmldom.evaluate("employee/name", xmldom.documentElement, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null)
+  console.log(result) 
+  // XPathResult {resultType: 5, invalidIteratorState: false}
+  if (result !== null) {
+    let element = result.iterateNext()
+    while(element) {
+      console.log(element.tagName)
+      element = result.iterateNext()
+    }
+  }
+</script>
