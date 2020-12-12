@@ -1,0 +1,72 @@
+<script>
+  // text()
+  fetch('/user')
+    .then(res => res.text())
+    .then(data => {
+      console.log(typeof data) // "string"
+      console.log(data) // '{"name":"zuo"}'
+    })
+
+  // json()
+  fetch('/user')
+    .then(res => res.json())
+    .then(data => {
+      console.log(typeof data) // "object"
+      console.log(data) // { name: "zuo" }
+    })
+
+  // formData()
+  // 请求时无法模拟，一般在 service worker 中使用
+  fetch('/user')
+    .then(res => res.formData())
+    .then(data => {
+      console.log(typeof data)
+      console.log(data)
+    })
+    // Uncaught (in promise) TypeError: Failed to fetch
+  // 使用 request 来测试
+  let formData = new FormData()
+  formData.append('name', 'zuo')
+  let request = new Request('/test', { 
+    method: 'POST', 
+    body: formData
+  })
+  request.formData().then(data => {
+    console.log(typeof data) // object
+    console.log(data) // FormData {}
+  })
+
+  // arrayBuffer
+  fetch('/user')
+    .then(res => res.arrayBuffer())
+    .then(data => {
+      console.log(typeof data) // "object"
+      console.log(data) // ArrayBuffer(14) {}
+      let str = ''
+      new Uint8Array(data).forEach(code => {
+        str += String.fromCharCode(code)
+      })
+      console.log(str) // '{"name":"zuo"}'
+    })
+
+  // blob()
+  fetch('/user')
+    .then(res => res.blob())
+    .then(data => {
+      console.log(typeof data) // "object"
+      console.log(data) 
+      // Blob {size: 14, type: "application/json"}
+
+      // 读取 Blob 文件数据
+      let reader = new FileReader()
+      reader.readAsText(data)
+      reader.onload = (event) => {
+        console.log(reader.result) // '{"name":"zuo"}'
+      }
+    })
+
+    fetch('/user')
+      .then(res => res.blob().then(() => res.blob()))
+    // Uncaught (in promise) TypeError: 
+    // Failed to execute 'blob' on 'Response': body stream already read
+</script>

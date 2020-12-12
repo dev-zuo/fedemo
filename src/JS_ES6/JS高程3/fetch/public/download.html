@@ -1,0 +1,41 @@
+<script>
+  fetch('warning.png')
+    .then(res => res.blob())
+    .then(blob => {
+      console.log(blob)
+      let img = new Image()
+      img.src = URL.createObjectURL(blob)
+      document.body.appendChild(img)
+    })
+
+  fetch('/download')
+    .then(res => {
+      if (res.status === 200 || res.status === 304) {
+        return res.blob()
+      } else {
+        return Promise.reject('/download error')
+      }
+    })
+    .then(blob => {
+      // console.log(blob) // Blob {size: 64082, type: "application/octet-stream"}
+
+      // 如果接口通过响应头设置了响应的文件类型，文件名，就不用 new Blob 再转一次了
+      //  ctx.set({
+      //   'Content-Type': 'image/png',
+      //   'Content-Disposition': `attachment; filename="warning.png"`
+      // })
+      blob = new Blob([blob], {
+        type: "image/png"
+      })
+      console.log(blob) // Blob {size: 64082, type: "image/png" }
+      let a = document.createElement('a')
+      let url = URL.createObjectURL(blob)
+      a.href = url
+      a.download = '123.png' // 指定文件名
+      document.body.appendChild(a)
+      a.click()
+      document.body.removeChild(a)
+      URL.revokeObjectURL(url)
+    })
+    .catch(console.log)
+</script>

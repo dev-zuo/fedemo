@@ -6,15 +6,37 @@ const app = new Koa()
 const router = new Router()
 
 app.use(require('koa-static')(__dirname + '/public'))
-app.use(require('koa-bodyparser')())
+app.use(require('koa-bodyparser')({
+  enableTypes: ['json', 'form', 'text']
+}))
+
+router.get('/user', async ctx => {
+ ctx.body = {
+    name: "zuo"
+  }
+})
+
+const FormData = require('form-data');
+router.get('/userFormData', async ctx => {
+  let formData = new FormData()
+  formData.append('name', 'zuo')
+  console.log(typeof formData) // object
+  console.log(formData)
+  ctx.body = {
+    name: "zuo"
+  }
+})
 
 router.post('/user', async ctx => {
+  // { page: '/xxx', duration: '12s' } 
   console.log(ctx, ctx.request.body, ctx.query, ctx.request)
   // asf // 故意制造错误
   // ctx.body = '121'
 
   // await new Promise(r => setTimeout(() => r(), 3600 * 1000))
-  ctx.body = "abc"
+  ctx.body = {
+    a: 1
+  }
 })
 
 
@@ -52,6 +74,42 @@ router.post('/upload', fileConfig ,async ctx => {
   //   size: 90185
   // }
   ctx.body = ctx.request.body 
+})
+
+router.get('/download' ,async ctx => {
+  // ctx.set({
+  //   'Content-Type': 'image/png',
+  //   'Content-Disposition': `attachment; filename="warning.png"`
+  // })
+  let file = fs.readFileSync('./public/warning.png')
+  ctx.body = file
+})
+
+
+// options 预检请求时允许
+router.options('/corsTest', ctx => {
+  ctx.set({
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': '*',
+    'Access-Control-Allow-Headers': '*'
+  })
+  ctx.body = {}
+})
+
+// 真实请求
+router.post('/corsTest', ctx => {
+  ctx.set({
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': '*',
+    'Access-Control-Allow-Headers': '*'
+  })
+  ctx.body = { a: 123 }
+})
+
+router.post('/abortTest', async ctx => {
+  let sleep = (t) => new Promise(r => setTimeout(() => r(), t))
+  await sleep(60 * 1000)
+  ctx.body = { a: 1}
 })
 
 app.use(router.routes()).use(router.allowedMethods())

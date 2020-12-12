@@ -1,0 +1,21 @@
+<script>
+  let abortControler = new AbortController() 
+  console.log(abortControler, abortControler.signal)
+  // AbortController {signal: AbortSignal}
+  // AbortSignal {aborted: false, onabort: null }
+  fetch('/abortTest', {
+    method: 'POST',
+    headers: new Headers({
+      'Content-Type': 'application/json'
+    }),
+    body: JSON.stringify({
+      name: "张三"
+    }),
+    signal: abortControler.signal
+  })
+  .then(res => console.log(res))
+  .catch(console.log) 
+  // DOMException: The user aborted a request.
+
+  setTimeout(() => abortControler.abort(), 2000)
+</script>

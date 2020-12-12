@@ -1,0 +1,22 @@
+<script>
+  fetch('http://127.0.0.1:8888/corsTest', {
+    method: 'POST',
+    headers: new Headers({
+      'Content-Type': 'application/json'
+    }),
+    body: JSON.stringify({
+      name: "张三"
+    }),
+    // mode: 'no-cors' 
+    // 允许跨域, 可以成功，但无法读响应内容 Response {type: "opaque", url: "", } 
+  })
+  .then(res => console.log(res)) // Response {type: "cors", url: "http://127.0.0.1:8888/corsTest" }
+  .catch(console.log)
+
+  // Access to fetch at 'http://127.0.0.1:8888/corsTest' from origin 'http://127.0.0.1:5502' 
+  // has been blocked by CORS policy: Response to preflight request 
+  // doesn't pass access control check: No 'Access-Control-Allow-Origin' 
+  // header is present on the requested resource. If an opaque response 
+  // serves your needs, set the request's mode to 
+  // 'no-cors' to fetch the resource with CORS disabled.
+</script>

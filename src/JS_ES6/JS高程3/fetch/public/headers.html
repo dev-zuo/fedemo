@@ -1,0 +1,27 @@
+<script>
+  fetch('/user', {
+    method: 'POST',
+    headers: new Headers({
+      'Content-Type': 'application/json'
+    }),
+    body: JSON.stringify({
+      name: "张三"
+    })
+  })
+  .then(res => {
+    console.log(res.headers) // Headers {} 
+    // has()、append()、delete()、get()、set()
+    // forEach()、keys()、values()、entries()
+    console.log(Object.fromEntries(res.headers.entries()))
+    // {
+    //   connection: "keep-alive"
+    //   content-length: "7"
+    //   content-type: "application/json; charset=utf-8"
+    //   date: "Sat, 12 Dec 2020 17:03:31 GMT"
+    // }
+    console.log(res.headers.get('content-type')) 
+    // application/json; charset=utf-8
+    console.log(res)
+  })
+  .catch(console.log)
+</script>

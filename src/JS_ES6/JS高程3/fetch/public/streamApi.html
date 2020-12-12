@@ -1,0 +1,78 @@
+<!-- <script>
+  fetch('https://fetch.spec.whatwg.org/')
+    .then(res => res.body)
+    .then(async body => {
+      let reader = body.getReader()
+      while(1) {
+        let { value, done } = await reader.read()
+        if (done) {
+          break;
+        } else {
+          console.log(value)
+        }
+      }
+    })
+  // Uint8Array(65536)
+  // ....
+  // Uint8Array(100395)
+  // Uint8Array(33171)
+  // Uint8Array(80674)
+</script> -->
+
+<!-- <script>
+  fetch('https://fetch.spec.whatwg.org/')
+    .then(res => res.body)
+    .then(async body => {
+      let reader = body.getReader()
+      let iterator = {
+        [Symbol.asyncIterator]() {
+          return {
+            next() {
+              return reader.read()
+            }
+          }
+        }
+      }
+      for await (chunk of iterator) {
+        console.log(chunk) // 加了 await 会较慢，但顺序是正确的
+      }
+    })
+  // Uint8Array(65536)
+  // ....
+  // Uint8Array(100395)
+  // Uint8Array(33171)
+  // Uint8Array(80674)
+</script> -->
+
+<script>
+  async function * streamGenerator(body) {
+    const reader = body.getReader()
+    try {
+      while(1) {
+        let { value, done } = await reader.read()
+        if (done) {
+          break;
+        } 
+        yield value
+      }
+    } finally {
+      reader.releaseLock()
+    }
+  }
+  fetch('https://fetch.spec.whatwg.org/')
+    .then(res => res.body)
+    .then(async body => {
+      for await (chunk of streamGenerator(body)) {
+        // console.log(chunk) // 加了 await 会较慢，但顺序是正确的
+        console.log(new TextDecoder().decode(chunk, {
+          stream: true
+        }))
+      }
+    })
+  // <!doctype html><html lang="en">
+  //  <head>
+  //   <meta charset="utf-8">
+  //   <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+  //   <meta content="#3c790a" name="theme-color">
+  //   <title>Fetch Standard</title>
+</script>
