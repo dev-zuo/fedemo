@@ -1,0 +1,17 @@
+{
+  "name": "service_work_push",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.13.0",
+    "koa-router": "^10.0.0",
+    "koa-static": "^5.0.0",
+    "web-push": "^3.4.4"
+  }
+}
