@@ -18,7 +18,7 @@ function asyncOptPromise() {
 }
 
 describe('异步测试', function () {
-  it('asyncOpt 正确执行应该返回 true', async function() {
+  it('asyncOpt 正确执行应该返回 true', async function () {
     // this.timeout(5000);
     this.slow(2000)
     // this.timeout(1000);
