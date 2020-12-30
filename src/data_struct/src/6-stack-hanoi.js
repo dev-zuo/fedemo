@@ -26,7 +26,7 @@ function hanoiStack(n) {
   // console.log('moves.length', moves.length)
   return moves
 }
-console.log(hanoiStack(3))
+// console.log(hanoiStack(3))
 
 function hanoiRecursion(n, a, b, c, moves = []) {
   if (n === 0) {
@@ -38,8 +38,8 @@ function hanoiRecursion(n, a, b, c, moves = []) {
   return moves
 }
 let moves = hanoiRecursion(3, 'A', 'B', 'C')
-console.log('移动路径', moves)
-console.log('移动次数', moves.length)
+// console.log('移动路径', moves)
+// console.log('移动次数', moves.length)
 // // 移动路径
 // // [
 // //  ["A", "B"], ["A", "C"], ["B", "C"], ["A", "B"],
