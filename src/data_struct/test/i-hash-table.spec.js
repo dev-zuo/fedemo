@@ -10,7 +10,7 @@ describe('HashTable Test', () => {
   it('put(),remove(),get() test', () => {
     hashTable.put('zhangsan', '1')
     hashTable.put('lisi', '2')
-    console.log(hashTable)
+    // console.log(hashTable)
     // table: {
     //   '7': ValuePair { key: 'zhangsan', value: '1' },
     //   '26': ValuePair { key: 'lisi', value: '2' }
