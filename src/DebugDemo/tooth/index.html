@@ -8,11 +8,11 @@
 <body>
   <script>
     let braceCount = 11
-    let baseTimestamp = +(new Date('2021-01-06 19:00'))
+    let baseTimestamp = +(new Date('2021-01-21 19:00'))
     // 计算 41 - 50 换牙套以及复诊时间，10 天一副
     for (let i = 0; i < braceCount; i++) {
       let curTimeStamp = baseTimestamp + (24 * 3600 * 1000) * 10 * i
-      console.log(41 + i, new Date(curTimeStamp).toLocaleString())
+      console.log(42 + i, new Date(curTimeStamp).toLocaleString())
     }
   </script>
 </body>
