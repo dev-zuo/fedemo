@@ -5,7 +5,7 @@
     <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
     <ul>
       <li v-for="item in linkList" :key="item.link" @click="jumpTo(item)">
-        <a :href="`/${item.link}`">{{ item.desc }}</a>
+        <a :href="`/#/${item.link}`">{{ item.desc }}</a>
       </li>
     </ul>
   </div>
