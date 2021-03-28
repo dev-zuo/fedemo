@@ -133,6 +133,11 @@ const routes = [
     path: "/at",
     name: "at",
     component: () => import("../views/at/")
+  },
+  {
+    path: "/elInput",
+    name: "elInput",
+    component: () => import("../views/elInput/")
   }
 ];
 
