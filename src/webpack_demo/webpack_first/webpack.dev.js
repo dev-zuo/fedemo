@@ -36,8 +36,35 @@ module.exports = {
       {
         test: /\.less$/,
         // 注意css loader有执行顺序，从又向左执行
-        use: ['style-loader', 'css-loader', 'less-loader', 'postcss-loader']
+        // use: ['style-loader', 'css-loader', 'less-loader', 'postcss-loader']
+        // use: [
+        //   'style-loader', 'css-loader', 'less-loader', 
+        //   {
+        //     loader: "postcss-loader",
+        //     options: {
+        //       postcssOptions: {
+        //         plugins: [
+        //           require('autoprefixer')({
+        //               overrideBrowserslist: ['last 2 versions', '>1%']
+        //           })
+        //         ]
+        //       }
+        //     }
+        //   }
+        // ]
         // use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader', 'postcss-loader']
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader', {
+          loader: "postcss-loader",
+          options: {
+            postcssOptions: {
+              plugins: [
+                require('autoprefixer')({
+                  overrideBrowserslist: ['last 2 versions', '>1%']
+                })
+              ]
+            }
+          }
+        }]
       },
       {
         test: /\.(eot|ttf|woff|woff2|svg)$/,
@@ -62,10 +89,10 @@ module.exports = {
       template: './src/index.html'
     }),
     new CleanWebpackPlugin(),
-    // new MiniCssExtractPlugin({
-    //   // filename: "[name]_[contenthash:8].css" 
-    //   filename: "[name].css"
-    // })
+    new MiniCssExtractPlugin({
+      // filename: "[name]_[contenthash:8].css" 
+      filename: "[name].css"
+    })
     // new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
