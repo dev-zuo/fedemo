@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <button id="goBackBtn">回城</button>
+    <button id="skillsABtn">释放技能A</button>
+  </div>
+  <script src="throttleAndDebounce.js"></script>
+  <script>
+    let goBackBtn = document.querySelector('#goBackBtn')
+    goBack = () => {
+      console.log(`成功回城, ${+new Date()}`)
+    }
+    // 3 秒之后回城
+    goBackBtn.onclick = debounce(goBack, 3000) 
+
+
+    let skillsABtn = document.querySelector('#skillsABtn')
+    releaseASkills = () => {
+      console.log(`释放A技能, ${+new Date()}`)
+    }
+    // 技能冷却时间 3 秒
+    skillsABtn.onclick = throttle(releaseASkills, 3000)
+  </script>
+</body>
+</html>
