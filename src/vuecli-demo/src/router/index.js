@@ -138,6 +138,11 @@ const routes = [
     path: "/elInput",
     name: "elInput",
     component: () => import("../views/elInput/")
+  },
+  {
+    path: "/msgTest",
+    name: "msgTest",
+    component: () => import("../views/msgTest.vue")
   }
 ];
 

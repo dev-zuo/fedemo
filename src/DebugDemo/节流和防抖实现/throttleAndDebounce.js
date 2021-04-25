@@ -7,7 +7,7 @@
 function debounce(func, time) {
   let timer = null // 定时任务计时器
   // 返回一个经过防抖处理的 func
-  return (...args) => {
+  return function (...args) {
     if (timer) {
       // 如果上一次定时任务还在等待执行的过程中，取消定时任务
       clearTimeout(timer)
@@ -30,7 +30,7 @@ function debounce(func, time) {
  function throttle(func, time) {
   let isLock = false // 是否冷却(cooldown)中
   // 返回一个经过节流处理的 func
-  return (...args) => {
+  return function (...args) {
     if (isLock) { // 如果是冷却中，不执行函数
       console.log('冷却(cd)中...')
       return 

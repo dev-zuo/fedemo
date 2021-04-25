@@ -89,6 +89,10 @@ Vue.directive("zloading", {
   }
 });
 
+import MessageInfo from "@/components/message/index.vue";
+
+Vue.component(MessageInfo.name, MessageInfo);
+
 new Vue({
   router,
   store,
