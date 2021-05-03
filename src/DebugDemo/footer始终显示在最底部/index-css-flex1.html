@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    * {margin: 0}
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+    .main {
+      flex: 1;
+    }
+    footer {
+      padding: 10px;
+      background: yellow;
+    }
+  </style>
+</head>
+
+<body>
+  <article id="app" class="container">
+    <header>
+      <h2>foot 始终在顶部测试</h2>
+    </header>
+    <section class="main">
+      占位数：<button v-for="item in list" :key="`btn-${item}`" @click="changeCount(item)">{{item}}</button>
+      <div v-for="item in count" :key="`gap-${item}`">
+        占位 {{item}}
+      </div>
+    </section>
+    <footer>
+      Copyright © 2016-2021 zuo11.com. 鄂ICP备16014741号-1
+    </footer>
+  </article>
+  <script>
+    let app = new Vue({
+      el: '#app',
+      data() {
+        return {
+          list: [5, 50, 100],
+          count: 5
+        }
+      },
+      methods: {
+        changeCount(value) {
+          this.count = value
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
