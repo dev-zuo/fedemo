@@ -1,24 +1,44 @@
 <template>
+  <!-- 父元素遮罩层-->
   <div class="msg-info-wrap" v-if="showMsg" @click="closeMsg">
+    <!-- 消息弹窗 -->
     <div class="msg-info" @click.stop>
+      <!-- 消息列表 -->
       <div v-for="msg in messages" :key="msg">{{ msg }}</div>
+      <slot></slot>
     </div>
   </div>
 </template>
 
 <script>
+import Bus from "./EventBus";
+
 export default {
   name: "MessageInfo",
   data() {
     return {
-      showMsg: true,
-      messages: ["消息1", "消息2"]
+      showMsg: false,
+      messages: []
     };
+  },
+
+  created() {
+    Bus.$on("showMsg", msgList => {
+      this.showMsg = true; // 显示消息
+      this.messages = msgList; // 显示对应的消息列表
+    });
+    Bus.$on("closeMsg", this.closeMsg);
+  },
+
+  destroyed() {
+    Bus.$off("showMsg");
+    Bus.$off("closeMsg");
   },
 
   methods: {
     closeMsg() {
       this.showMsg = false;
+      this.messages = [];
     }
   }
 };

@@ -38,8 +38,8 @@ export default {
         { desc: "sameCompTabs", link: "sameCompTabs" },
         { desc: "keepAlive", link: "keepAlive" },
         // { desc: "subcomp_samename", link: "subcomp_samename" },
-        { desc: "at", link: "at" }
-        // { desc: "", link: "" },
+        { desc: "at", link: "at" },
+        { desc: "msgTest", link: "msgTest" }
         // { desc: "", link: "" }
       ]
     };
