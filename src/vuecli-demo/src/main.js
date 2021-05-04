@@ -92,7 +92,10 @@ Vue.directive("zloading", {
 import MessageInfo from "./components/message-info/index.js";
 Vue.use(MessageInfo);
 
+import i18n from "./i18n/index";
+
 new Vue({
+  i18n,
   router,
   store,
   render: h => h(App)

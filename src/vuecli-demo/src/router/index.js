@@ -143,6 +143,21 @@ const routes = [
     path: "/msgTest",
     name: "msgTest",
     component: () => import("../views/msgTest.vue")
+  },
+  {
+    path: "/i18nTest",
+    name: "i18nTest",
+    component: () => import("../views/i18n-test/index.vue")
+  },
+  {
+    path: "/vuexForm",
+    name: "vuexForm",
+    component: () => import("../views/vuex-form/index.vue")
+  },
+  {
+    path: "/vIfvShow",
+    name: "vIfvShow",
+    component: () => import("../views/vIfvShow/index.vue")
   }
 ];
 

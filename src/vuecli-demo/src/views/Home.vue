@@ -2,9 +2,10 @@
   <div class="home">
     <!-- <h3>Vue测试demo</h3> -->
     <img alt="Vue logo" src="../assets/logo.png" />
+    <!-- <div id="img"></div> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
     <ul>
-      <li v-for="item in linkList" :key="item.link" @click="jumpTo(item)">
+      <li v-for="item in linkList" :key="item.link">
         <a :href="`/#/${item.link}`">{{ item.desc }}</a>
       </li>
     </ul>
@@ -39,7 +40,10 @@ export default {
         { desc: "keepAlive", link: "keepAlive" },
         // { desc: "subcomp_samename", link: "subcomp_samename" },
         { desc: "at", link: "at" },
-        { desc: "msgTest", link: "msgTest" }
+        { desc: "msgTest", link: "msgTest" },
+        { desc: "i18nTest", link: "i18nTest" },
+        { desc: "vuexForm", link: "vuexForm" },
+        { desc: "vIfvShow", link: "vIfvShow" }
         // { desc: "", link: "" }
       ]
     };
@@ -64,5 +68,11 @@ ul {
     padding-right: 10px;
     padding-bottom: 10px;
   }
+}
+#img {
+  height: 100px;
+  width: 100px;
+  background: url("~@/assets/logo.png");
+  background-size: contain;
 }
 </style>
