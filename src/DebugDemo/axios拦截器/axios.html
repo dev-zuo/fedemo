@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    axios.post('http://localhost:9900/greeting', {
+      "id": 1,
+      "content": "测试"
+    }).then((res) => {
+      console.log('请求成功，', res)
+    }, (err) => {
+      console.log('请求发生了错误,', err)
+    })
+  </script>
+</body>
+
+</html>

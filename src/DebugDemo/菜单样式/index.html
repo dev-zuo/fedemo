@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .aside-menu-sec,
+    .sub-menu-sec {
+      display: flex;
+      align-items: center;
+      width: 300px;
+      box-sizing: border-box;
+      padding: 10px;
+      color: white;
+      /* 向下线性渐变 */
+      background-image: linear-gradient(to bottom, rgb(40, 143, 208), rgb(0, 107, 181));
+      cursor: pointer;
+    }
+
+    .aside-menu-sec span {
+      flex: 1;
+      padding-left: 5px;
+    }
+
+    .sub-menu-sec {
+      opacity: 0.8;
+    }
+    .sub-menu-sec span {
+      flex: 1;
+      padding-left: 25px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="aside-menu">
+    <div class="aside-menu-sec">
+      <img src="./info.svg" />
+      <span>个人信息</span>
+      <img src="./down.svg" />
+    </div>
+    <div class="aside-menu-sub">
+      <div class="sub-menu-sec">
+        <span>基本資料</span>
+      </div>
+      <div class="sub-menu-sec">
+        <span>简历</span>
+      </div>
+    </div>
+    <div class="aside-menu-sec">
+      <img src="./info.svg" />
+      <span>考勤相关</span>
+      <img src="./right.svg" />
+    </div>
+    <div class="aside-menu-sec">
+      <img src="./info.svg" />
+      <span>薪资福利</span>
+      <img src="./right.svg" />
+    </div>
+    <div class="aside-menu-sec">
+      <img src="./info.svg" />
+      <span>培训成长</span>
+      <img src="./right.svg" />
+    </div>
+    <div class="aside-menu-sec">
+      <img src="./info.svg" />
+      <span>目标绩效</span>
+      <img src="./right.svg" />
+    </div>
+    <div class="aside-menu-sec">
+      <img src="./info.svg" />
+      <span>行政申请</span>
+      <img src="./right.svg" />
+    </div>
+  </div>
+</body>
+
+</html>
