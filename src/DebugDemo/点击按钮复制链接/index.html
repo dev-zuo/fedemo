@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  html
+  <button onclick="copyLink()">点击按钮复制内容</button>
+  <input size="25" type="text" id="myText" value="A cat played with a ball">
+  <script>
+    function copyLink() {
+      let input = document.createElement('input')
+      input.setAttribute('id', 'myText')
+      input.setAttribute('value', '复制链接的内容564dfd')
+      input.style.position = 'absolute'
+      input.style.top = '-100px'
+      input.style.display = 'block'
+      document.body.appendChild(input)
+      input.select()
+      // // var ele = document.getElementById("myText");
+      // ele.select();
+      document.execCommand("Copy");
+      alert("复制链接成功！");
+    }
+  </script>
+</body>
+
+</html>

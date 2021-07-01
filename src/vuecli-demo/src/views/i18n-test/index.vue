@@ -34,11 +34,19 @@ export default {
       let index = currencyCodes.indexOf(code);
       return currencys[index];
     }
+    // eslint-disable-next-line vue/no-reserved-keys
   },
+
   data() {
     return {
-      currency: ""
+      currency: "",
+      // eslint-disable-next-line vue/no-reserved-keys
+      _test: "hello"
     };
+  },
+
+  created() {
+    console.log("test", this._test);
   }
 };
 </script>
