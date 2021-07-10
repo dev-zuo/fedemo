@@ -9,14 +9,26 @@
 </head>
 
 <body>
-  html
   <button onclick="copyLink()">点击按钮复制内容</button>
-  <input size="25" type="text" id="myText" value="A cat played with a ball">
+  <p id="randomText"></p>
+  <textarea></textarea>
+  <!-- <input size="25" type="text" id="myText" value="A cat played with a ball"> -->
   <script>
     function copyLink() {
       let input = document.createElement('input')
+      // ascii 编码转 字符串，String.fromCharCode(65)  65 "A", 97 "a", 48 "0"
+      // 字符串转 ascii 编码, "a".charCodeAt(0)
+      let getRandomStr = (len) => {
+        let result = ''
+        for (let i = 0; i < len; i++) {
+          result += String.fromCharCode(97 + Math.random() * 25 + 1) // 0 ~ 25
+        }
+        return result
+      } 
+      let text = getRandomStr(10)
+      document.querySelector('#randomText').innerHTML = text
       input.setAttribute('id', 'myText')
-      input.setAttribute('value', '复制链接的内容564dfd')
+      input.setAttribute('value', text)
       input.style.position = 'absolute'
       input.style.top = '-100px'
       input.style.display = 'block'
@@ -25,7 +37,6 @@
       // // var ele = document.getElementById("myText");
       // ele.select();
       document.execCommand("Copy");
-      alert("复制链接成功！");
     }
   </script>
 </body>
