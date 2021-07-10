@@ -9,34 +9,44 @@
 </head>
 
 <body>
-  <button onclick="copyLink()">点击按钮复制内容</button>
+  <button onclick="execCopy()">点击按钮复制内容</button>
   <p id="randomText"></p>
   <textarea></textarea>
-  <!-- <input size="25" type="text" id="myText" value="A cat played with a ball"> -->
   <script>
-    function copyLink() {
-      let input = document.createElement('input')
+    // 复制内容
+    function copyContent(text) {
+      // 动态创建 input 元素，设置内容
+      let element = document.createElement('input')
+      element.setAttribute('value', text)
+      // 隐藏 input
+      element.style.position = 'absolute'
+      element.style.top = '-1000px'
+      element.style.display = 'block'
+      // 挂载到 body
+      document.body.appendChild(element)
+      // 复制
+      element.select()
+      document.execCommand("Copy");
+      // 复制完成后从 body 移除
+      document.body.removeChild(element)
+    }
+
+    // 生成 len 长度的随机字符串
+    function getRandomStr(len) {
       // ascii 编码转 字符串，String.fromCharCode(65)  65 "A", 97 "a", 48 "0"
       // 字符串转 ascii 编码, "a".charCodeAt(0)
-      let getRandomStr = (len) => {
-        let result = ''
-        for (let i = 0; i < len; i++) {
-          result += String.fromCharCode(97 + Math.random() * 25 + 1) // 0 ~ 25
-        }
-        return result
-      } 
+      let result = ''
+      for (let i = 0; i < len; i++) {
+        result += String.fromCharCode(97 + Math.random() * 25 + 1) // 0 ~ 25
+      }
+      return result
+    }
+
+    function execCopy() {
+      // 生成随机字符串
       let text = getRandomStr(10)
       document.querySelector('#randomText').innerHTML = text
-      input.setAttribute('id', 'myText')
-      input.setAttribute('value', text)
-      input.style.position = 'absolute'
-      input.style.top = '-100px'
-      input.style.display = 'block'
-      document.body.appendChild(input)
-      input.select()
-      // // var ele = document.getElementById("myText");
-      // ele.select();
-      document.execCommand("Copy");
+      copyContent(text) // 复制内容
     }
   </script>
 </body>
