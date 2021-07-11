@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <pre>
+    var a = 0;
+    if (true) {
+      a = 1;
+      function a() { }
+      a = 21;
+      console.log(`里面:${a}`)
+    }
+    console.log(`外面:${a}`)
+  </pre>
+  <script>
+    "use strict";
+    // Uncaught ReferenceError: mistypeVariable is not defined
+    // mistypeVariable = 17;
+    var undefined = 5; // throws a TypeError
+    var Infinity = 5; // throws a TypeError
+    if (true) {
+      function f() { } // !!! 语法错误
+      f();
+    }
+    var a = 0;
+    if (true) {
+      a = 1;
+      function a() { }
+      a = 21;
+      console.log(`里面:${a}`)
+    }
+    console.log(`外面:${a}`)
+  </script>
+</body>
+
+</html>
