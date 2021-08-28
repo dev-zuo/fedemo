@@ -1,7 +1,10 @@
 <template>
   <div class="home">
     <!-- <h3>Vue测试demo</h3> -->
-    <img alt="Vue logo" src="../assets/logo.png" />
+    <div class="title-view">
+      <img alt="Vue logo" src="../assets/logo.png" />
+      <h1>Vue demo</h1>
+    </div>
     <!-- <div id="img"></div> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
     <ul>
@@ -52,11 +55,16 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.title-view {
+  display: flex;
+  align-items: center;
+}
 .home {
   padding: 30px;
 }
 img {
   width: 60px;
+  height: 60px;
 }
 ul {
   display: flex;

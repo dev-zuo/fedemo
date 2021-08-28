@@ -7,6 +7,28 @@
       <router-link to="/about">About</router-link>
     </div> -->
     <router-view />
+    <footer class="footer">
+      <div>
+        <span>Copyright © 2020-2021 zuoguoqing.com.</span>
+        <a href="http://beian.miit.gov.cn/" target="_blank">
+          鄂ICP备16014741号-4
+        </a>
+      </div>
+      <!-- {{ $router.history.current.name }} -->
+      <div>
+        <el-button
+          type="primary"
+          size="mini"
+          @click="
+            $router.history.current.name !== 'Home'
+              ? $router.replace({ name: 'Home' })
+              : ''
+          "
+        >
+          返回首页
+        </el-button>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -19,6 +41,9 @@ export default {
     return {
       showUserSelection: false
     };
+  },
+  created() {
+    console.log(this.$router);
   },
   methods: {
     confirm(value) {
@@ -52,5 +77,18 @@ body {
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+.footer {
+  position: fixed;
+  bottom: 15px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 9%;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #666;
 }
 </style>
