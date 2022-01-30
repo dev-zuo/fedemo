@@ -1,0 +1,23 @@
+{
+  "name": "fedemo",
+  "version": "1.0.0",
+  "description": "前端相关 demo、测试例子",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zuoxiaobai/fedemo.git"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zuoxiaobai/fedemo/issues"
+  },
+  "homepage": "https://github.com/zuoxiaobai/fedemo#readme",
+  "dependencies": {
+    "markdown-it": "^12.3.2"
+  }
+}
