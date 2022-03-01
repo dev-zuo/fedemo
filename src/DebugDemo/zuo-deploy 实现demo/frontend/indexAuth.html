@@ -1,0 +1,100 @@
+<head>
+  <title>zuo-deploy</title>
+  <!-- 导入样式 -->
+  <link rel="stylesheet" href="//unpkg.com/element-plus/dist/index.css" />
+  <!-- 导入 Vue 3 -->
+  <script src="//unpkg.com/vue@next"></script>
+  <!-- 导入组件库 -->
+  <script src="//unpkg.com/element-plus"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.socket.io/4.4.1/socket.io.min.js"></script>
+  <style>
+    .login-area {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!-- @start login-->
+    <div class="login-area">
+      <div v-if="!isLogin">
+        <el-input v-model="password" type="password" style="width: 200px;"></el-input>
+        &nbsp;
+        <el-button type="primary" @click="login">登录</el-button>
+      </div>
+      <div v-else>已登录</div>
+    </div>
+    <!-- @end login-->
+    <!-- @start deploy log-->
+    <div style="margin:0 20px;">
+      <el-button type="primary" @click="deploy">部署</el-button>
+      <div>
+        <p>部署日志:</p>
+        <div class="text-log-wrap">
+          <!-- <pre>{{ deployLog }}</pre> -->
+          <pre>{{msgList}}</pre>
+        </div>
+      </div>
+    </div>
+    <!-- @end deploy log-->
+  </div>
+
+  <script>
+    const app = {
+      data() {
+        return {
+          deployLog: '点击按钮进行部署',
+          msgList: [],
+          isLogin: false,
+          password: ''
+        }
+      },
+      mounted() {
+        this.socket = io() // 链接到 socket 服务器
+        this.socket.on('deploy-log', (msg) => {
+          console.log(msg)
+          this.msgList.push(msg)
+        })
+      },
+      methods: {
+        login() {
+          if (!this.password) {
+            this.$message.warning('请输入密码')
+            return
+          }
+          axios.post('/login', { password: this.password })
+            .then((response) => {
+              console.log(response.data);
+              let { code, msg } = response.data
+              if (code === 0) {
+                this.isLogin = true
+              } else {
+                this.$message.error(msg)
+              }
+            })
+            .catch(function (err) {
+              console.log(err);
+              this.$message.error(err.message)
+            })
+        },
+        deploy() {
+          this.deployLog = '后端部署中，请稍等...'
+          this.msgList = []
+          axios.post('/deploy')
+            .then((res) => {
+              // 部署完成，返回 log
+              console.log(res.data);
+              // this.deployLog = res.data.msg
+            })
+            .catch(function (err) {
+              console.log(err);
+            })
+        }
+      }
+    }
+
+    Vue.createApp(app).use(ElementPlus).mount('#app')
+  </script>
+</body>

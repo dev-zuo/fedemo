@@ -1,0 +1,58 @@
+<head>
+  <title>zuo-deploy</title>
+  <!-- 导入样式 -->
+  <link rel="stylesheet" href="//unpkg.com/element-plus/dist/index.css" />
+  <!-- 导入 Vue 3 -->
+  <script src="//unpkg.com/vue@next"></script>
+  <!-- 导入组件库 -->
+  <script src="//unpkg.com/element-plus"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.socket.io/4.4.1/socket.io.min.js"></script>
+</head>
+
+<body>
+  <div id="app" style="margin:0 20px;">
+    <el-button type="primary" @click="deploy">部署</el-button>
+    <div>
+      <p>部署日志:</p>
+      <div class="text-log-wrap">
+        <!-- <pre>{{ deployLog }}</pre> -->
+        <pre>{{msgList}}</pre>
+      </div>
+    </div>
+  </div>
+  <script>
+    const app = {
+      data() {
+        return {
+          deployLog: '点击按钮进行部署',
+          msgList: []
+        }
+      },
+      mounted() {
+        this.socket = io() // 链接到 socket 服务器
+        this.socket.on('deploy-log', (msg) => {
+          console.log(msg)
+          this.msgList.push(msg)
+        })
+      },
+      methods: {
+        deploy() {
+          this.deployLog = '后端部署中，请稍等...'
+          this.msgList = []
+          axios.post('/deploy')
+            .then((res) => {
+              // 部署完成，返回 log
+              console.log(res.data);
+              // this.deployLog = res.data.msg
+            })
+            .catch(function (err) {
+              console.log(err);
+            })
+        }
+      }
+    }
+
+    Vue.createApp(app).use(ElementPlus).mount('#app')
+  </script>
+</body>
