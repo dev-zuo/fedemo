@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  测试撸猫
+  <div style="position:fixed;bottom:0;left:100px;">
+    <div id="live2dMessage" style="font-size:12px;color:rgba(12, 109, 235, .5);margin-bottom: 5px;text-align:center;"></div>
+    <canvas id="live2d" width="280" height="250"></canvas>
+  </div>
+  
+  <script src="./live2d/live2d.js"></script>
+  <script src="./live2d/message.js"></script>
+  <script>
+    loadlive2d("live2d", "./live2d/whitecat/model.json");
+  </script>
+</body>
+</html>
