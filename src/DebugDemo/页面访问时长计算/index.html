@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+         window.startTime = 0
+        console.log('head exec time', new Date(), +new Date())
+        console.log(performance.timing)
+        startTime = performance.timing?.navigationStart
+    </script>
+</head>
+<body>
+    <a href="http://baidu.com">离开页面</a>
+    <script>
+        
+         window.addEventListener('DOMContentLoaded', () => {
+            console.log('DOMContentLoaded', new Date(), +new Date())
+        })
+        window.addEventListener('load', () => {
+            console.log('load', new Date(), +new Date())
+            startTime = performance.navigationStart
+        })
+        window.addEventListener('unload', () => {
+            console.log('unload', new Date(), +new Date())
+            console.log(performance.timing)
+        })
+        window.addEventListener('beforeunload', () => {
+            console.log('onbeforeunload', new Date(), +new Date())
+            startTime = performance.timing?.navigationStart
+            console.log('页面停留时长',  window.startTime, (+new Date() - window.startTime) / 1000)
+        })
+    </script>
+</body>
+</html>
