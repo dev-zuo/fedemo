@@ -22,11 +22,17 @@ function getDiceResult(cmdStr, initInfo = '123456') {
     const doAction =  (cmd) => {
         switch (cmd) {
             case 'L':
+                // right => top, top => left, left => bottom, bottom => right
+                [top, left, bottom, right] = [right, top, left, bottom]
+                break;
             case 'C':
                 // left => back, back => right, right => front, front => left
                 [back, right, front, left] = [left, back, right, front]
                 break;
             case 'R':
+                // right => bottom, bottom => left, left => top, top => right
+                [bottom, left, top, right] = [right, bottom, left, top]
+                break;
             case 'A':
                 // left => front, front => right, right => back, back => left
                 [front, right, back, left] = [left, front, right, back]
@@ -48,7 +54,7 @@ function getDiceResult(cmdStr, initInfo = '123456') {
     return `${left}${right}${front}${back}${top}${bottom}`
 }
 
-console.log(getDiceResult('LR'))
-console.log(getDiceResult('BF'))
-console.log(getDiceResult('LB'))
-console.log(getDiceResult('FCR'))
+console.log(getDiceResult('LR')) // 123456  
+console.log(getDiceResult('BF')) // 123456  
+console.log(getDiceResult('LB')) // 561234
+console.log(getDiceResult('FCR')) // 342156

@@ -79,7 +79,7 @@ function getNumber(n) {
         str = result
     }
     end = +new Date()
-    console.log(`耗时`, (end - start) / 1000)
+    // console.log(`耗时`, (end - start) / 1000)
     // return arr[n]
     return str
 }
@@ -97,3 +97,14 @@ console.log(9, getNumber(9))
 console.log(10, getNumber(10))
 console.log(getNumber(59)[0]) //  5.444s
 
+// 0 1
+// 1 11
+// 2 21
+// 3 1211
+// 4 111221
+// 5 312211
+// 6 13112221
+// 7 1113213211
+// 8 31131211131221
+// 9 13211311123113112211
+// 10 11131221133112132113212221
