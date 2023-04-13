@@ -6,10 +6,6 @@ const { PassThrough } = require('stream');
 
 const app = new Koa()
 const router = new KoaRouter();
-
-// 响应给前端 ContentType: text/event-stream
-// https://developer.mozilla.org/zh-CN/docs/Web/API/Server-sent_events/Using_server-sent_events#%E4%BB%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%8E%A5%E5%8F%97%E4%BA%8B%E4%BB%B6
-// Koa SSE 实现 https://stackoverflow.com/questions/53295738/koa-sse-connection-reconnecting
 router.get("/open-ai/sendMsg", async (ctx) => {
     ctx.type = "text/event-stream"
     ctx.set({

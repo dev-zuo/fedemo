@@ -4,34 +4,18 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>server-send-events test page</title>
-    <script src="http://cdn.zuo11.com/zuo-deploy/axios.1.1.2.min.js"></script>
+    <title>chatgpt stream 响应数据SSE测试 demo</title>
   </head>
   <body>
-    <button class="btn">点击按钮</button>
+    <button class="btn">请求接口</button>
     <div id="result" style="word-wrap: break-word;"></div>
     <script type="module">
     let resultEl = document.querySelector('#result')
-    //SSE https://developer.mozilla.org/zh-CN/docs/Web/API/Server-sent_events/Using_server-sent_events#%E4%BB%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%8E%A5%E5%8F%97%E4%BA%8B%E4%BB%B6
-    // chatgpt stream 响应数据方式测试 demo
-    // https://blog.csdn.net/qq_40074694/article/details/120250835
+    // SSE https://developer.mozilla.org/zh-CN/docs/Web/API/Server-sent_events/Using_server-sent_events#%E4%BB%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%8E%A5%E5%8F%97%E4%BA%8B%E4%BB%B6
     // 前端 EventStream API 发起请求，后端 Koa，ctx.body 设置 stream 可写流，ctx.set 响应类型 text/event-stream。
     document.querySelector(".btn").addEventListener("click", () => {
-        // axios
-        //   .post("/open-ai/sendMsg", {  })
-        //   .then((response) => {
-        //     console.log(response.data);
-        //   })
-        //   .catch((err) => {
-        //     console.log(err, err.message);
-        //   });
         const evtSource = new EventSource("/open-ai/sendMsg");
         evtSource.onmessage = function (event) {
-          //   const newElement = document.createElement("li");
-          //   const eventList = document.getElementById("list");
-
-          //   newElement.innerHTML = "message: " + event.data;
-          //   eventList.appendChild(newElement);
           console.log("message: " + event.data);
           resultEl.innerHTML += event.data;
         };
