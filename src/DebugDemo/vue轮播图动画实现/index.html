@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vue轮播图动画实现</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+      .imgWrap {
+        position: relative;
+        width: 185px;
+      }
+
+      .imgWrap img {
+        position: absolute;
+        width: 100%;
+        height: 123px;
+        object-fit: cover;
+        z-index: 10;
+        border-radius: 5px;
+      }
+
+      .fade-enter-active,
+      .fade-leave-active {
+        width: 0% !important;
+        transition: width 2s ease-in-out;
+      }
+
+      .fade-enter {
+        width: 100% !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      {{curIndex}}
+      <div class="imgWrap">
+        <!-- 动效图片-最上层 -->
+        <transition name="fade">
+          <img
+            v-if="curIndex"
+            :key="curIndex"
+            :id="`img-${curIndex}`"
+            class="active"
+            :src="`./images/${curIndex}.jpg`"
+          />
+        </transition>
+        <!-- 背景层A -->
+        <img
+          :key="bgAIndex"
+          :id="`img-${bgAIndex}`"
+          style="z-index: 1; top: 5px; left: 5px"
+          :src="`./images/${bgAIndex}.jpg`"
+        />
+        <!-- 背景层B -->
+        <img
+          :key="bgBIndex"
+          :id="`img-${bgBIndex}`"
+          style="z-index: 0; top: 10px; left: 10px"
+          :src="`./images/${bgBIndex}.jpg`"
+        />
+      </div>
+    </div>
+
+    <script type="module">
+      import Touch from "./touch.js";
+      var app = new Vue({
+        el: "#app",
+        data: {
+          n: 6, // 图片张数
+          curIndex: 1, // 当前图片
+        },
+        computed: {
+          bgAIndex() {
+            // curIndex + 1
+            // 1 => 2, 5 => 6, 6 > 1
+            return this.curIndex >= this.n ? 1 : this.curIndex + 1;
+          },
+          bgBIndex() {
+            // curIndex + 2
+            // 1 => 3, 4 => 6, 5 => (5+2)
+            let temp = this.curIndex + 2;
+            return temp > this.n ? temp - this.n : temp;
+          },
+        },
+        mounted() {
+            // TODO: 拖动 https://leonwgc.github.io/w-touch/
+
+            this.autoPlay();
+        },
+        methods: {
+          autoPlay() {
+            const t = 2000;
+            setInterval(() => {
+              if (this.curIndex >= this.n) {
+                this.curIndex = 1;
+                return;
+              }
+              this.curIndex++;
+            }, t);
+          },
+          leftSlide() {
+            console.log("左滑");
+          },
+          rightSlide() {
+            console.log("右滑");
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
