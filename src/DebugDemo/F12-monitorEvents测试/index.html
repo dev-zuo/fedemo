@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F12-monitorEvents测试</title>
+</head>
+<body>
+    <div id="test">点击测试</div>
+    <script>
+        // https://stackoverflow.com/questions/10213703/how-do-i-view-events-fired-on-an-element-in-chrome-devtools
+        // F12 通过箭头选中元素，在 console 中使用 $0 可以拿到元素
+        // monitorEvents($0) 后，点击、鼠标移动到对应元素会显示log
+        // unmonitorEvents($0) 结束监听
+        let testEl = document.querySelector('#test')
+        testEl.onclick = () => {
+            console.log('onclick', +new Date())
+        }
+        // testEl.onMouseMove = () => {
+        //     console.log('onMouseMove', +new Date())
+        // }
+
+        // 通过 F12 查看元素监听的事件，以及代码
+       // https://umaar.com/dev-tips/24-view-event-listeners/
+    </script>
+</body>
+</html>
