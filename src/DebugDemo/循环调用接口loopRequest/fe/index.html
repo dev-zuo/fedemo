@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LoopRequest</title>
+    <link rel="stylesheet" href="http://cdn.zuo11.com/zuo-deploy/element-plus.2.2.18.index.css" />
+    <script src="http://cdn.zuo11.com/zuo-deploy/vue.3.2.41.min.js"></script>
+    <script src="http://cdn.zuo11.com/zuo-deploy/element-plus-2.2.18.min.js"></script>
+    <script src="http://cdn.zuo11.com/zuo-deploy/axios.1.1.2.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <el-button @click="sendLoopReq" v-loading="loading">请求</el-button>
+    </div>
+    <script type="module">
+    //   import { LoopReq } from "./v2.js";
+      import { LoopReq } from "./v3.js";
+      const app = {
+        data() {
+          return {
+            loading: false,
+          };
+        },
+        methods: {
+          sendLoopReq() {
+            const loopReq = new LoopReq();
+            //获取状态成功，状态为成功或失败
+            const successCallback = (data) => {
+              alert("获取状态成功");
+              console.log(data); //根据状态处理后续业务
+              this.loading = false;
+            };
+            //请求失败、接口异常
+            const errorCallback = (err) => {
+              console.log(err);
+              alert("接 口 异常：${err.message}");
+              this.loading = false;
+            };
+            // 5s还是未确认，超时处理
+            const timeoutCallback = () => {
+              alert("状态未确认，超时");
+              this.loading = false;
+            };
+            this.loading = true;
+            loopReq.send(successCallback, errorCallback, timeoutCallback);
+          },
+        },
+      };
+      Vue.createApp(app).use(ElementPlus).mount("#app");
+    </script>
+  </body>
+</html>
