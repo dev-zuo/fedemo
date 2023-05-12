@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex-cloumn-固定高度超出容器问题</title>
+    <style>
+        .main {
+            display: flex;
+            flex-flow: wrap;
+            max-height: 150px;
+            writing-mode: vertical-lr;
+            border: 1px solid red;
+        }
+        .main .sec {
+            writing-mode: horizontal-tb;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>max-height: 150px;</h2>
+    <div class="main">
+        <div class="sec">123</div>
+        <div class="sec">123</div>
+        <div class="sec">123</div>
+        <div class="sec">123</div>
+        <div class="sec">123</div>
+        <div class="sec">123</div>
+        <div class="sec">123</div>
+        <div class="sec">123</div>
+    </div>
+
+    <h2>max-height: 200px;</h2>
+    <div class="main" style="max-height: 200px;">
+        <div class="sec">123</div>
+        <div class="sec">123</div>
+        <div class="sec">123</div>
+        <div class="sec">123</div>
+        <div class="sec">123</div>
+        <div class="sec">123</div>
+        <div class="sec">123</div>
+        <div class="sec">123</div>
+    </div>
+
+    <h2>max-height: 300px;</h2>
+    <div class="main" style="max-height: 300px;">
+        <div class="sec">123</div>
+        <div class="sec">123</div>
+        <div class="sec">123</div>
+        <div class="sec">123</div>
+        <div class="sec">123</div>
+        <div class="sec">123</div>
+        <div class="sec">123</div>
+        <div class="sec">123</div>
+    </div>
+</body>
+</html>
